@@ -72,6 +72,22 @@ function normalize_damage_range(value) {
 	return value;
 }
 
+function normalize_attack_type(value) {
+	if (!value) {
+		return value;
+	}
+
+	const normalized_value = value.toLowerCase();
+
+	if (
+		normalized_value === 'line of sight'
+	) {
+		return 'Line of Sight';
+	}
+
+	return value;
+}
+
 const data = JSON.parse(await readFile(source_file, 'utf8'));
 
 const parsed_data = data.map((item) => {
@@ -94,7 +110,7 @@ const parsed_data = data.map((item) => {
 		attack_range: properties['attack-range'],
 		health: properties.health,
 		attack: properties.attack,
-		attack_type: properties['attack-type'],
+		attack_type: normalize_attack_type(properties['attack-type']),
 		damage_range: normalize_damage_range(properties['damage-range']),
 		description: properties.description,
 		stress_level: properties['stress level']
