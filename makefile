@@ -1,21 +1,23 @@
 # 定義目標資料夾與檔案名稱
 DATA_DIR = data
-COMBINED_JSON = $(DATA_DIR)/phobies-parsed.json
+COMBINED_JSON = $(DATA_DIR)/data_with_icon.json
 INDEX_HTML = index.html
 
 # 關鍵設定：將 all、下載規則都宣告為 .PHONY，確保每次執行 make 都一定會跑 curl 覆蓋舊檔
 .PHONY: all clean fetch-phobies parse-phobies inline
 
-all: fetch-phobies parse-phobies inline
+all: fetch-wiki parse-phobies inline
 	@echo "所有 JSON 檔案已嘗試更新並覆蓋！"
 
 # 建立資料夾（這個保留非 .PHONY，有資料夾就不重複建立）
 $(DATA_DIR):
 	mkdir -p $(DATA_DIR)
 
-fetch-phobies:
+fetch-wiki:
 	mkdir -p $(DATA_DIR)
-	DATA_DIR='$(DATA_DIR)' bun ./fetch-wiki.mjs
+	DATA_DIR='$(DATA_DIR)' bun ./fetch_list.mjs
+	DATA_DIR='$(DATA_DIR)' bun ./fetch_details.mjs
+	DATA_DIR='$(DATA_DIR)' bun ./fetch_icon.mjs
 
 parse-phobies:
 	DATA_DIR='$(DATA_DIR)' bun ./parse-phobies.mjs
