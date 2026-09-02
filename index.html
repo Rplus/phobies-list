@@ -1,0 +1,4368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Phobies list</title>
+<style>
+	#el_form {
+		position: fixed;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		z-index: 2;
+		background-color: #0009;
+		backdrop-filter: blur(3px);
+		padding-left: 0.5em;
+
+		.filter-toggle {
+			text-align: right;
+			outline: none;
+			cursor: pointer;
+			padding: 0.5em;
+		}
+
+		&:not(:has(#el_form_details[open])) {
+			opacity: 0.75;
+			bottom: unset;
+		}
+	}
+
+	#el_form_details:not([open]) .filter-toggle .txt {
+		display: none;
+	}
+
+	#el_reset {
+		position: absolute;
+		top: .5em;
+		left: .5em;
+	}
+
+	#el_filters {
+		max-height: calc(100vh - 4em);
+		min-width: 250px;
+		overflow-y: auto;
+		line-height: 1;
+		font-size: smaller;
+		flex-wrap: wrap;
+		margin-top: 1em;
+		gap: 1em;
+		display: grid;
+		user-select: none;
+
+		/* grid-template-columns: repeat(8, 1fr); */
+
+		@media (max-width: 1200px) {
+			/* grid-template-columns: repeat(4, 1fr); */
+		}
+		@media (max-width: 660px) {
+			/* grid-template-columns: repeat(2, 1fr); */
+			font-size: small;
+		}
+
+		dd {
+			margin: 0 0 .25em;
+		}
+
+		input[type="checkbox"] {
+			font-size: smaller;
+			width: 1em;
+			height: 1em;
+		}
+
+		fieldset {
+			position: relative;
+			margin: 0;
+
+			div:has(fieldset) {
+				display: grid;
+				gap: 1em;
+				grid-auto-flow: column;
+				grid-auto-columns: 1fr;
+			}
+		}
+
+		legend {
+			text-transform: capitalize;
+			/* position: sticky; */
+			/* top: 0; */
+			/* background-color: #666; */
+		}
+
+		summary {
+			position: absolute;
+			top: -1em;
+			left: 0;
+			width: 100%;
+			cursor: pointer;
+			color: #990;
+		}
+
+		details[data-cate="cost"] div {
+			columns: 2;
+		}
+	}
+
+	.filter-label {
+		align-items: center;
+	}
+
+	#el_list {
+		display: grid;
+		max-width: 1200px;
+		margin-left: auto;
+		margin-right: auto;
+		grid-template-columns: repeat(11, 1fr);
+		padding: .5em 1em;
+		margin-bottom: max(40vh, 20em);
+		font-size: smaller;
+
+		@media (max-width: 860px) {
+			grid-template-columns: repeat(6, 1fr);
+
+			.head,
+			.item {
+				& > div:first-child {
+					grid-row: 1 / span 3;
+				}
+			}
+		}
+		@media (max-width: 540px) {
+			grid-template-columns: repeat(4, 1fr);
+
+			.head,
+			.item {
+				& > div:first-child {
+					grid-row: 1 / span 3;
+					grid-column: 1 / span 2;
+				}
+
+				& > div:nth-of-type(2),
+				& > div:nth-of-type(3) {
+					order: 1;
+					margin-bottom: 2em;
+					border-bottom-width: 3px;
+				}
+
+				& > div:nth-child(n + 10) {
+					order: 2;
+					margin-bottom: 2em;
+					border-bottom-width: 3px;
+				}
+			}
+		}
+	}
+
+	#el_list.is-grouped {
+		display: block;
+		min-width: 50vw;
+		max-width: 1200px;
+		width: fit-content;
+		margin: 0 auto 5em;
+		/* background-color: #fff1; */
+	}
+
+	.grouped-heros-cate {
+		margin-bottom: 1.5em;
+		/* width: fit-content; */
+
+		h3 {
+			margin-bottom: .25em;
+		}
+	}
+
+	.grouped-heros-box {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		background-color: #0003;
+		border-radius: 0 1em 1em 1em;
+
+		.grouped-heros-cate[data-cate="race"] & {
+			display: block;
+		}
+
+		body:has(#class-spliter:checked) & {
+			display: grid;
+			grid-auto-flow: row dense;
+			/* grid-template-columns: repeat(7, 1fr); */
+
+			.grouped-hero {
+				&[data-class-mage="1"],
+				&[data-class-warrior="1"],
+				&[data-class-rogue="1"] {
+					border-left: 1px dashed #fff3;
+				}
+			}
+		}
+	}
+
+	.grouped-hero {
+		position: relative;
+		display: block;
+		text-align: center;
+		font-size: smaller;
+		padding: .5em;
+
+		img {
+			display: block;
+			object-fit: contain;
+		}
+
+		div {
+			opacity: 0.5;
+		}
+
+		&:hover {
+			background-color: #fff1;
+
+			div {
+				opacity: 1;
+			}
+		}
+
+		.grouped-hero__name {
+			display: inline-flex;
+			max-width: 60px;
+			justify-content: center;
+			line-height: 1.1;
+			white-space: nowrap;
+		}
+
+		.grouped-hero__details-btn {
+			position: absolute;
+			top: 0;
+			right: 0;
+			display: inline-flex;
+			width: 2.5em;
+			height: 2.5em;
+			background-color: #fff3;
+			border-width: 0;
+			justify-content: end;
+			align-items: start;
+			cursor: pointer;
+			padding: 2px 6px;
+			clip-path: polygon(0% 0%, 100% 0%, 100% 100%);
+			opacity: 0;
+		}
+
+		&:hover .grouped-hero__details-btn {
+			opacity: .5;
+
+			&:hover {
+				opacity: 1;
+			}
+		}
+	}
+
+	.grouped-heros-classbox {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: start;
+		align-content: flex-start;
+		justify-content: center;
+		padding: 0.25em;
+		padding-top: .5em;
+		padding-bottom: 1em;
+		gap: .25em;
+		background-image:
+			linear-gradient(-115deg, #0001, #0000 30%),
+			linear-gradient(100deg, #9991, #0000 10%);
+
+		.grouped-heros-cate[data-cate="class"] &:empty {
+			display: none;
+		}
+	}
+
+	.head {
+		position: sticky;
+		top: 0;
+		order: -10000000000;
+		background-color: rgba(var(--bgc), .75);
+		background-color: #666c;
+		text-transform: uppercase;
+		font-size: small;
+		font-weight: 900;
+		backdrop-filter: blur(1px);
+		user-select: none;
+		cursor: pointer;
+	}
+
+	.head,
+	.item {
+		ul:not(.is-grouped) & {
+			display: grid;
+			grid-column: 1 / -1;
+			grid-template-columns: subgrid;
+
+			img:hover {
+				background-color: #fff1;
+			}
+
+			& > div {
+				/* max-width: 100px; */
+				padding: 0.5em 0.25em;
+				text-align: center;
+				border-bottom: 1px dotted #fff3;
+				border-left: 1px dotted #fff3;
+				place-content: center;
+
+				&:last-of-type {
+					border-right: 1px dotted #fff3;
+				}
+
+				&[data-name] {
+					text-align: start;
+				}
+			}
+		}
+	}
+
+	.item .label {
+		display: none;
+	}
+
+	.value {
+		white-space: pre-wrap;
+		place-content: center;
+		text-align: center;
+		line-height: 1;
+
+		&[data-value="undefined"] {
+			opacity: 0.3;
+			font-size: smaller;
+			font-size: 0;
+			&::before {
+				font-size: 1rem;
+				content: '-';
+			}
+		}
+
+		a {
+			text-decoration: unset;
+			display: block;
+		}
+	}
+
+	.trait-box {
+		display: inline-flex;
+		align-items: center;
+		padding: 2px .5em;
+		margin: 0.2em 0;
+
+		&:hover {
+			background-color: #fff3;
+		}
+
+		&::before { content: '['; padding-inline-end: 2px; }
+		&::after { content: ']'; padding-inline-start: 2px; }
+	}
+
+	div[data-affinity] .value::before {
+		content: '◼ ';
+		color: var(--color);
+		font-size: 1.5rem;
+		filter: drop-shadow(2px 4px 6px);
+		text-shadow: -.5rem -.5rem;
+		z-index: -1;
+		position: relative;
+	}
+	div[data-affinity="Light"] { --color: #ff0; }
+	div[data-affinity="Red"] { --color: #f00; }
+	div[data-affinity="Dark"] { --color: #000; }
+	div[data-affinity="Blue"] { --color: #66f; }
+	div[data-affinity="Green"] { --color: #0a0; }
+
+	.flex {
+		display: flex;
+	}
+
+	body {
+		margin: 0;
+		background-color: rgb(var(--bgc));
+		color: rgb(var(--main-color));
+		overflow-y: scroll;
+	}
+
+	:root {
+		--bgc: 51, 51, 51;
+		--main-color: 238, 238, 238;
+		color-scheme: dark;
+		font-family: sans-serif;
+	}
+
+	* {
+		box-sizing: border-box;
+		scrollbar-width: thin;
+		/* scrollbar-width: none; */
+		scrollbar-color: #8886 #0000;
+		/* scrollbar-gutter: stable both-edges; */
+		scrollbar-gutter: stable;
+	}
+
+	ul {
+		margin: 0;
+		padding: 0;
+	}
+
+	hr {
+		border: 1px dashed;
+		border-width: 0px;
+		border-top-width: 1px;
+		opacity: 0.25;
+	}
+	h1 {
+		text-align: center;
+		width: fit-content;
+		padding: .25em 2vw;
+		margin: 0 auto;
+	}
+	#el_switcher {
+		display: block;
+		text-transform: capitalize;
+		margin: 0 auto;
+	}
+
+	#goback {
+		position: absolute;
+		color: inherit;
+		top: 0;
+		left: 0;
+		width: 3em;
+		height: 3em;
+		display: flex;
+		padding: .25em;
+		background-image: linear-gradient(135deg, #fff3 50%, #0000 50%);
+
+		&:not(:hover) {
+			opacity: .5;
+		}
+	}
+
+	#dialog {
+		text-transform: capitalize;
+
+		img {
+			object-fit: contain;
+		}
+
+		button {
+			position: absolute;
+			right: 0;
+			top: 0;
+		}
+
+		tr:hover {
+			background-color: #fff3;
+		}
+
+		&::backdrop {
+			background-color: #0009;
+			backdrop-filter: blur(2px);
+		}
+	}
+	img {
+		user-select: none;
+	}
+</style>
+</head>
+
+<body>
+
+	<a id="goback" href="./">./</a>
+
+	<h1>Phobies list</h1>
+
+	<select id="el_switcher"></select>
+
+	<div id="app">
+
+		<form id="el_form">
+			<details id="el_form_details">
+				<summary class="filter-toggle">
+					<span class="txt">Filters</span>
+				</summary>
+				<div>
+					<!--
+					<div class="flex" style="gap: .25em">
+						<input type="search" name="query" id="el_query">
+						<input type="reset" id="el_reset">
+					</div>
+					-->
+					<input type="reset" id="el_reset">
+
+					<ul id="el_filters">
+					</ul>
+				</div>
+			</details>
+			<style id="el_filter_style"></style>
+		</form>
+
+		<ul id="el_list"></ul>
+		<dialog id="dialog">
+			<div id="dialog_ctx"></div>
+			<button onclick="fn_toggle_dialog(false)">✖</button>
+		</dialog>
+	</div>
+
+	<!-- <script src="./data/Phobies_data.js"></script> -->
+	<!-- JS_INLINE_START -->
+<script>
+const heros =
+[
+	{
+		"name": "Razor Mouth",
+		"link": "/wiki/Razor_Mouth",
+		"img": "c/cc/Razor_Mouth_Avatar.png",
+		"cost": "1",
+		"race": "Monster",
+		"rarity": "Common",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "600",
+		"attack": "300",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack",
+		"description": "Here Kitty Kglllahhhhhhh!",
+		"stress_level": "1"
+	},
+	{
+		"name": "AWOL",
+		"link": "/wiki/AWOL",
+		"img": "1/1f/AWOL_Avatar.png",
+		"cost": "1",
+		"race": "Monster",
+		"rarity": "Common",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "350",
+		"attack": "475",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack",
+		"description": "The game is a foot"
+	},
+	{
+		"name": "Muffintop",
+		"link": "/wiki/Muffintop",
+		"img": "4/4c/Muffintop_Avatar.png",
+		"cost": "1",
+		"race": "Monster",
+		"rarity": "Uncommon",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"health": "550"
+	},
+	{
+		"name": "Electricat",
+		"link": "/wiki/Electricat",
+		"img": "8/88/Electricat_Avatar.png",
+		"cost": "1",
+		"race": "Monster",
+		"rarity": "Uncommon",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "620",
+		"attack": "200",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack",
+		"description": "Don't rub balloons on the kitty!"
+	},
+	{
+		"name": "Tickles",
+		"link": "/wiki/Tickles",
+		"img": "3/31/Tickles_Avatar.png",
+		"cost": "1",
+		"race": "Monster",
+		"rarity": "Uncommon",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "750",
+		"attack": "200",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Henrietta",
+		"link": "/wiki/Henrietta",
+		"img": "1/15/Henrietta_Avatar.png",
+		"cost": "1",
+		"race": "Monster",
+		"rarity": "Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "650",
+		"attack": "180",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack",
+		"description": "That tingling feeling means it's working"
+	},
+	{
+		"name": "Blue",
+		"link": "/wiki/Blue",
+		"img": "a/a8/Blue_Avatar.webp",
+		"cost": "1",
+		"race": "Monster",
+		"rarity": "Rare",
+		"movement_range": "1",
+		"movement_type": "Flying",
+		"health": "100"
+	},
+	{
+		"name": "Sockassin",
+		"link": "/wiki/Sockassin",
+		"img": "f/ff/Sockassin_Avatar.png",
+		"cost": "1",
+		"race": "Monster",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "430",
+		"attack": "250",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack",
+		"description": "Hide & Eek!"
+	},
+	{
+		"name": "Gesundheit",
+		"link": "/wiki/Gesundheit",
+		"img": "c/c5/Gesundheit_Avatar.png",
+		"cost": "2",
+		"race": "Monster",
+		"rarity": "Common",
+		"movement_range": "1",
+		"movement_type": "Flying",
+		"attack_range": "2",
+		"health": "600",
+		"attack": "500",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack",
+		"description": "Feel a little something coming on, do we?"
+	},
+	{
+		"name": "Suckee",
+		"link": "/wiki/Suckee",
+		"img": "d/d9/Suckee_Avatar.png",
+		"cost": "2",
+		"race": "Monster",
+		"rarity": "Common",
+		"movement_range": "1",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1300",
+		"attack": "325",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Wiggy",
+		"link": "/wiki/Wiggy",
+		"img": "5/59/Wiggy_Avatar.png",
+		"cost": "2",
+		"race": "Monster",
+		"rarity": "Common",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "740",
+		"attack": "600",
+		"attack_type": "Single Target Attack",
+		"damage_range": "Line of Sight",
+		"description": "That's a nice ear you've got there..."
+	},
+	{
+		"name": "Maggie",
+		"link": "/wiki/Maggie",
+		"img": "3/3b/Maggie_Avatar.png",
+		"cost": "2",
+		"race": "Monster",
+		"rarity": "Common",
+		"movement_range": "2",
+		"movement_type": "Flying",
+		"attack_range": "1",
+		"health": "600",
+		"attack": "450",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack",
+		"description": "From Pile to Plate"
+	},
+	{
+		"name": "Finnigan",
+		"link": "/wiki/Finnigan",
+		"img": "b/b3/Finnigan_Avatar.png",
+		"cost": "2",
+		"race": "Monster",
+		"rarity": "Uncommon",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "950",
+		"attack": "250",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Uni Corn",
+		"link": "/wiki/Uni_Corn",
+		"img": "9/94/Uni_Corn_Avatar.png",
+		"cost": "2",
+		"race": "Monster",
+		"rarity": "Uncommon",
+		"movement_range": "1",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "950",
+		"attack": "360",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Red",
+		"link": "/wiki/Red",
+		"img": "3/31/Red.png",
+		"cost": "2",
+		"race": "Monster",
+		"rarity": "Rare",
+		"movement_range": "2",
+		"movement_type": "Flying",
+		"health": "100"
+	},
+	{
+		"name": "Bad Omen",
+		"link": "/wiki/Bad_Omen",
+		"img": "8/8d/Bad_Omen_Avatar.png",
+		"cost": "2",
+		"race": "Monster",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "800",
+		"attack": "320",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Cupcake",
+		"link": "/wiki/Cupcake",
+		"img": "5/51/Cupcake_Avatar.png",
+		"cost": "2",
+		"race": "Monster",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"health": "650"
+	},
+	{
+		"name": "Minotaur",
+		"link": "/wiki/Minotaur",
+		"img": "7/7a/Minotaur_Avatar.png",
+		"cost": "3",
+		"race": "Monster",
+		"rarity": "Common",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1500",
+		"attack": "425",
+		"attack_type": "Self-Initiated AOE",
+		"damage_range": "Single Target Attack",
+		"description": "Ahhhh Mazing!"
+	},
+	{
+		"name": "Mike Roscopic",
+		"link": "/wiki/Mike_Roscopic",
+		"img": "c/c4/Mike_Roscopic_Avatar.png",
+		"cost": "3",
+		"race": "Monster",
+		"rarity": "Common",
+		"movement_range": "1",
+		"movement_type": "Flying",
+		"attack_range": "2",
+		"health": "950",
+		"attack": "550",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack",
+		"description": "Who's not wearing a mask"
+	},
+	{
+		"name": "Venus",
+		"link": "/wiki/Venus",
+		"img": "6/6e/Venus_Avatar.png",
+		"cost": "3",
+		"race": "Monster",
+		"rarity": "Uncommon",
+		"movement_range": "1",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1800",
+		"attack": "500",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Spud",
+		"link": "/wiki/Spud",
+		"img": "0/0f/Spud_Avatar.png",
+		"cost": "3",
+		"race": "Monster",
+		"rarity": "Uncommon",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "900",
+		"attack": "330",
+		"attack_type": "Lob",
+		"damage_range": "Single Target Attack",
+		"description": "Mash ya' good!"
+	},
+	{
+		"name": "Le Shovell",
+		"link": "/wiki/Le_Shovell",
+		"img": "8/80/Le_Shovell_Avatar.png",
+		"cost": "3",
+		"race": "Monster",
+		"rarity": "Uncommon",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1200",
+		"attack": "450",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Mozzy",
+		"link": "/wiki/Mozzy",
+		"img": "d/d1/Mozzy_Avatar.png",
+		"cost": "3",
+		"race": "Monster",
+		"rarity": "Uncommon",
+		"movement_range": "2",
+		"movement_type": "Flying",
+		"attack_range": "1",
+		"health": "900",
+		"attack": "450",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Capn Quackers",
+		"link": "/wiki/Capn_Quackers",
+		"img": "8/80/CapnQuackers.png",
+		"cost": "3",
+		"race": "Monster",
+		"rarity": "Uncommon",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1300",
+		"attack": "400",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Tick",
+		"link": "/wiki/Tick",
+		"img": "6/6e/Tick_Avatar.png",
+		"cost": "3",
+		"race": "Monster",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1250",
+		"attack": "400",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Slammer Head",
+		"link": "/wiki/Slammer_Head",
+		"img": "f/ff/Slammerhead_Avatar.png",
+		"cost": "4",
+		"race": "Monster",
+		"rarity": "Common",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1800",
+		"attack": "350",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Moley Bully",
+		"link": "/wiki/Moley_Bully",
+		"img": "0/0f/Moley_Bully_Avatar.png",
+		"cost": "4",
+		"race": "Monster",
+		"rarity": "Common",
+		"movement_range": "2",
+		"movement_type": "Bypassing",
+		"attack_range": "1",
+		"health": "1600",
+		"attack": "550",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack",
+		"description": "You should get that checked!"
+	},
+	{
+		"name": "Temptresss",
+		"link": "/wiki/Temptresss",
+		"img": "c/c4/Temptresss_Avatar.png",
+		"cost": "4",
+		"race": "Monster",
+		"rarity": "Uncommon",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "1200",
+		"attack": "300",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Ginsting",
+		"link": "/wiki/Ginsting",
+		"img": "b/b0/Ginsting_Avatar.png",
+		"cost": "4",
+		"race": "Monster",
+		"rarity": "Uncommon",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "1300",
+		"attack": "350",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Sheeping Gas",
+		"link": "/wiki/Sheeping_Gas",
+		"img": "c/c3/Sheeping_Gas_Avatar.png",
+		"cost": "4",
+		"race": "Monster",
+		"rarity": "Uncommon",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1400",
+		"attack": "475",
+		"attack_type": "Line of sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Honey Bear",
+		"link": "/wiki/Honey_Bear",
+		"img": "4/41/Honey_Bear_Avatar.png",
+		"cost": "4",
+		"race": "Monster",
+		"rarity": "Uncommon",
+		"movement_range": "1",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "2000",
+		"attack": "300",
+		"attack_type": "Line of sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Clobster",
+		"link": "/wiki/Clobster",
+		"img": "6/66/Clobster_Avatar.png",
+		"cost": "4",
+		"race": "Monster",
+		"rarity": "Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1700",
+		"attack": "380",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Poison Ivy",
+		"link": "/wiki/Poison_Ivy",
+		"img": "4/47/Poison_Ivy_Avatar.png",
+		"cost": "4",
+		"race": "Monster",
+		"rarity": "Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1350",
+		"attack": "440",
+		"attack_type": "Line of sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Ash",
+		"link": "/wiki/Ash",
+		"img": "b/b1/Ash.png",
+		"cost": "4",
+		"race": "Monster",
+		"rarity": "Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1300",
+		"attack": "300",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Werewolf",
+		"link": "/wiki/Werewolf",
+		"img": "2/22/Werewolf_portrait.png",
+		"cost": "4",
+		"race": "Monster",
+		"rarity": "Ultra Rare",
+		"movement_range": "3 / 2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "950 / 2850",
+		"attack": "280 / 560",
+		"attack_type": "Line of sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Staremaster",
+		"link": "/wiki/Staremaster",
+		"img": "7/7e/Staremaster_Avatar.png",
+		"cost": "5",
+		"race": "Monster",
+		"rarity": "Common",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "1200",
+		"attack": "500",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Quagmire",
+		"link": "/wiki/Quagmire",
+		"img": "b/b7/Quagmire_Avatar.png",
+		"cost": "5",
+		"race": "Monster",
+		"rarity": "Common",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "2200",
+		"attack": "400",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Ray Chargels",
+		"link": "/wiki/Ray_Chargels",
+		"img": "9/92/Ray_Chargels_Avatar.png",
+		"cost": "5",
+		"race": "Monster",
+		"rarity": "Common",
+		"movement_range": "2",
+		"movement_type": "Flying",
+		"attack_range": "2",
+		"health": "1200",
+		"attack": "375",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Woolly Bully",
+		"link": "/wiki/Woolly_Bully",
+		"img": "7/7c/Woolly_Bully_Avatar.png",
+		"cost": "5",
+		"race": "Monster",
+		"rarity": "Uncommon",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1800",
+		"attack": "390",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Perma",
+		"link": "/wiki/Perma",
+		"img": "4/4a/Perma_Avatar.png",
+		"cost": "5",
+		"race": "Monster",
+		"rarity": "Uncommon",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "1200",
+		"attack": "400",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Miss Moffat",
+		"link": "/wiki/Miss_Moffat",
+		"img": "5/5d/Miss_Moffat_Avatar.png",
+		"cost": "5",
+		"race": "Monster",
+		"rarity": "Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1300",
+		"attack": "250",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack",
+		"stress_level": "30"
+	},
+	{
+		"name": "Noxious",
+		"link": "/wiki/Noxious",
+		"img": "7/7e/Noxious_Avatar.png",
+		"cost": "5",
+		"race": "Monster",
+		"rarity": "Rare",
+		"movement_range": "2",
+		"movement_type": "Flying",
+		"attack_range": "1",
+		"health": "1500",
+		"attack": "400",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Sasquatch",
+		"link": "/wiki/Sasquatch",
+		"img": "5/5c/Sasquatch_Avatar.png",
+		"cost": "5",
+		"race": "Monster",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1000",
+		"attack": "600",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack",
+		"description": "",
+		"stress_level": "120"
+	},
+	{
+		"name": "Hazmat",
+		"link": "/wiki/Hazmat",
+		"img": "0/01/Hazmat_Avatar.png",
+		"cost": "5",
+		"race": "Monster",
+		"rarity": "Ultra Rare",
+		"movement_range": "1",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "2200",
+		"attack": "450",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Wabbit",
+		"link": "/wiki/Wabbit",
+		"img": "8/8a/Wabbit_Avatar.png",
+		"cost": "5",
+		"race": "Monster",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "1100",
+		"attack": "350",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Tiny Tim",
+		"link": "/wiki/Tiny_Tim",
+		"img": "1/17/Tiny_Tim_Avatar.png",
+		"cost": "6",
+		"race": "Monster",
+		"rarity": "Common",
+		"movement_range": "2",
+		"movement_type": "Bypassing",
+		"attack_range": "1",
+		"health": "1600",
+		"attack": "525",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Boofairy",
+		"link": "/wiki/Boofairy",
+		"img": "a/a0/Boofairy_Avatar.png",
+		"cost": "6",
+		"race": "Monster",
+		"rarity": "Uncommon",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1700",
+		"attack": "600",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Klepto",
+		"link": "/wiki/Klepto",
+		"img": "e/ef/Klepto_Avatar.png",
+		"cost": "6",
+		"race": "Monster",
+		"rarity": "Uncommon",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "1700",
+		"attack": "400",
+		"attack_type": "Lob",
+		"damage_range": "Targeted AOE Attack",
+		"description": "What's yours is mine and what's mine is mine."
+	},
+	{
+		"name": "Hematic Ginsting",
+		"link": "/wiki/Hematic_Ginsting",
+		"img": "8/8d/Hematic_Ginsting_Avatar.png",
+		"cost": "6",
+		"race": "Monster",
+		"rarity": "Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "1900",
+		"attack": "400",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Rambolina",
+		"link": "/wiki/Rambolina",
+		"img": "1/11/Rambolina_Avatar.png",
+		"cost": "6",
+		"race": "Monster",
+		"rarity": "Rare",
+		"movement_range": "3",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1850",
+		"attack": "390",
+		"attack_type": "Line of Sight",
+		"damage_range": "Targeted AOE Attack"
+	},
+	{
+		"name": "Brutewurst",
+		"link": "/wiki/Brutewurst",
+		"img": "9/93/Brutewurst_Avatar.png",
+		"cost": "6",
+		"race": "Monster",
+		"rarity": "Rare",
+		"movement_range": "1",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "2800",
+		"attack": "500",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Babadook",
+		"link": "/wiki/Babadook",
+		"img": "1/1f/Babadook_Avatar.png",
+		"cost": "6",
+		"race": "Monster",
+		"rarity": "Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1700",
+		"attack": "600",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Puff",
+		"link": "/wiki/Puff",
+		"img": "9/90/Puff_Avatar.png",
+		"cost": "6",
+		"race": "Monster",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Flying",
+		"attack_range": "2",
+		"health": "1600",
+		"attack": "300",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack",
+		"stress_level": "100"
+	},
+	{
+		"name": "Baaaad Sheep",
+		"link": "/wiki/Baaaad_Sheep",
+		"img": "5/51/Baaaad_Sheep_Avatar.png",
+		"cost": "6",
+		"race": "Monster",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1800",
+		"attack": "500",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "El Espinoso",
+		"link": "/wiki/El_Espinoso",
+		"img": "8/83/El_Espinoso_Avatar.png",
+		"cost": "6",
+		"race": "Monster",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "1200",
+		"attack": "300",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Chonkeys",
+		"link": "/wiki/Chonkeys",
+		"img": "4/4d/Chonkeys_Avatar.png",
+		"cost": "6",
+		"race": "Monster",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "2100",
+		"attack": "500",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Alley Gator",
+		"link": "/wiki/Alley_Gator",
+		"img": "d/db/Alley_Gator_Avatar.png",
+		"cost": "7",
+		"race": "Monster",
+		"rarity": "Common",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "2600",
+		"attack": "425",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Ogre",
+		"link": "/wiki/Ogre",
+		"img": "d/db/Ogre_Avatar.png",
+		"cost": "7",
+		"race": "Monster",
+		"rarity": "Uncommon",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "2100",
+		"attack": "400",
+		"attack_type": "Single Target Attack",
+		"damage_range": "Line of Sight"
+	},
+	{
+		"name": "Sparky",
+		"link": "/wiki/Sparky",
+		"img": "d/d6/Sparky_Avatar.png",
+		"cost": "7",
+		"race": "Monster",
+		"rarity": "Uncommon",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "2000",
+		"attack": "400",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack",
+		"description": "Like a stormy night right in your face."
+	},
+	{
+		"name": "Mr Tramples",
+		"link": "/wiki/Mr_Tramples",
+		"img": "b/b0/Mr_Tramples_Avatar.png",
+		"cost": "7",
+		"race": "Monster",
+		"rarity": "Rare",
+		"movement_range": "3",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1750",
+		"attack": "550",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Narciskink",
+		"link": "/wiki/Narciskink",
+		"img": "3/3f/Narciskink.png",
+		"cost": "7",
+		"race": "Monster",
+		"rarity": "Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1800",
+		"attack": "550",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Fire Ant",
+		"link": "/wiki/Fire_Ant",
+		"img": "4/46/Fire_Ant_Avatar.png",
+		"cost": "7",
+		"race": "Monster",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "2000",
+		"attack": "300",
+		"attack_type": "Lob",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Bogart",
+		"link": "/wiki/Bogart",
+		"img": "1/17/Bogart_Avatar.webp",
+		"cost": "7",
+		"race": "Monster",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "1800",
+		"attack": "400",
+		"attack_type": "Line of sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Billy",
+		"link": "/wiki/Billy",
+		"img": "4/48/Billy_Avatar.png",
+		"cost": "7",
+		"race": "Monster",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "1400",
+		"attack": "250",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Hercubees",
+		"link": "/wiki/Hercubees",
+		"img": "1/1d/Hercubees_Avatar.png",
+		"cost": "7",
+		"race": "Monster",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "1800",
+		"attack": "450",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Doc Holliday",
+		"link": "/wiki/Doc_Holliday",
+		"img": "9/9e/Doc_Holliday_Avatar.png",
+		"cost": "7",
+		"race": "Monster",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1000",
+		"attack": "600",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Skibidi",
+		"link": "/wiki/Skibidi",
+		"img": "f/ff/Skibidi_Avatar.png",
+		"cost": "7",
+		"race": "Monster",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "2100",
+		"attack": "550",
+		"attack_type": "Line of sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Barzilla",
+		"link": "/wiki/Barzilla",
+		"img": "d/d0/Barzilla_Avatar.png",
+		"cost": "8",
+		"race": "Monster",
+		"rarity": "Common",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "2800",
+		"attack": "375",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack",
+		"description": "He's Big in Japan!"
+	},
+	{
+		"name": "Yeti",
+		"link": "/wiki/Yeti",
+		"img": "9/96/Yeti_Avatar.png",
+		"cost": "8",
+		"race": "Monster",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "1800",
+		"attack": "410",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack",
+		"stress_level": "70"
+	},
+	{
+		"name": "Doughzer",
+		"link": "/wiki/Doughzer",
+		"img": "7/7c/Doughzer_Avatar.png",
+		"cost": "8",
+		"race": "Monster",
+		"rarity": "Ultra Rare",
+		"movement_range": "1",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "3000",
+		"attack": "575",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Smother Mother",
+		"link": "/wiki/Smother_Mother",
+		"img": "b/b5/Smother_Mother_Avatar.png",
+		"cost": "9",
+		"race": "Monster",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Bypassing",
+		"attack_range": "1",
+		"health": "2000",
+		"attack": "800",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "BOOM",
+		"link": "/wiki/BOOM",
+		"img": "3/39/BOOM_Avatar.png",
+		"cost": "1",
+		"race": "Mechanical",
+		"rarity": "Common",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"health": "200"
+	},
+	{
+		"name": "Cowbell",
+		"link": "/wiki/Cowbell",
+		"img": "7/7a/Cowbell_Avatar.png",
+		"cost": "1",
+		"race": "Mechanical",
+		"rarity": "Common",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "650",
+		"attack": "275",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack",
+		"description": "I've got a fever"
+	},
+	{
+		"name": "Rusty",
+		"link": "/wiki/Rusty",
+		"img": "a/a0/Rusty_Avatar.png",
+		"cost": "1",
+		"race": "Mechanical",
+		"rarity": "Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"health": "500"
+	},
+	{
+		"name": "Slayerrrrrr",
+		"link": "/wiki/Slayerrrrrr",
+		"img": "6/60/Slayerrrrrr_Avatar.webp",
+		"cost": "1",
+		"race": "Mechanical",
+		"rarity": "Rare",
+		"movement_range": "1",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1100",
+		"attack": "375",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack",
+		"description": "Like a normal cat but cooler"
+	},
+	{
+		"name": "Droney",
+		"link": "/wiki/Droney",
+		"img": "9/98/Droney_Avatar.png",
+		"cost": "2",
+		"race": "Mechanical",
+		"rarity": "Common",
+		"movement_range": "3",
+		"movement_type": "Flying",
+		"attack_range": "1",
+		"health": "400",
+		"attack": "210",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack",
+		"description": "He delivers alright!"
+	},
+	{
+		"name": "K-9000",
+		"link": "/wiki/K-9000",
+		"img": "0/09/K_9000_Avatar.png",
+		"cost": "2",
+		"race": "Mechanical",
+		"rarity": "Common",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1100",
+		"attack": "375",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack",
+		"description": "Dead or Alive your bone's coming with me!"
+	},
+	{
+		"name": "Tinny",
+		"link": "/wiki/Tinny",
+		"img": "4/43/Tinny_Avatar.png",
+		"cost": "2",
+		"race": "Mechanical",
+		"rarity": "Common",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "750",
+		"attack": "350",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Haphe",
+		"link": "/wiki/Haphe",
+		"img": "b/bc/Haphe_Avatar.png",
+		"cost": "2",
+		"race": "Mechanical",
+		"rarity": "Uncommon",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1500",
+		"attack": "100",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Eyepod",
+		"link": "/wiki/Eyepod",
+		"img": "a/a9/Eyepod.png",
+		"cost": "2",
+		"race": "Mechanical",
+		"rarity": "Uncommon",
+		"movement_range": "1",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1250",
+		"attack": "350",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Mr Spilly",
+		"link": "/wiki/Mr_Spilly",
+		"img": "4/45/Mr_Spilly_Avatar.png",
+		"cost": "2",
+		"race": "Mechanical",
+		"rarity": "Uncommon",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1300",
+		"attack": "200",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "KERBLOOM",
+		"link": "/wiki/KERBLOOM",
+		"img": "c/c0/KERBLOOM_Avatar.png",
+		"cost": "2",
+		"race": "Mechanical",
+		"rarity": "Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"health": "300"
+	},
+	{
+		"name": "BoMangles",
+		"link": "/wiki/BoMangles",
+		"img": "9/91/BoMangles_Avatar.png",
+		"cost": "3",
+		"race": "Mechanical",
+		"rarity": "Common",
+		"movement_range": "1",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "1550",
+		"attack": "420",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack",
+		"description": "\"Ahahahahahaahahaha! HEEhee! Want a balloon Billy?\""
+	},
+	{
+		"name": "Misanthrope",
+		"link": "/wiki/Misanthrope",
+		"img": "a/a1/Misanthrope_Avatar.png",
+		"cost": "3",
+		"race": "Mechanical",
+		"rarity": "Common",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1700",
+		"attack": "350",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack",
+		"description": "He doesn't like any of it"
+	},
+	{
+		"name": "Clinico",
+		"link": "/wiki/Clinico",
+		"img": "6/6c/Clinico_Avatar.png",
+		"cost": "3",
+		"race": "Mechanical",
+		"rarity": "Uncommon",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "750",
+		"attack": "210",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack",
+		"stress_level": "20"
+	},
+	{
+		"name": "Dial",
+		"link": "/wiki/Dial",
+		"img": "e/e2/Dial_Avatar.png",
+		"cost": "3",
+		"race": "Mechanical",
+		"rarity": "Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "950",
+		"attack": "260",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Sulky",
+		"link": "/wiki/Sulky",
+		"img": "c/c2/Sulky_Avatar.png",
+		"cost": "3",
+		"race": "Mechanical",
+		"rarity": "Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1500",
+		"attack": "300",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Jar Cannon",
+		"link": "/wiki/Jar_Cannon",
+		"img": "2/28/Jar_Cannon_Avatar.png",
+		"cost": "3",
+		"race": "Mechanical",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "3",
+		"health": "420",
+		"attack": "220",
+		"attack_type": "Lob",
+		"damage_range": "Single Target Attack",
+		"description": "What's in the jar? What's in the jar?"
+	},
+	{
+		"name": "KABOOM",
+		"link": "/wiki/KABOOM",
+		"img": "e/e7/KABOOM_Avatar.png",
+		"cost": "3",
+		"race": "Mechanical",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"health": "400"
+	},
+	{
+		"name": "Hydra",
+		"link": "/wiki/Hydra",
+		"img": "8/8a/Hydra_Avatar.png",
+		"cost": "4",
+		"race": "Mechanical",
+		"rarity": "Common",
+		"movement_range": "1",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "3000",
+		"attack": "700",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "In-Oculus",
+		"link": "/wiki/In-Oculus",
+		"img": "b/be/In_Oculus_Avatar.png",
+		"cost": "4",
+		"race": "Mechanical",
+		"rarity": "Uncommon",
+		"movement_range": "1",
+		"movement_type": "Walking",
+		"attack_range": "3",
+		"health": "725",
+		"attack": "350",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack",
+		"description": "They came without warning!"
+	},
+	{
+		"name": "I-Scream",
+		"link": "/wiki/I-Scream",
+		"img": "2/28/I%E2%80%92Scream.png",
+		"cost": "4",
+		"race": "Mechanical",
+		"rarity": "Rare",
+		"movement_range": "1",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "1200",
+		"attack": "400",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Doctor Dermic",
+		"link": "/wiki/Doctor_Dermic",
+		"img": "5/57/Doctor_Dermic_Avatar.png",
+		"cost": "4",
+		"race": "Mechanical",
+		"rarity": "Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1200",
+		"attack": "340",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Gonzo Bonzo",
+		"link": "/wiki/Gonzo_Bonzo",
+		"img": "a/a8/Gonzo_Bonzo_Avatar.png",
+		"cost": "4",
+		"race": "Mechanical",
+		"rarity": "Rare",
+		"movement_range": "1",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "1300",
+		"attack": "400",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Paddles",
+		"link": "/wiki/Paddles",
+		"img": "f/f0/Paddles_Avatar.png",
+		"cost": "4",
+		"race": "Mechanical",
+		"rarity": "Rare",
+		"movement_range": "2",
+		"movement_type": "Flying",
+		"attack_range": "1",
+		"health": "900",
+		"attack": "400",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Giggles",
+		"link": "/wiki/Giggles",
+		"img": "a/af/Giggles_Avatar.png",
+		"cost": "4",
+		"race": "Mechanical",
+		"rarity": "Rare",
+		"movement_range": "1",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "1500",
+		"attack": "600",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack",
+		"description": "Let's turn that frown upside down"
+	},
+	{
+		"name": "Twitchy",
+		"link": "/wiki/Twitchy",
+		"img": "2/2e/Twitchy_Avatar.png",
+		"cost": "4",
+		"race": "Mechanical",
+		"rarity": "Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1800",
+		"attack": "400",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Radihater",
+		"link": "/wiki/Radihater",
+		"img": "b/bc/Radihater_Avatar.png",
+		"cost": "4",
+		"race": "Mechanical",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1600",
+		"attack": "375",
+		"attack_type": "Self-Initiated AOE",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Heavo",
+		"link": "/wiki/Heavo",
+		"img": "8/80/Heavo_Avatar.png",
+		"cost": "5",
+		"race": "Mechanical",
+		"rarity": "Common",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "1900",
+		"attack": "350",
+		"attack_type": "Lob",
+		"damage_range": "Single Target Attack",
+		"description": "Heave, ho, to the grave you go!"
+	},
+	{
+		"name": "Medibot",
+		"link": "/wiki/Medibot",
+		"img": "5/5a/Medibot_Avatar.png",
+		"cost": "5",
+		"race": "Mechanical",
+		"rarity": "Rare",
+		"movement_range": "3",
+		"movement_type": "Flying",
+		"attack_range": "1",
+		"health": "500",
+		"attack": "200",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Blue Speedola",
+		"link": "/wiki/Blue_Speedola",
+		"img": "2/2f/BlueSpeedola_portrait.png",
+		"cost": "5",
+		"race": "Mechanical",
+		"rarity": "Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "2100",
+		"attack": "450",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Repeller",
+		"link": "/wiki/Repeller",
+		"img": "d/d7/Repeller_Avatar.png",
+		"cost": "5",
+		"race": "Mechanical",
+		"rarity": "Rare",
+		"movement_range": "1",
+		"movement_type": "Walking",
+		"attack_range": "3",
+		"health": "750",
+		"attack": "320",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Tri-Volta",
+		"link": "/wiki/Tri-Volta",
+		"img": "d/dd/Tri-Volta.png",
+		"cost": "5",
+		"race": "Mechanical",
+		"rarity": "Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "1400",
+		"attack": "300",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Morty",
+		"link": "/wiki/Morty",
+		"img": "8/8c/Morty_Avatar.png",
+		"cost": "5",
+		"race": "Mechanical",
+		"rarity": "Ultra Rare",
+		"movement_range": "3",
+		"movement_type": "Flying",
+		"attack_range": "1",
+		"health": "700",
+		"attack": "700",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack",
+		"description": "Your coffin has arrived on time"
+	},
+	{
+		"name": "Red Speedola",
+		"link": "/wiki/Red_Speedola",
+		"img": "7/72/RedSpeedola_portrait.png",
+		"cost": "6",
+		"race": "Mechanical",
+		"rarity": "Common",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "2700",
+		"attack": "400",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Sabian",
+		"link": "/wiki/Sabian",
+		"img": "0/0f/Sabian.png",
+		"cost": "6",
+		"race": "Mechanical",
+		"rarity": "Uncommon",
+		"movement_range": "2",
+		"movement_type": "Flying",
+		"attack_range": "1",
+		"health": "2300",
+		"attack": "500",
+		"attack_type": "Self-Initiated AOE",
+		"damage_range": "Single Target Attack",
+		"description": "The cymbal of justice"
+	},
+	{
+		"name": "Blondie",
+		"link": "/wiki/Blondie",
+		"img": "3/37/Blondie_Avatar.png",
+		"cost": "6",
+		"race": "Mechanical",
+		"rarity": "Rare",
+		"movement_range": "1",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "2800",
+		"attack": "750",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Zappy",
+		"link": "/wiki/Zappy",
+		"img": "9/97/Zappy_Avatar.png",
+		"cost": "6",
+		"race": "Mechanical",
+		"rarity": "Rare",
+		"movement_range": "1",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "1900",
+		"attack": "500",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Attractor",
+		"link": "/wiki/Attractor",
+		"img": "c/cf/Attractor_Avatar.png",
+		"cost": "6",
+		"race": "Mechanical",
+		"rarity": "Rare",
+		"movement_range": "1",
+		"movement_type": "Walking",
+		"attack_range": "3",
+		"health": "800",
+		"attack": "320",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Furnaceface",
+		"link": "/wiki/Furnaceface",
+		"img": "1/17/Furnaceface_Avatar.png",
+		"cost": "6",
+		"race": "Mechanical",
+		"rarity": "Ultra Rare",
+		"movement_range": "1",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "2100",
+		"attack": "400",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Hoovey",
+		"link": "/wiki/Hoovey",
+		"img": "0/06/Hoovey_Avatar.png",
+		"cost": "6",
+		"race": "Mechanical",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "2000",
+		"attack": "600",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Fishtank",
+		"link": "/wiki/Fishtank",
+		"img": "8/82/Fishtank_Avatar.png",
+		"cost": "7",
+		"race": "Mechanical",
+		"rarity": "Common",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "2500",
+		"attack": "700",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack",
+		"description": "No bowl is big enough!"
+	},
+	{
+		"name": "Motherload",
+		"link": "/wiki/Motherload",
+		"img": "b/b1/Motherload_Avatar.png",
+		"cost": "7",
+		"race": "Mechanical",
+		"rarity": "Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "2300",
+		"attack": "410",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Oopsy Baby",
+		"link": "/wiki/Oopsy_Baby",
+		"img": "e/e9/Oopsy_Baby_Avatar.png",
+		"cost": "7",
+		"race": "Mechanical",
+		"rarity": "Rare",
+		"movement_range": "1",
+		"movement_type": "Walking",
+		"attack_range": "3",
+		"health": "1400",
+		"attack": "400",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack",
+		"stress_level": "60"
+	},
+	{
+		"name": "Heavo 2.0",
+		"link": "/wiki/Heavo_2.0",
+		"img": "a/a2/Heavo_20_Avatar.png",
+		"cost": "7",
+		"race": "Mechanical",
+		"rarity": "Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "2000",
+		"attack": "390",
+		"attack_type": "Lob",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Pearl",
+		"link": "/wiki/Pearl",
+		"img": "3/34/Pearl_Avatar.png",
+		"cost": "7",
+		"race": "Mechanical",
+		"rarity": "Rare",
+		"movement_range": "2",
+		"movement_type": "Flying",
+		"attack_range": "1",
+		"health": "2200",
+		"attack": "450",
+		"attack_type": "Self-Initiated AOE",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Blast-0 Matic",
+		"link": "/wiki/Blast-0_Matic",
+		"img": "1/17/Blast_0_Matic_Avatar.png",
+		"cost": "7",
+		"race": "Mechanical",
+		"rarity": "Ultra Rare",
+		"movement_range": "1",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "2900",
+		"attack": "400",
+		"attack_type": "Line of Sight",
+		"damage_range": "Targeted AOE Attack"
+	},
+	{
+		"name": "Ace",
+		"link": "/wiki/Ace",
+		"img": "3/3c/Ace.png",
+		"cost": "8",
+		"race": "Mechanical",
+		"rarity": "Uncommon",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "2600",
+		"attack": "700",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack",
+		"description": "My lightnin's all you need"
+	},
+	{
+		"name": "Zildjian",
+		"link": "/wiki/Zildjian",
+		"img": "1/1a/Zildjian.png",
+		"cost": "8",
+		"race": "Mechanical",
+		"rarity": "Rare",
+		"movement_range": "2",
+		"movement_type": "Flying",
+		"attack_range": "2",
+		"health": "2100",
+		"attack": "500",
+		"attack_type": "Self-Initiated AOE",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Subnoxious",
+		"link": "/wiki/Subnoxious",
+		"img": "9/92/Subnoxious_Avatar.webp",
+		"cost": "8",
+		"race": "Mechanical",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Bypassing",
+		"attack_range": "2",
+		"health": "1850",
+		"attack": "450",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack",
+		"stress_level": "130"
+	},
+	{
+		"name": "Butcher",
+		"link": "/wiki/Butcher",
+		"img": "a/ae/Butcher_Avatar.png",
+		"cost": "8",
+		"race": "Mechanical",
+		"rarity": "Ultra Rare",
+		"movement_range": "1",
+		"movement_type": "Walking",
+		"attack_range": "3",
+		"health": "1800",
+		"attack": "400",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Heavo 3.0",
+		"link": "/wiki/Heavo_3.0",
+		"img": "6/6f/Heavo_30_Avatar.png",
+		"cost": "9",
+		"race": "Mechanical",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "2200",
+		"attack": "350",
+		"attack_type": "Lob",
+		"damage_range": "Targeted AOE Attack",
+		"description": "It's a molotov cocktail party and you're all invited!"
+	},
+	{
+		"name": "Frosty",
+		"link": "/wiki/Frosty",
+		"img": "3/3d/Frosty_Avatar.png",
+		"cost": "9",
+		"race": "Mechanical",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Flying",
+		"attack_range": "2",
+		"health": "1600",
+		"attack": "500",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Heavo Plaid",
+		"link": "/wiki/Heavo_Plaid",
+		"img": "2/29/Heavo_Plaid_Avatar.png",
+		"cost": "9",
+		"race": "Mechanical",
+		"rarity": "Ultra Rare",
+		"movement_range": "3",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "1900",
+		"attack": "350",
+		"attack_type": "Lob",
+		"damage_range": "Targeted AOE Attack",
+		"description": "The best robot ever!"
+	},
+	{
+		"name": "Batula",
+		"link": "/wiki/Batula",
+		"img": "8/82/Batula_Avatar.png",
+		"cost": "1",
+		"race": "Dimensional",
+		"rarity": "Common",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "500",
+		"attack": "220",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack",
+		"description": "Sonar so good!"
+	},
+	{
+		"name": "Boomer",
+		"link": "/wiki/Boomer",
+		"img": "5/59/Boomer_Avatar.png",
+		"cost": "1",
+		"race": "Dimensional",
+		"rarity": "Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"health": "1000"
+	},
+	{
+		"name": "Eternal Knight",
+		"link": "/wiki/Eternal_Knight",
+		"img": "3/3d/Eternal_Knight_Avatar.png",
+		"cost": "2",
+		"race": "Dimensional",
+		"rarity": "Common",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "460",
+		"attack": "440",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack",
+		"description": "A Deli Slicer for your soul!"
+	},
+	{
+		"name": "Squiggles",
+		"link": "/wiki/Squiggles",
+		"img": "8/88/Squiggles_Avatar.png",
+		"cost": "2",
+		"race": "Dimensional",
+		"rarity": "Uncommon",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "950",
+		"attack": "280",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Bloat",
+		"link": "/wiki/Bloat",
+		"img": "f/ff/Bloat_Avatar.webp",
+		"cost": "2",
+		"race": "Dimensional",
+		"rarity": "Uncommon",
+		"movement_range": "1",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1350",
+		"attack": "300",
+		"attack_type": "Targeted AOE",
+		"damage_range": "Targeted AOE Attack"
+	},
+	{
+		"name": "Galaxy Cat",
+		"link": "/wiki/Galaxy_Cat",
+		"img": "1/17/Galaxycat.png",
+		"cost": "2",
+		"race": "Dimensional",
+		"rarity": "Rare",
+		"movement_range": "2",
+		"movement_type": "Bypassing",
+		"attack_range": "1",
+		"health": "950",
+		"attack": "375",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack",
+		"description": "From a galaxy far, far away..."
+	},
+	{
+		"name": "Impy",
+		"link": "/wiki/Impy",
+		"img": "c/ca/Impy.png",
+		"cost": "2",
+		"race": "Dimensional",
+		"rarity": "Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "800",
+		"attack": "325",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Stabby",
+		"link": "/wiki/Stabby",
+		"img": "9/9f/Stabby_Avatar.png",
+		"cost": "3",
+		"race": "Dimensional",
+		"rarity": "Common",
+		"movement_range": "1",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "1450",
+		"attack": "375",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Thunder Rocks",
+		"link": "/wiki/Thunder_Rocks",
+		"img": "2/23/Thunder_Rocks_Avatar.png",
+		"cost": "3",
+		"race": "Dimensional",
+		"rarity": "Common",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1500",
+		"attack": "250",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack",
+		"description": "Start counting... Oh, it's already too late!"
+	},
+	{
+		"name": "Flail",
+		"link": "/wiki/Flail",
+		"img": "c/c3/Flail_Avatar.png",
+		"cost": "3",
+		"race": "Dimensional",
+		"rarity": "Common",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "900",
+		"attack": "600",
+		"attack_type": "Self-Initiated AOE",
+		"damage_range": "Single Target Attack",
+		"description": "It's the morning star!"
+	},
+	{
+		"name": "Tooth Fairy",
+		"link": "/wiki/Tooth_Fairy",
+		"img": "0/0f/Tooth_Fairy_Avatar.png",
+		"cost": "3",
+		"race": "Dimensional",
+		"rarity": "Uncommon",
+		"movement_range": "2",
+		"movement_type": "Flying",
+		"attack_range": "2",
+		"health": "800",
+		"attack": "350",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack",
+		"description": "The witching hour is about begin!"
+	},
+	{
+		"name": "Snowball",
+		"link": "/wiki/Snowball",
+		"img": "2/22/Snowball_Avatar.png",
+		"cost": "3",
+		"race": "Dimensional",
+		"rarity": "Rare",
+		"movement_range": "3",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "700",
+		"attack": "220",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack",
+		"stress_level": "40"
+	},
+	{
+		"name": "Pan",
+		"link": "/wiki/Pan",
+		"img": "3/3a/Pan_Avatar.png",
+		"cost": "3",
+		"race": "Dimensional",
+		"rarity": "Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "900",
+		"attack": "350",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Jammy Fish",
+		"link": "/wiki/Jammy_Fish",
+		"img": "5/58/Jammy_Fish_Avatar.png",
+		"cost": "3",
+		"race": "Dimensional",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Flying",
+		"attack_range": "2",
+		"health": "650",
+		"attack": "300",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack",
+		"stress_level": "110"
+	},
+	{
+		"name": "Rockus",
+		"link": "/wiki/Rockus",
+		"img": "4/4a/Rockus_Avatar.png",
+		"cost": "4",
+		"race": "Dimensional",
+		"rarity": "Common",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "2000",
+		"attack": "350",
+		"attack_type": "Single Target Attack",
+		"damage_range": "Targeted AOE Attack"
+	},
+	{
+		"name": "Gargles",
+		"link": "/wiki/Gargles",
+		"img": "b/b1/Gargles_Avatar.png",
+		"cost": "4",
+		"race": "Dimensional",
+		"rarity": "Uncommon",
+		"movement_range": "2",
+		"movement_type": "Flying",
+		"attack_range": "1",
+		"health": "1600",
+		"attack": "375",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Hexxy",
+		"link": "/wiki/Hexxy",
+		"img": "b/b4/Hexxy_Avatar.png",
+		"cost": "4",
+		"race": "Dimensional",
+		"rarity": "Uncommon",
+		"movement_range": "1",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "1600",
+		"attack": "325",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Furkin Leepricarn",
+		"link": "/wiki/Furkin_Leepricarn",
+		"img": "1/19/Furkin_Leepricarn_Avatar.png",
+		"cost": "4",
+		"race": "Dimensional",
+		"rarity": "Rare",
+		"movement_range": "1",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "1300",
+		"attack": "375",
+		"attack_type": "Lob",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Sssizzzle",
+		"link": "/wiki/Sssizzzle",
+		"img": "5/5d/Sssizzzle_Avatar.webp",
+		"cost": "4",
+		"race": "Dimensional",
+		"rarity": "Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1500",
+		"attack": "550",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack",
+		"description": "Every great ssstory begins with ssssnake"
+	},
+	{
+		"name": "Grimes",
+		"link": "/wiki/Grimes",
+		"img": "d/d8/Grimes_Avatar.png",
+		"cost": "4",
+		"race": "Dimensional",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Bypassing",
+		"attack_range": "1",
+		"health": "1600",
+		"attack": "400",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "The Glob",
+		"link": "/wiki/The_Glob",
+		"img": "d/dc/The_Glob_Avatar.png",
+		"cost": "4",
+		"race": "Dimensional",
+		"rarity": "Ultra Rare",
+		"movement_range": "1",
+		"movement_type": "Walking",
+		"health": "2500",
+		"stress_level": "80"
+	},
+	{
+		"name": "Prometheus",
+		"link": "/wiki/Prometheus",
+		"img": "f/f4/Prometheus_Avatar.png",
+		"cost": "4",
+		"race": "Dimensional",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1800",
+		"attack": "400",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Gloomstare",
+		"link": "/wiki/Gloomstare",
+		"img": "8/8f/Gloomstare_Avatar.png",
+		"cost": "4",
+		"race": "Dimensional",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "1100",
+		"attack": "325",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Psyclops",
+		"link": "/wiki/Psyclops",
+		"img": "1/16/Psyclops_Avatar.png",
+		"cost": "5",
+		"race": "Dimensional",
+		"rarity": "Common",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "1650",
+		"attack": "400",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack",
+		"description": "When I snap my fingers..."
+	},
+	{
+		"name": "Charon",
+		"link": "/wiki/Charon",
+		"img": "0/0b/Charon_Avatar.png",
+		"cost": "5",
+		"race": "Dimensional",
+		"rarity": "Uncommon",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "1500",
+		"attack": "350",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Baba Yaga",
+		"link": "/wiki/Baba_Yaga",
+		"img": "8/86/Baba_Yaga_Avatar.png",
+		"cost": "5",
+		"race": "Dimensional",
+		"rarity": "Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1400",
+		"attack": "475",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Doom Doom",
+		"link": "/wiki/Doom_Doom",
+		"img": "f/f1/Doom_Doom_Avatar.png",
+		"cost": "5",
+		"race": "Dimensional",
+		"rarity": "Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "1800",
+		"attack": "300",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Lila",
+		"link": "/wiki/Lila",
+		"img": "7/77/Lila_Avatar.webp",
+		"cost": "5",
+		"race": "Dimensional",
+		"rarity": "Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1500",
+		"attack": "400",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Paitunia",
+		"link": "/wiki/Paitunia",
+		"img": "a/af/Paitunia.png",
+		"cost": "5",
+		"race": "Dimensional",
+		"rarity": "Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "1500",
+		"attack": "375",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Sir Probesalot",
+		"link": "/wiki/Sir_Probesalot",
+		"img": "7/72/Sir_Probesalot_Avatar.png",
+		"cost": "5",
+		"race": "Dimensional",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "1100",
+		"attack": "400",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack",
+		"stress_level": "140"
+	},
+	{
+		"name": "Bluelien",
+		"link": "/wiki/Bluelien",
+		"img": "c/c3/Bluelien_Avatar.png",
+		"cost": "5",
+		"race": "Dimensional",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Bypassing",
+		"attack_range": "1",
+		"health": "1600",
+		"attack": "425",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Mistle Toad",
+		"link": "/wiki/Mistle_Toad",
+		"img": "5/55/MistleToad_Icon.png",
+		"cost": "5",
+		"race": "Dimensional",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1300",
+		"attack": "350",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Octo-Buddy",
+		"link": "/wiki/Octo-Buddy",
+		"img": "7/7b/Octo-Buddy_Avatar.png",
+		"cost": "5",
+		"race": "Dimensional",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "1400",
+		"attack": "420",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Mount Crushmore",
+		"link": "/wiki/Mount_Crushmore",
+		"img": "b/b8/Mount_Crushmore_Avatar.png",
+		"cost": "6",
+		"race": "Dimensional",
+		"rarity": "Uncommon",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "1700",
+		"attack": "400",
+		"attack_type": "Lob",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Octo Naughty",
+		"link": "/wiki/Octo_Naughty",
+		"img": "0/01/Octo_Naughty_Avatar.png",
+		"cost": "6",
+		"race": "Dimensional",
+		"rarity": "Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "1600",
+		"attack": "300",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Pasgetti",
+		"link": "/wiki/Pasgetti",
+		"img": "1/1f/Pasgetti_Avatar.png",
+		"cost": "6",
+		"race": "Dimensional",
+		"rarity": "Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1750",
+		"attack": "525",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Fantôme",
+		"link": "/wiki/Fant%C3%B4me",
+		"img": "e/ef/Fant%C3%B4me_Avatar.png",
+		"cost": "6",
+		"race": "Dimensional",
+		"rarity": "Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1500",
+		"attack": "450",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Alastor",
+		"link": "/wiki/Alastor",
+		"img": "3/39/Alastor_Avatar.png",
+		"cost": "6",
+		"race": "Dimensional",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Flying",
+		"attack_range": "2",
+		"health": "1400",
+		"attack": "380",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Scritch",
+		"link": "/wiki/Scritch",
+		"img": "7/73/Scritch_Avatar.png",
+		"cost": "6",
+		"race": "Dimensional",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "1100",
+		"attack": "450",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Rocketman",
+		"link": "/wiki/Rocketman",
+		"img": "8/80/Rocketman_Avatar.png",
+		"cost": "6",
+		"race": "Dimensional",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1700",
+		"attack": "450",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Cecilia",
+		"link": "/wiki/Cecilia",
+		"img": "b/be/Whitemushroom.png",
+		"cost": "6",
+		"race": "Dimensional",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "2000",
+		"attack": "600",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Preacher",
+		"link": "/wiki/Preacher",
+		"img": "5/5f/Preacher_Avatar.png",
+		"cost": "6",
+		"race": "Dimensional",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1400",
+		"attack": "500",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Greylien",
+		"link": "/wiki/Greylien",
+		"img": "8/82/Greylien_Avatar.png",
+		"cost": "7",
+		"race": "Dimensional",
+		"rarity": "Rare",
+		"movement_range": "2",
+		"movement_type": "Bypassing",
+		"attack_range": "1",
+		"health": "1850",
+		"attack": "420",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Brony",
+		"link": "/wiki/Brony",
+		"img": "1/17/Brony_Avatar.png",
+		"cost": "7",
+		"race": "Dimensional",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"health": "2000"
+	},
+	{
+		"name": "Leshy",
+		"link": "/wiki/Leshy",
+		"img": "c/c1/Leshy_Avatar.png",
+		"cost": "7",
+		"race": "Dimensional",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1700",
+		"attack": "425",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Edgar Allen",
+		"link": "/wiki/Edgar_Allen",
+		"img": "d/d1/EdgarAllen_portrait.png",
+		"cost": "7",
+		"race": "Dimensional",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1950",
+		"attack": "500",
+		"attack_type": "Targeted AOE",
+		"damage_range": "Targeted AOE Attack"
+	},
+	{
+		"name": "Undertaker",
+		"link": "/wiki/Undertaker",
+		"img": "b/b3/Undertaker_Avatar.png",
+		"cost": "7",
+		"race": "Dimensional",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "2300",
+		"attack": "400",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Skinwalker",
+		"link": "/wiki/Skinwalker",
+		"img": "3/32/SkinWalker.png",
+		"cost": "7",
+		"race": "Dimensional",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1500",
+		"attack": "400",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Coco",
+		"link": "/wiki/Coco",
+		"img": "3/3a/Coco_Avatar.png",
+		"cost": "7",
+		"race": "Dimensional",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1800",
+		"attack": "600",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Firehorse",
+		"link": "/wiki/Firehorse",
+		"img": "1/1b/Firehorse_Avatar.png",
+		"cost": "7",
+		"race": "Dimensional",
+		"rarity": "Ultra Rare",
+		"movement_range": "3",
+		"movement_type": "Bypassing",
+		"attack_range": "1",
+		"health": "2100",
+		"attack": "400",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Sera",
+		"link": "/wiki/Sera",
+		"img": "d/d5/Sera.png",
+		"cost": "7",
+		"race": "Dimensional",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Flying",
+		"attack_range": "2",
+		"health": "1800",
+		"attack": "400",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Boss",
+		"link": "/wiki/Boss",
+		"img": "f/f0/Boss_Avatar.png",
+		"cost": "8",
+		"race": "Dimensional",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "2000",
+		"attack": "400",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Russell",
+		"link": "/wiki/Russell",
+		"img": "f/f2/Russel_Avatar.png",
+		"cost": "8",
+		"race": "Dimensional",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1700",
+		"attack": "600",
+		"attack_type": "Targeted AOE",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Heart Breaker",
+		"link": "/wiki/Heart_Breaker",
+		"img": "f/fd/Heart_Breaker_Avatar.png",
+		"cost": "8",
+		"race": "Dimensional",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1000",
+		"attack": "500",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Beauty",
+		"link": "/wiki/Beauty",
+		"img": "1/1b/Beauty_Avatar.png",
+		"cost": "8",
+		"race": "Dimensional",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Flying",
+		"attack_range": "2",
+		"health": "1800",
+		"attack": "425",
+		"attack_type": "Line of Sight",
+		"damage_range": "Targeted AOE Attack"
+	},
+	{
+		"name": "The Collector",
+		"link": "/wiki/The_Collector",
+		"img": "0/00/The_Collector_Avatar.png",
+		"cost": "8",
+		"race": "Dimensional",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "2100",
+		"attack": "600",
+		"attack_type": "Self-Initiated AOE",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Omega",
+		"link": "/wiki/Omega",
+		"img": "b/b2/Omega.png",
+		"cost": "8",
+		"race": "Dimensional",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"health": "1400"
+	},
+	{
+		"name": "Akira",
+		"link": "/wiki/Akira",
+		"img": "0/04/Akira_Avatar.png",
+		"cost": "9",
+		"race": "Dimensional",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "1600",
+		"attack": "400",
+		"attack_type": "Line of Sight",
+		"damage_range": "Targeted AOE Attack",
+		"stress_level": "90"
+	},
+	{
+		"name": "Numbskull",
+		"link": "/wiki/Numbskull",
+		"img": "b/be/Numbskull_portrait.png",
+		"cost": "1",
+		"race": "Undead",
+		"rarity": "Common",
+		"movement_range": "1",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1100",
+		"attack": "320",
+		"attack_type": "Self-Initiated AOE",
+		"damage_range": "Single Target Attack",
+		"description": "Spikey Beetle Spikey"
+	},
+	{
+		"name": "Ted",
+		"link": "/wiki/Ted",
+		"img": "8/83/Ted_Avatar.png",
+		"cost": "1",
+		"race": "Undead",
+		"rarity": "Common",
+		"movement_range": "1",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "800",
+		"attack": "200",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Contortio",
+		"link": "/wiki/Contortio",
+		"img": "3/33/Contortio_Avatar.png",
+		"cost": "1",
+		"race": "Undead",
+		"rarity": "Common",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "550",
+		"attack": "310",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack",
+		"description": "Conjoined the circus"
+	},
+	{
+		"name": "Jill",
+		"link": "/wiki/Jill",
+		"img": "b/b2/Jill_Avatar.png",
+		"cost": "1",
+		"race": "Undead",
+		"rarity": "Rare",
+		"movement_range": "1",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "700",
+		"attack": "270",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Cassowary",
+		"link": "/wiki/Cassowary",
+		"img": "1/1f/Cassowary_Avatar.png",
+		"cost": "2",
+		"race": "Undead",
+		"rarity": "Common",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "650",
+		"attack": "425",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Creep",
+		"link": "/wiki/Creep",
+		"img": "c/cb/Creep_Avatar.png",
+		"cost": "2",
+		"race": "Undead",
+		"rarity": "Uncommon",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "800",
+		"attack": "300",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Flopsy",
+		"link": "/wiki/Flopsy",
+		"img": "f/f4/Flopsy_Avatar.png",
+		"cost": "2",
+		"race": "Undead",
+		"rarity": "Uncommon",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "600",
+		"attack": "300",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Mopsy",
+		"link": "/wiki/Mopsy",
+		"img": "2/2f/Mopsy_Avatar.png",
+		"cost": "2",
+		"race": "Undead",
+		"rarity": "Uncommon",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "600",
+		"attack": "300",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "CottonTale",
+		"link": "/wiki/CottonTale",
+		"img": "b/b6/Cottontale_Avatar.png",
+		"cost": "2",
+		"race": "Undead",
+		"rarity": "Uncommon",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "600",
+		"attack": "300",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Lenny",
+		"link": "/wiki/Lenny",
+		"img": "b/b2/Lenny_Avatar.png",
+		"cost": "2",
+		"race": "Undead",
+		"rarity": "Uncommon",
+		"movement_range": "1",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "1050",
+		"attack": "325",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack",
+		"description": "All wrapped up in getting a-head!"
+	},
+	{
+		"name": "Baby Snakey",
+		"link": "/wiki/Baby_Snakey",
+		"img": "f/fe/Baby_Snakey_Avatar.png",
+		"cost": "3",
+		"race": "Undead",
+		"rarity": "Common",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1400",
+		"attack": "500",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack",
+		"description": "Snake, Rattle, and Roll!"
+	},
+	{
+		"name": "Murder Wing",
+		"link": "/wiki/Murder_Wing",
+		"img": "f/fb/Murder_Wing_Avatar.png",
+		"cost": "3",
+		"race": "Undead",
+		"rarity": "Uncommon",
+		"movement_range": "2",
+		"movement_type": "Flying",
+		"attack_range": "2",
+		"health": "695",
+		"attack": "250",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Grave Digger",
+		"link": "/wiki/Grave_Digger",
+		"img": "d/dc/Grave_Digger_Avatar.png",
+		"cost": "3",
+		"race": "Undead",
+		"rarity": "Uncommon",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1100",
+		"attack": "400",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Bad Sushi",
+		"link": "/wiki/Bad_Sushi",
+		"img": "a/a8/Bad_Sushi_Avatar.png",
+		"cost": "3",
+		"race": "Undead",
+		"rarity": "Uncommon",
+		"movement_range": "1",
+		"movement_type": "Walking",
+		"health": "1400"
+	},
+	{
+		"name": "Jackalope King",
+		"link": "/wiki/Jackalope_King",
+		"img": "c/c3/Jackalope_King_Avatar.png",
+		"cost": "3",
+		"race": "Undead",
+		"rarity": "Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1000",
+		"attack": "360",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Whiskers",
+		"link": "/wiki/Whiskers",
+		"img": "1/16/Whiskers.png",
+		"cost": "3",
+		"race": "Undead",
+		"rarity": "Rare",
+		"movement_range": "2",
+		"movement_type": "Bypassing",
+		"attack_range": "1",
+		"health": "1100",
+		"attack": "300",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Benny",
+		"link": "/wiki/Benny",
+		"img": "2/22/Benny.png",
+		"cost": "3",
+		"race": "Undead",
+		"rarity": "Rare",
+		"movement_range": "1",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "1200",
+		"attack": "400",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Creepy Devil",
+		"link": "/wiki/Creepy_Devil",
+		"img": "8/87/Creepy_Devil_Avatar.png",
+		"cost": "3",
+		"race": "Undead",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "900",
+		"attack": "350",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Blinky",
+		"link": "/wiki/Blinky",
+		"img": "b/b8/Blinky_Avatar.png",
+		"cost": "4",
+		"race": "Undead",
+		"rarity": "Common",
+		"movement_range": "2",
+		"movement_type": "Flying",
+		"attack_range": "1",
+		"health": "1600",
+		"attack": "450",
+		"attack_type": "Line Of Sight",
+		"damage_range": "Single Target Attack",
+		"description": "Blink and you'll be gone!"
+	},
+	{
+		"name": "Unbearable",
+		"link": "/wiki/Unbearable",
+		"img": "2/2b/Unbearable_Avatar.png",
+		"cost": "4",
+		"race": "Undead",
+		"rarity": "Common",
+		"movement_range": "1",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "1800",
+		"attack": "375",
+		"attack_type": "Lob",
+		"damage_range": "Single Target Attack",
+		"description": "He has the right to bear arms... anyone's arms!"
+	},
+	{
+		"name": "Daisy",
+		"link": "/wiki/Daisy",
+		"img": "5/50/Daisy_portrait.png",
+		"cost": "4",
+		"race": "Undead",
+		"rarity": "Uncommon",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "800",
+		"attack": "425",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Primate 9",
+		"link": "/wiki/Primate_9",
+		"img": "e/ee/Primate_9_Avatar.png",
+		"cost": "4",
+		"race": "Undead",
+		"rarity": "Uncommon",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1350",
+		"attack": "425",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Snappy",
+		"link": "/wiki/Snappy",
+		"img": "6/64/SNAPPY_Avatar.png",
+		"cost": "4",
+		"race": "Undead",
+		"rarity": "Uncommon",
+		"movement_range": "1",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "2300",
+		"attack": "350",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack",
+		"description": "Did you see a rabbit go by here?"
+	},
+	{
+		"name": "Alfred",
+		"link": "/wiki/Alfred",
+		"img": "1/13/Alfred_Avatar.png",
+		"cost": "4",
+		"race": "Undead",
+		"rarity": "Ultra Rare",
+		"movement_range": "1",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "1300",
+		"attack": "350",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Badside Manners",
+		"link": "/wiki/Badside_Manners",
+		"img": "8/89/Badside_Manners_Avatar.png",
+		"cost": "5",
+		"race": "Undead",
+		"rarity": "Common",
+		"movement_range": "1",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "2200",
+		"attack": "450",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack",
+		"description": "Dooly wanna play"
+	},
+	{
+		"name": "Fetch",
+		"link": "/wiki/Fetch",
+		"img": "9/99/Fetch_Avatar.png",
+		"cost": "5",
+		"race": "Undead",
+		"rarity": "Uncommon",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1550",
+		"attack": "600",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Guillaume",
+		"link": "/wiki/Guillaume",
+		"img": "8/8a/Guillaume_Avatar.png",
+		"cost": "5",
+		"race": "Undead",
+		"rarity": "Uncommon",
+		"movement_range": "1",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "1550",
+		"attack": "400",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Zomboni",
+		"link": "/wiki/Zomboni",
+		"img": "9/9b/Zomboni_portrait.png",
+		"cost": "5",
+		"race": "Undead",
+		"rarity": "Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "1500",
+		"attack": "375",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Smiley",
+		"link": "/wiki/Smiley",
+		"img": "1/11/Smiley_Avatar.png",
+		"cost": "5",
+		"race": "Undead",
+		"rarity": "Rare",
+		"movement_range": "1",
+		"movement_type": "Flying",
+		"health": "2200"
+	},
+	{
+		"name": "Maestro",
+		"link": "/wiki/Maestro",
+		"img": "f/f4/Maestro_Avatar.png",
+		"cost": "5",
+		"race": "Undead",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1800",
+		"attack": "600",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Jaws",
+		"link": "/wiki/Jaws",
+		"img": "9/93/Jaws_Avatar.png",
+		"cost": "5",
+		"race": "Undead",
+		"rarity": "Ultra Rare",
+		"movement_range": "3",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "2000",
+		"attack": "100",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Cerberus",
+		"link": "/wiki/Cerberus",
+		"img": "a/a1/Cerberus_Avatar.png",
+		"cost": "6",
+		"race": "Undead",
+		"rarity": "Common",
+		"movement_range": "1",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "3000",
+		"attack": "1000",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack",
+		"description": "Hell's Best Friend!"
+	},
+	{
+		"name": "Eratic",
+		"link": "/wiki/Eratic",
+		"img": "6/63/Eratic_Avatar.png",
+		"cost": "6",
+		"race": "Undead",
+		"rarity": "Rare",
+		"movement_range": "1",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "1800",
+		"attack": "400",
+		"attack_type": "Line of Sight",
+		"damage_range": "Targeted AOE Attack",
+		"description": "I'm at capacity"
+	},
+	{
+		"name": "Goon",
+		"link": "/wiki/Goon",
+		"img": "b/b0/Goon_Avatar.png",
+		"cost": "6",
+		"race": "Undead",
+		"rarity": "Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "2200",
+		"attack": "500",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Tammy Tumbler",
+		"link": "/wiki/Tammy_Tumbler",
+		"img": "7/74/Tammy_Tumbler_Avatar.png",
+		"cost": "6",
+		"race": "Undead",
+		"rarity": "Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "2200",
+		"attack": "500",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Doloris",
+		"link": "/wiki/Doloris",
+		"img": "6/6d/Doloris_Avatar.png",
+		"cost": "6",
+		"race": "Undead",
+		"rarity": "Rare",
+		"movement_range": "1",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1900",
+		"attack": "450",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Jeeves",
+		"link": "/wiki/Jeeves",
+		"img": "f/fe/Jeeves_Avatar.png",
+		"cost": "6",
+		"race": "Undead",
+		"rarity": "Ultra Rare",
+		"movement_range": "1",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "2000",
+		"attack": "400",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Cluck Norris",
+		"link": "/wiki/Cluck_Norris",
+		"img": "b/bc/Foulflexdown.png",
+		"cost": "6",
+		"race": "Undead",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "2200",
+		"attack": "350",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Fleshcrawler",
+		"link": "/wiki/Fleshcrawler",
+		"img": "9/9d/Fleshcrawler_Avatar.png",
+		"cost": "7",
+		"race": "Undead",
+		"rarity": "Uncommon",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "2300",
+		"attack": "500",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Terrordactyl",
+		"link": "/wiki/Terrordactyl",
+		"img": "2/2d/Terrordactyl_Avatar.png",
+		"cost": "7",
+		"race": "Undead",
+		"rarity": "Uncommon",
+		"movement_range": "2",
+		"movement_type": "Flying",
+		"attack_range": "2",
+		"health": "1600",
+		"attack": "425",
+		"attack_type": "Line of Sight",
+		"damage_range": "Line of Sight"
+	},
+	{
+		"name": "Fowl",
+		"link": "/wiki/Fowl",
+		"img": "3/3a/Fowl_Avatar.png",
+		"cost": "7",
+		"race": "Undead",
+		"rarity": "Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "1800",
+		"attack": "700",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack",
+		"stress_level": "50"
+	},
+	{
+		"name": "Buzzkill",
+		"link": "/wiki/Buzzkill",
+		"img": "1/1a/Buzzkill_Avatar.png",
+		"cost": "7",
+		"race": "Undead",
+		"rarity": "Rare",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "2",
+		"health": "1700",
+		"attack": "400",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Whuffalo WIll",
+		"link": "/wiki/Whuffalo_WIll",
+		"img": "f/ff/Whuffalo_WIll_Avatar.png",
+		"cost": "7",
+		"race": "Undead",
+		"rarity": "Ultra Rare",
+		"movement_range": "1",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "2200",
+		"attack": "450",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Hi-Five",
+		"link": "/wiki/Hi-Five",
+		"img": "c/c4/Hi_Five_Avatar.png",
+		"cost": "8",
+		"race": "Undead",
+		"rarity": "Uncommon",
+		"movement_range": "2",
+		"movement_type": "Walking",
+		"attack_range": "1",
+		"health": "2700",
+		"attack": "500",
+		"attack_type": "Targeted AOE",
+		"damage_range": "Targeted AOE Attack"
+	},
+	{
+		"name": "Mildred",
+		"link": "/wiki/Mildred",
+		"img": "a/a9/Mildred_Avatar.png",
+		"cost": "8",
+		"race": "Undead",
+		"rarity": "Ultra Rare",
+		"movement_range": "1",
+		"movement_type": "Walking",
+		"health": "2000"
+	},
+	{
+		"name": "Mummy",
+		"link": "/wiki/Mummy",
+		"img": "d/d2/Mummy_Avatar.png",
+		"cost": "8",
+		"race": "Undead",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Bypassing",
+		"attack_range": "1",
+		"health": "2300",
+		"attack": "800",
+		"attack_type": "Line of Sight",
+		"damage_range": "Single Target Attack"
+	},
+	{
+		"name": "Chuck",
+		"link": "/wiki/Chuck",
+		"img": "f/fe/Chuck_Avatar.png",
+		"cost": "9",
+		"race": "Undead",
+		"rarity": "Ultra Rare",
+		"movement_range": "1",
+		"movement_type": "Walking",
+		"attack_range": "3",
+		"health": "1800",
+		"attack": "450",
+		"attack_type": "Lob",
+		"damage_range": "Single Target Attack",
+		"description": "Go Long"
+	},
+	{
+		"name": "Anubis",
+		"link": "/wiki/Anubis",
+		"img": "2/26/Anubis.png",
+		"cost": "9",
+		"race": "Undead",
+		"rarity": "Ultra Rare",
+		"movement_range": "2",
+		"movement_type": "Bypassing",
+		"attack_range": "2",
+		"health": "2000",
+		"attack": "300",
+		"attack_type": "Targeted AOE",
+		"damage_range": "Splash AOE Attack"
+	}
+]
+;</script>
+	<!-- JS_INLINE_END -->
+	<script>
+		// init
+		// init
+		// init
+
+		const IMG_PATH = 'https://static.wikia.nocookie.net/phobies/images/';
+
+		let props = [
+			'name',
+			'cost',
+			'race',
+			'rarity',
+			'movement_range',
+			'movement_type',
+			'attack_range',
+			'attack_type',
+			'health',
+			'attack',
+			'damage_range',
+		];
+
+		let switcher_props = [
+			'cost',
+			'race',
+			'rarity',
+			'movement_range',
+			'movement_type',
+			'attack_range',
+			'attack_type',
+			'damage_range',
+		];
+
+		let filter_props = [
+			'race',
+			'cost',
+			'rarity',
+			'movement_range',
+			'movement_type',
+			'attack_range',
+			'attack_type',
+			'damage_range',
+		];
+
+		let filter_rendering_grounp = [
+			'race',
+			'cost',
+			'rarity',
+			'movement_range',
+			'movement_type',
+			'attack_range',
+			'attack_type',
+			'damage_range',
+			// {
+			// 	title: 'type',
+			// 	items: [
+			// 		'damage_type',
+			// 		'armor_type',
+			// 	],
+			// 	open: true,
+			// },
+		];
+
+		String.prototype.sanitize = function() {
+			return this.replace(/[,\s\']/g, '_');
+		};
+
+		// init order number
+		// const WEIGHT = 70000; // for all unicode char
+		const WEIGHT = 100; // for [a-z0-9 ,.']
+		heros.forEach(hero => {
+			hero.order = {};
+			props.forEach((prop, index) => {
+				let order_target = hero[prop];
+				hero.order[prop] = order_target || 0;
+				// if (Array.isArray(order_target)) {
+				// 	order_target = order_target[0];
+				// }
+				if (!parseInt(order_target) && order_target !== undefined) {
+					hero.order[prop] = [...String(order_target || '')
+						.slice(0, 3)
+						.padStart(3, '0')
+						.toUpperCase()
+					]
+					.reverse()
+					.reduce(
+						(sum, str, index) => sum + str.codePointAt(0) * WEIGHT ** index
+						, 0
+					)
+				}
+			});
+		});
+
+		let us_cate = fn_get_us_cate(location);
+		el_filters.innerHTML = fn_gen_filterdom();
+
+		if (!us_cate) {
+			el_list.innerHTML = fn_gen_list();
+		} else {
+			init_grouped_hero(us_cate);
+		}
+
+		const mediaQuery = window.matchMedia('(min-width: 600px)');
+		if (mediaQuery.matches) {
+			el_form_details.open = true;
+		}
+
+		function fn_get_us_cate(url_obj = location) {
+			let _us = new URLSearchParams(url_obj.search);
+			let _us_cate = ( switcher_props.includes(_us.get('cate')) && _us.get('cate') );
+			return _us_cate || '';
+		}
+
+		function init_grouped_hero(_cate = switcher_props[0]) {
+			el_list.classList.add('is-grouped');
+			el_switcher.value = _cate;
+			el_list.innerHTML = fn_gen_groupby(_cate);
+		}
+
+		fn_gen_switcher();
+
+		function fn_gen_switcher() {
+			el_switcher.innerHTML = `<option value="">= list view =</option>` + switcher_props.map(prop => {
+				return `<option value="${prop}" ${prop === us_cate ? 'selected' : ''}>${prop}</option>`;
+			}).join('');
+
+			el_switcher.addEventListener('change', (e) => {
+				let _cate = e.target.value;
+				console.log(e.target.value);
+				if (_cate) {
+					// location.href = `?cate=${_cate}`;
+					window.history.pushState(null, '', `?cate=${_cate}`);
+				} else {
+					location.href = './index.html';
+				}
+			});
+
+			if (window.navigation) {
+				navigation.addEventListener('navigate', (event) => {
+					if (!event.destination.sameDocument) {
+						return;
+					}
+					let _us_cate = fn_get_us_cate(new URL(event.destination.url));
+					if (_us_cate) {
+						init_grouped_hero(_us_cate);
+					} else {
+						location.href = './index.html';
+					}
+				});
+			}
+		}
+
+		function fn_gen_groupby(_cate) {
+			console.log(22, 'fn_gen_groupby');
+			let prop_2nd = 'race';
+
+			// o_filters
+
+			let heros_grouped = Object.groupBy(heros, (i) => i[_cate]);
+			for (let cate in heros_grouped) {
+				heros_grouped[cate] = Object.groupBy(heros_grouped[cate], i => i.race);
+			}
+
+			// console.log(22, heros_grouped);
+			let _html = '';
+			let s_class = o_filters[prop_2nd];
+
+			for (let cate in heros_grouped) {
+				let _hero_html = '';
+
+				for (let _class of s_class) {
+				// for (let _class in heros_grouped[cate]) {
+					let _class_html = heros_grouped[cate][_class]?.map((hero) => {
+						return fn_gen_grouped_hero(hero);
+					}).join('') || '';
+					_hero_html += `<div class="grouped-heros-classbox">${_class_html}</div>`;
+				}
+
+				_html += `<div class="grouped-heros-cate" data-cate="${_cate}">
+					<h3>${cate}</h3>
+					<div class="grouped-heros-box">
+						${_hero_html}
+					</div>
+				</div>`;
+			}
+
+			return _html;
+
+			function fn_sumarray(array) {
+				return array.reduce((all, cur) => all + cur, 0);
+			}
+
+			function fn_gen_grouped_hero(hero, index) {
+				let _props = fn_gen_hero_props(hero);
+				return `
+					<div class="grouped-hero item" ${_props}>
+						<a href="${hero.link}" target="_blank"><img src="${IMG_PATH}${hero.img}" width="60" height="60" loading="lazy"></a>
+						<button class="grouped-hero__details-btn" onclick="fn_toggle_dialog(true, '${hero.name}')">+</button>
+						<div class="grouped-hero__name">
+							${hero.name}
+						</div>
+					</div>
+				`
+			}
+		}
+
+		function fn_gen_hero_props(hero) {
+			return props.map(p => {
+				if (p === 'slots') {
+					return ['slot1', 'slot2', 'slot3'].map(j => ` data-${j}_${hero[j]}`).join('');
+				}
+				return ` data-${p}_${(hero[p] + '').sanitize()}`;
+			}).join('');
+		}
+
+		function fn_gen_list() {
+			return (
+				'<li id="el_head" class="head" data-dir="-1">' + props.map((p, index) => `<div data-index="${index}">
+					<span class="label">${p}</span>
+				</div>`).join('') + '</li><style id="el_head_style"></style>'
+			) +
+			heros.map(hero => {
+				let _props = fn_gen_hero_props(hero);
+				let orders_style = props.map(p => `--order-${p}: ${hero.order[p]};`).join(' ');
+				return (
+					`<li class="item" ${_props} style="${orders_style}">`
+					+ props.map(p => fn_gen_td(hero, p)).join('')
+					+ '</li>'
+				);
+			}).join('');
+
+			function fn_gen_td(hero, p) {
+				let ctx = hero[p];
+
+				if (p === 'name') {
+					ctx = `<a href="${hero.link}" target="_blank"><img src="${IMG_PATH}${hero.img}" width="60" height="60" loading="lazy"><br/></a>${hero[p]}`;
+				}
+
+				return (
+					`<div data-${p}="${hero[p]}">
+							<div class="label">${p}:</div>
+							<div class="value" data-value="${hero[p]}">${ctx}</div>
+						</div>`
+				);
+			}
+		}
+
+		function fn_gen_filterdom(argument) {
+			let filter_html = ``;
+
+			let filter_cates = heros.reduce((all, hero) => {
+				filter_props.forEach(prop => {
+					if (!all[prop]) {
+						all[prop] = [];
+					}
+					all[prop].push(hero[prop]);
+				});
+				return all;
+			}, {});
+
+			for (let cate in filter_cates) {
+				filter_cates[cate] = [...new Set(filter_cates[cate])].sort();
+			}
+			console.log(123, filter_cates);
+			window.o_filters = filter_cates;
+
+			function fn_gen_checkboxs(cate) {
+				let dd = filter_cates[cate].map(i => `
+					<dd>
+						<label class="filter-label flex">
+							<input type="checkbox" name="${cate}" value="${(i + '').sanitize()}" id="filter-${cate}_${i}">
+							${i}
+						</label>
+					</dd>
+				`).join('');
+
+				return `<fieldset>
+					<legend>${cate}</legend>
+					<details data-cate="${cate}" ${filter_cates[cate].length < 33 ? 'open' : ''}>
+						<summary></summary>
+						<div>
+							${dd}
+						</div>
+					</details>
+				</fieldset>`;
+			}
+
+			for (let group of filter_rendering_grounp) {
+				if (typeof group === 'string') {
+					filter_html += fn_gen_checkboxs(group)
+				} else if (group.items) {
+					filter_html += `<fieldset>
+						<legend>${group.title}</legend>
+						<details ${group.open ? 'open' : ''}>
+							<summary></summary>
+							<div>
+								${group.items.map(fn_gen_checkboxs).join('')}
+							</div>
+						</details>
+					</fieldset>`
+				}
+			}
+
+			// el_form.querySelector(':scope > details').open = !us_cate;
+
+			return filter_html;
+		}
+
+		// binding:
+		// binding:
+		// binding:
+
+		window.el_form.addEventListener('input', fn_form_update);
+		window.el_form.addEventListener('reset', fn_update_style);
+		window.el_head?.addEventListener('click', fn_reorder_table);
+
+		function fn_form_update() {
+			let formData = new FormData(el_form);
+
+			if (![...formData.entries()].length) {
+				fn_update_style();
+				return;
+			}
+
+			let pairs = {};
+			for (const [key, value] of formData.entries()) {
+				if (pairs.hasOwnProperty(key)) {
+			    pairs[key].push(value);
+				} else {
+				  pairs[key] = [value];
+				}
+			}
+
+			let selectors = [];
+			for (let prop in pairs) {
+				selectors.push(
+					`.item.item:not(`+ pairs[prop].map(v => `[data-${prop}_${v}]`).join(',') +`)`
+				)
+			}
+
+			let _style = selectors.join(',') + `{ display: none; }`;
+
+			fn_update_style(_style);
+		}
+
+		function fn_update_style(style = '') {
+			el_filter_style.innerHTML = style || '';
+		}
+
+		function fn_reorder_table(e) {
+			let dir = +(el_head.dataset.dir) || 1;
+			let index = e.target.closest('div')?.dataset.index;
+			if (!index) {
+				el_head_style.innerHTML = '';
+				return;
+			}
+			index = +index;
+			el_head.dataset.dir = dir * -1;
+			el_head.dataset.prop = props[index];
+			el_head.dataset.index = index;
+
+			el_head_style.innerHTML = `li.item { order: calc(var(--order-${props[index]}, 0) * ${dir * -1}); }
+			li.head div:nth-of-type(${index + 1}) { text-shadow: 1px 2px #00f; }`;
+		}
+
+		function fn_toggle_dialog(is_open = true, heroname = '') {
+			if (!is_open) {
+				dialog.close();
+				dialog_ctx.innerHTML = '';
+				return;
+			}
+
+			let hero = heros.find(i => i.name === heroname);
+			if (!hero) { return; }
+
+			dialog_ctx.innerHTML = fn_gen_hero_detail(hero);
+			dialog.showModal();
+		}
+
+		function fn_gen_hero_detail(hero) {
+			return `<table>` +
+				`<tr><td colspan="2" align="center"><img src="${IMG_PATH}${hero.img}" width="60" height="60" loading="lazy"></td></tr>` +
+				props.map(prop => {
+					return `<tr><td>${prop}</td><td>${hero[prop]}</td></tr>`;
+				}).join('') +
+				`</table>`;
+		}
+
+		dialog.addEventListener('click', (e) => {
+			if (e.target === dialog) dialog.close();
+		});
+
+	</script>
+</body>
+</html>
+
+<div>
+	<img src="" alt="">
+
+</div>
