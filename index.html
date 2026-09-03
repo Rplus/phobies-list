@@ -304,7 +304,7 @@
 				display: inline-flex;
 				width: 24px;
 				height: 24px;
-				opacity: .75;
+				opacity: .5;
 				background: url('./icons/Icon_health.webp') 50% / contain no-repeat;
 			}
 		}
@@ -415,10 +415,7 @@
 		}
 	}
 
-	#dialog_ctx td[data-race],
-	#dialog_ctx td[data-attack_type],
-	#dialog_ctx td[data-damage_range],
-	#dialog_ctx td[data-movement_type] {
+	#dialog_ctx td {
 		& .td-value {
 			display: inline-flex;
 
@@ -452,9 +449,38 @@
 	[data-attack_type="Lob"] { --bgi: url('./icons/Icon_range_lob.webp'); }
 	[data-attack_type="Self-Initiated AOE"] { --bgi: url('./icons/Icon_self_aoe.webp'); }
 
+	[data-trap],
+	[data-buff],
+	[data-attack],
+	[data-effect_range="Self-Initiated AOE"],
+	[data-effect_range="Single Target Attack"],
 	[data-damage_range="Single Target Attack"] { --bgi: url('./icons/Icon_damage.webp'); }
+
+	[data-effect_range="Targeted AOE Attack"],
 	[data-damage_range="Targeted AOE Attack"] { --bgi: url('./icons/Icon_damage_AOE.webp'); }
+
+	[data-effect_range="Splash AOE Attack"],
 	[data-damage_range="Splash AOE Attack"] { --bgi: url('./icons/Icon_big_aoe.webp'); }
+
+	[data-resurrect],
+	[data-health] { --bgi: url('./icons/Icon_health.webp'); }
+
+	[data-debuff] { --bgi: url('./icons/Icon_mod_damage_debuff.webp'); }
+	[data-unlocking] { --bgi: url('./icons/Icon_lock.webp'); }
+	[data-heal] { --bgi: url('./icons/Icon_healing_kit.webp'); }
+	[data-cooldown] { --bgi: url('./icons/Clock.webp'); }
+	[data-lifesteal] { --bgi: url('./icons/Icon_leech.webp'); }
+	[data-effect_duration] { --bgi: url('./icons/Icon_hex.webp'); }
+	[data-disease] { --bgi: url('./icons/Icon_disease.webp'); }
+	[data-electric] { --bgi: url('./icons/Icon_electrical.webp'); }
+	[data-poison] { --bgi: url('./icons/Icon_poison.webp'); }
+	[data-duration] { --bgi: url('./icons/Icon_timer.webp'); }
+
+	[data-fire] { --bgi: url('./icons/Icon_fire.webp'); }
+	[data-effect_range="Beam Attack"] { --bgi: url('./icons/Icon_beam.webp'); }
+	[data-effect_range="Dash Attack"] { --bgi: url('./icons/Icon_charge.webp'); }
+	[data-heartheal] { --bgi: url('./icons/Icon_heartheal.webp'); }
+	[data-obstacle] { --bgi: url('./icons/Terraform_ObstacleCreate_GraveDigger.webp'); }
 
 	.flex {
 		display: flex;
@@ -560,6 +586,25 @@
 	img {
 		user-select: none;
 	}
+	table {
+		table-layout: fixed;
+		margin: 0 auto;
+		border-collapse: collapse;
+
+		td {
+			padding: 2px 0.25em;
+			border: 1px dotted #fff3;
+		}
+	}
+
+	.td-value {
+		max-width: 20em;
+	}
+
+	dialog details {
+		margin-top: 1em;
+		margin-bottom: 1em;
+	}
 </style>
 </head>
 
@@ -599,6 +644,7 @@
 			<div id="dialog_ctx"></div>
 			<button onclick="fn_toggle_dialog(false)">✖</button>
 		</dialog>
+
 	</div>
 
 	<!-- <script src="./data/Phobies_data.js"></script> -->
@@ -6866,6 +6912,9 @@ const heros =
 
 		const IMG_PATH = 'https://static.wikia.nocookie.net/phobies/images/';
 		const DEFAULT_ICON = 'e/e8/Lippy.png';
+		const WIKISITE = 'https://phobies.fandom.com/';
+		// const WIKISITE = 'https://phobies.antifandom.com/';
+		// const WIKISITE = 'https://breezewiki.com/phobies/';
 
 		let props = [
 			'name',
@@ -6923,6 +6972,13 @@ const heros =
 			// },
 		];
 
+		const skill_baned_props = [
+			'type',
+			'title',
+			'icon_title',
+			'icon_url',
+		];
+
 		String.prototype.sanitize = function() {
 			return this.replace(/[,\s\']/g, '_');
 		};
@@ -6946,8 +7002,8 @@ const heros =
 
 				// 2. 處理文字字串（純英數優化版，完全消滅內部隱藏迴圈）
 				else {
-					const str = order_target;
-					// const str = order_target.toUpperCase();
+					// const str = order_target;
+					const str = order_target.toUpperCase();
 					const c1 = str.codePointAt(0) ?? 32; // 第一個字，沒字補空格 (32)
 					const c2 = str.codePointAt(1) ?? 32; // 第二個字
 					const c3 = str.codePointAt(2) ?? 32; // 第三個字
@@ -6969,7 +7025,7 @@ const heros =
 			init_grouped_hero(us_cate);
 		}
 
-		const mediaQuery = window.matchMedia('(min-width: 1200px)');
+		const mediaQuery = window.matchMedia('(min-width: 1300px)');
 		if (mediaQuery.matches) {
 			el_form_details.open = true;
 		}
@@ -7066,7 +7122,7 @@ const heros =
 						<img src="${IMG_PATH}${hero.img}" width="60" height="60" loading="lazy">
 						<button class="grouped-hero__details-btn" onclick="fn_toggle_dialog(true, '${hero.name}')"></button>
 						<div class="grouped-hero__name">
-							<a href="https://phobies.fandom.com${hero.link}" target="_blank" rel="noopener">${hero.name}</a>
+							<a href="${WIKISITE}${hero.link}" target="_blank" rel="noopener">${hero.name}</a>
 						</div>
 					</div>
 				`
@@ -7102,13 +7158,13 @@ const heros =
 				let ctx = hero[p];
 
 				if (p === 'name') {
-					ctx = `<a href="https://phobies.fandom.com/${hero.link}" target="_blank" rel="noopener"><img src="${IMG_PATH}${hero.img}" width="60" height="60" loading="lazy"><br/></a>${hero[p]}`;
+					ctx = `<a href="${WIKISITE}${hero.link}" target="_blank" rel="noopener"><img src="${IMG_PATH}${hero.img}" width="60" height="60" loading="lazy"><br/></a>${hero[p]}`;
 				} else if (p === 'abilities') {
 					let _skills = hero[p];
 					if (_skills) {
-						ctx = _skills.map(s => {
+						ctx = _skills.map((s, si) => {
 							let _url = IMG_PATH + (s.icon_url || DEFAULT_ICON);
-							return `<img src="${_url}" width="36" height="36"> `;
+							return `<img src="${_url}" width="36" height="36" onclick="fn_toggle_dialog(true, '${hero.name}', ${si})"> `;
 						}).join('')
 					} else {
 						ctx = '';
@@ -7242,7 +7298,7 @@ const heros =
 			li.head div:nth-of-type(${index + 1}) { text-shadow: 1px 2px #00f; }`;
 		}
 
-		function fn_toggle_dialog(is_open = true, heroname = '') {
+		function fn_toggle_dialog(is_open = true, heroname = '', skill_index = 0) {
 			if (!is_open) {
 				dialog.close();
 				dialog_ctx.innerHTML = '';
@@ -7257,12 +7313,61 @@ const heros =
 		}
 
 		function fn_gen_hero_detail(hero) {
+
+			const skills = fn_gen_hero_skills(hero.abilities);
+
 			return `<table>` +
-				`<tr><td colspan="2" align="center"><a href="https://phobies.fandom.com${hero.link}" target="_blank" rel="noopener"><img src="${IMG_PATH}${hero.img}" width="90" height="90" loading="lazy"></a></td></tr>` +
+				`<tr><td colspan="2" align="center"><a href="${WIKISITE}${hero.link}" target="_blank" rel="noopener"><img src="${IMG_PATH}${hero.img}" width="90" height="90" loading="lazy"></a></td></tr>` +
 				props.map(prop => {
+					if (prop === 'abilities') {
+						return '';
+					}
 					return `<tr><td>${prop}</td><td data-${prop}="${hero[prop]}"><div class="td-value">${hero[prop]}</div></td></tr>`;
 				}).join('') +
-				`</table>`;
+				`</table>` + skills;
+		}
+
+		function fn_sort_skill_prop(a, b) {
+			if (a === 'description') { return -1; }
+			if (b === 'description') { return 1; }
+			return a.localeCompare(b);
+		}
+
+		function fn_gen_hero_skills(skills = []) {
+			if (!skills.length) {
+				return '';
+			}
+			return skills.map(skill => {
+				let skill_props_html = Object.keys(skill).sort(fn_sort_skill_prop).map(_prop => {
+					if (skill_baned_props.includes(_prop)) {
+						return '';
+					}
+					return `<tr><td>${_prop}</td><td data-${_prop}="${skill[_prop]}"><div class="td-value">${skill[_prop]}</div></td></tr>`;
+				}).join('');
+
+				// let skill_props_html = '';
+				// for (let _prop in skill) {
+				// 	if (skill_baned_props.includes(_prop)) {
+				// 		continue;
+				// 	}
+
+				// 	skill_props_html += `<tr><td>${_prop}</td><td data-${_prop}="${skill[_prop]}"><div class="td-value">${skill[_prop]}</div></td></tr>`;
+				// }
+				let _url = IMG_PATH + (skill.icon_url || DEFAULT_ICON);
+				return `
+					<hr>
+					<hr>
+					<details open>
+						<summary>
+							<img src="${_url}" width=36 height=36 align=center>
+							${skill.type} Ability: ${skill.title}
+						</summary>
+						<div class="skill-box">
+							<table>${skill_props_html}</table>
+						</div>
+					</details>
+				`;
+			}).join('');
 		}
 
 		dialog.addEventListener('click', (e) => {
