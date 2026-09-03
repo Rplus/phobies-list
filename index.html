@@ -109,7 +109,8 @@
 
 	#el_list {
 		display: grid;
-		max-width: 1200px;
+		width: 100%;
+		max-width: 1400px;
 		margin-left: auto;
 		margin-right: auto;
 		grid-template-columns: repeat(12, 1fr);
@@ -117,6 +118,9 @@
 		margin-bottom: max(40vh, 20em);
 		font-size: smaller;
 
+		@media (max-width: 1200px) {
+			/* grid-template-columns: repeat(6, 1fr); */
+		}
 		@media (max-width: 860px) {
 			grid-template-columns: repeat(6, 1fr);
 
@@ -276,6 +280,49 @@
 		backdrop-filter: blur(1px);
 		user-select: none;
 		cursor: pointer;
+
+		@media (max-width: 1200px) {
+			font-size: 10px;
+		}
+
+		& .label {
+			white-space: pre-wrap;
+		}
+
+		div[data-index="1"],
+		div[data-index="3"],
+		div[data-index="4"],
+		div[data-index="6"],
+		div[data-index="8"],
+		div[data-index="9"] {
+			display: inline-flex;
+			align-items: center;
+			gap: .25em;
+
+			&::after {
+				content: '';
+				display: inline-flex;
+				width: 24px;
+				height: 24px;
+				opacity: .75;
+				background: url('./icons/Icon_health.webp') 50% / contain no-repeat;
+			}
+		}
+
+		div[data-index="1"]::after {
+			background-image: url('./icons/Icon_KeyCost.webp');
+		}
+		div[data-index="3"]::after {
+			background-image: url('./icons/Icon_mod_stunned.webp');
+		}
+		div[data-index="4"]::after {
+			background-image: url('./icons/Icon_movement_walk.webp');
+		}
+		div[data-index="6"]::after,
+		div[data-index="9"]::after {
+			background-image: url('./icons/Icon_damage.webp');
+		}
+
 	}
 
 	.head,
@@ -388,26 +435,26 @@
 		}
 	}
 
-	[data-race="Dimensional"] { --bgi: url('https://static.wikia.nocookie.net/phobies/images/f/fa/Icon_race_dimensional.png/revision/latest/scale-to-width-down/40'); }
-	[data-race="Mechanical"] { --bgi: url('https://static.wikia.nocookie.net/phobies/images/8/82/Icon_race_mechanical.png/revision/latest/scale-to-width-down/40'); }
-	[data-race="Monster"] { --bgi: url('https://static.wikia.nocookie.net/phobies/images/2/2c/Icon_race_monster.png/revision/latest/scale-to-width-down/40'); }
-	[data-race="Undead"] { --bgi: url('https://static.wikia.nocookie.net/phobies/images/8/84/Icon_race_undead.png/revision/latest/scale-to-width-down/40'); }
+	[data-race="Dimensional"] { --bgi: url('./icons/Icon_race_dimensional.webp'); }
+	[data-race="Mechanical"] { --bgi: url('./icons/Icon_race_mechanical.webp'); }
+	[data-race="Monster"] { --bgi: url('./icons/Icon_race_monster.webp'); }
+	[data-race="Undead"] { --bgi: url('./icons/Icon_race_undead.webp'); }
 
-	[data-movement_type="Walking"] { --bgi: url('https://static.wikia.nocookie.net/phobies/images/7/74/Icon_movement_walk.png/revision/latest/scale-to-width-down/40'); }
-	[data-movement_type="Flying"] { --bgi: url('https://static.wikia.nocookie.net/phobies/images/d/d8/Icon_movement_fly.png/revision/latest/scale-to-width-down/40'); }
-	[data-movement_type="Bypassing"] { --bgi: url('https://static.wikia.nocookie.net/phobies/images/0/0a/Bypass.png/revision/latest/scale-to-width-down/40'); }
+	[data-movement_type="Walking"] { --bgi: url('./icons/Icon_movement_walk.webp'); }
+	[data-movement_type="Flying"] { --bgi: url('./icons/Icon_movement_fly.webp'); }
+	[data-movement_type="Bypassing"] { --bgi: url('./icons/Bypass.webp'); }
 
 	[data-attack_type="Targeted AOE"],
 	[data-attack_type="Single Target Attack"],
 	[data-damage_range="Line of Sight"],
-	[data-attack_type="Line of Sight"] { --bgi: url('https://static.wikia.nocookie.net/phobies/images/f/f7/Icon_range_line_of_sight.png/revision/latest/scale-to-width-down/40'); }
+	[data-attack_type="Line of Sight"] { --bgi: url('./icons/Icon_range_line_of_sight.webp'); }
 
-	[data-attack_type="Lob"] { --bgi: url('https://static.wikia.nocookie.net/phobies/images/9/91/Icon_range_lob.png/revision/latest/scale-to-width-down/40'); }
-	[data-attack_type="Self-Initiated AOE"] { --bgi: url('https://static.wikia.nocookie.net/phobies/images/e/eb/Icon_self_aoe.png/revision/latest/scale-to-width-down/40'); }
+	[data-attack_type="Lob"] { --bgi: url('./icons/Icon_range_lob.webp'); }
+	[data-attack_type="Self-Initiated AOE"] { --bgi: url('./icons/Icon_self_aoe.webp'); }
 
-	[data-damage_range="Single Target Attack"] { --bgi: url('https://static.wikia.nocookie.net/phobies/images/7/73/Icon_damage.png/revision/latest/scale-to-width-down/40'); }
-	[data-damage_range="Targeted AOE Attack"] { --bgi: url('https://static.wikia.nocookie.net/phobies/images/e/e7/Icon_damage_AOE.png/revision/latest/scale-to-width-down/40'); }
-	[data-damage_range="Splash AOE Attack"] { --bgi: url('https://static.wikia.nocookie.net/phobies/images/9/96/Icon_big_aoe.png/revision/latest/scale-to-width-down/40'); }
+	[data-damage_range="Single Target Attack"] { --bgi: url('./icons/Icon_damage.webp'); }
+	[data-damage_range="Targeted AOE Attack"] { --bgi: url('./icons/Icon_damage_AOE.webp'); }
+	[data-damage_range="Splash AOE Attack"] { --bgi: url('./icons/Icon_big_aoe.webp'); }
 
 	.flex {
 		display: flex;
@@ -6825,10 +6872,10 @@ const heros =
 			'cost',
 			'race',
 			'rarity',
-			'movement_range',
 			'movement_type',
-			'attack_range',
+			'movement_range',
 			'attack_type',
+			'attack_range',
 			'health',
 			'attack',
 			'damage_range',
@@ -6922,7 +6969,7 @@ const heros =
 			init_grouped_hero(us_cate);
 		}
 
-		const mediaQuery = window.matchMedia('(min-width: 600px)');
+		const mediaQuery = window.matchMedia('(min-width: 1200px)');
 		if (mediaQuery.matches) {
 			el_form_details.open = true;
 		}
@@ -7038,7 +7085,7 @@ const heros =
 		function fn_gen_list() {
 			return (
 				'<li id="el_head" class="head" data-dir="-1">' + props.map((p, index) => `<div data-index="${index}">
-					<span class="label">${p}</span>
+					<span class="label">${p.split('_').join('\n')}</span>
 				</div>`).join('') + '</li><style id="el_head_style"></style>'
 			) +
 			heros.map(hero => {
