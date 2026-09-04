@@ -123,42 +123,41 @@
 		grid-template-columns: subgrid;
 		grid-template-areas: "name cost race rarity movement_type movement_range attack_type attack_range health attack damage_range abilities";
 
-		@media (max-width: 960px) {
-			ul:not(.is-grouped) & {
+		ul:not(.is-grouped) & {
+			@media (max-width: 960px) {
 				box-shadow: .25em .25em #0003;
+				margin-bottom: 1em;
+				grid-template-columns: repeat(6, 1fr);
+				grid-template-areas:
+				  "name      cost   race   movement_type  attack_type  damage_range"
+				  "abilities rarity health movement_range attack_range attack";
 			}
 
-			margin-bottom: 1em;
-			grid-template-columns: repeat(6, 1fr);
-			grid-template-areas:
-			  "name      cost   race   movement_type  attack_type  damage_range"
-			  "abilities rarity health movement_range attack_range attack";
-		}
-		@media (max-width: 400px) {
-			margin-bottom: 2em;
-			grid-template-columns: repeat(4, 1fr);
-			grid-template-areas:
-				"name          cost   movement_type movement_range"
-				"race          rarity attack_type   attack_range"
-				"abilities health damage_range  attack"
-			  /* "name      cost   race   movement_type  attack_type  damage_range" */
-			  /* "abilities rarity health movement_range attack_range attack"; */
-		}
+			@media (max-width: 400px) {
+				margin-bottom: 2em;
+				grid-template-columns: repeat(4, 1fr);
+				grid-template-areas:
+					"name          cost   movement_type movement_range"
+					"race          rarity attack_type   attack_range"
+					"abilities health damage_range  attack"
+				  /* "name      cost   race   movement_type  attack_type  damage_range" */
+				  /* "abilities rarity health movement_range attack_range attack"; */
+			}
 
-
-		& > div {
-			&:nth-child(1) { grid-area: name;}
-			&:nth-child(2) { grid-area: cost;}
-			&:nth-child(3) { grid-area: race;}
-			&:nth-child(4) { grid-area: rarity;}
-			&:nth-child(5) { grid-area: movement_type;}
-			&:nth-child(6) { grid-area: movement_range;}
-			&:nth-child(7) { grid-area: attack_type;}
-			&:nth-child(8) { grid-area: attack_range;}
-			&:nth-child(9) { grid-area: health;}
-			&:nth-child(10) { grid-area: attack;}
-			&:nth-child(11) { grid-area: damage_range;}
-			&:nth-child(12) { grid-area: abilities;}
+			& > div {
+				&:nth-child(1) { grid-area: name;}
+				&:nth-child(2) { grid-area: cost;}
+				&:nth-child(3) { grid-area: race;}
+				&:nth-child(4) { grid-area: rarity;}
+				&:nth-child(5) { grid-area: movement_type;}
+				&:nth-child(6) { grid-area: movement_range;}
+				&:nth-child(7) { grid-area: attack_type;}
+				&:nth-child(8) { grid-area: attack_range;}
+				&:nth-child(9) { grid-area: health;}
+				&:nth-child(10) { grid-area: attack;}
+				&:nth-child(11) { grid-area: damage_range;}
+				&:nth-child(12) { grid-area: abilities;}
+			}
 		}
 	}
 
