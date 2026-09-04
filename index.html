@@ -124,7 +124,10 @@
 		grid-template-areas: "name cost race rarity movement_type movement_range attack_type attack_range health attack damage_range abilities";
 
 		@media (max-width: 960px) {
-			box-shadow: .25em .25em #0003;
+			ul:not(.is-grouped) & {
+				box-shadow: .25em .25em #0003;
+			}
+
 			margin-bottom: 1em;
 			grid-template-columns: repeat(6, 1fr);
 			grid-template-areas:
@@ -553,6 +556,9 @@
 
 	#dialog {
 		text-transform: capitalize;
+		background-color: rgb(var(--bgc));
+		box-shadow: .25em .25em #666;
+		border-width: 0;
 
 		img {
 			object-fit: contain;
