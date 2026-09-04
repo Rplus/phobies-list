@@ -1,4 +1,3 @@
-import { writeFile } from 'node:fs/promises';
 import { DOMParser } from 'linkedom';
 
 const data_dir = process.env.DATA_DIR;
@@ -39,12 +38,12 @@ const phobies = links.map(link => {
 
 	return {
 		name: link.title,
-		link: link.href,
+		link: link.href.replace('/wiki/', ''),
 		img: src
 	};
 });
 
-await writeFile(
+await Bun.write(
 	`${data_dir}/list.json`,
 	JSON.stringify(phobies, null, '\t') + '\n'
 );

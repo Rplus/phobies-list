@@ -49,9 +49,9 @@ function parse_templates(wikitext, template_names) {
 			const properties = {};
 
 			for (const line of template.split('\n')) {
-				const property = line.match(
-					/^\s*\|\s*([^=]+?)\s*=\s*(.*?)\s*$/
-				);
+				// const property = line.match(/^\s*\|\s*([^=]+?)\s*=\s*(.*?)\s*$/);
+				const property = line.match(/(?:^|\|)\s*([^|+=]+?)\s*=\s*([^|]*)/);
+
 
 				if (!property) {
 					continue;

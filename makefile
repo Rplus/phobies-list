@@ -13,11 +13,17 @@ all: fetch-wiki parse-phobies inline
 $(DATA_DIR):
 	mkdir -p $(DATA_DIR)
 
-fetch-wiki:
+fetch-wiki: fetch_img_index
 	mkdir -p $(DATA_DIR)
 	DATA_DIR='$(DATA_DIR)' bun ./fetch_list.mjs
 	DATA_DIR='$(DATA_DIR)' bun ./fetch_details.mjs
 	DATA_DIR='$(DATA_DIR)' bun ./fetch_icon.mjs
+
+fetch-icon:
+	DATA_DIR='$(DATA_DIR)' bun ./fetch_icon.mjs
+
+fetch_img_index:
+	DATA_DIR='$(DATA_DIR)' bun ./fetch_images.mjs
 
 parse-phobies:
 	DATA_DIR='$(DATA_DIR)' bun ./parse-phobies.mjs

@@ -486,6 +486,7 @@
 	[data-heartheal] { --bgi: url('./icons/Icon_heartheal.webp'); }
 	[data-obstacle] { --bgi: url('./icons/Terraform_ObstacleCreate_GraveDigger.webp'); }
 	[data-reflect] { --bgi: url('./icons/Passive_CounterAttack.webp'); }
+	[data-cost] { --bgi: url('./icons/Icon_KeyCost.webp'); }
 
 	.flex {
 		display: flex;
@@ -662,9 +663,9 @@ const heros =
 [
 	{
 		"name": "Razor Mouth",
-		"link": "/wiki/Razor_Mouth",
+		"link": "Razor_Mouth",
 		"img": "c/cc/Razor_Mouth_Avatar.png",
-		"file": "Razormouthfront",
+		"file": "f/fc/Razormouthfront.png",
 		"cost": "1",
 		"race": "Monster",
 		"rarity": "Common",
@@ -681,9 +682,9 @@ const heros =
 	},
 	{
 		"name": "AWOL",
-		"link": "/wiki/AWOL",
+		"link": "AWOL",
 		"img": "1/1f/AWOL_Avatar.png",
-		"file": "awol_front",
+		"file": "e/e5/Awol_front.png",
 		"cost": "1",
 		"race": "Monster",
 		"rarity": "Common",
@@ -699,9 +700,9 @@ const heros =
 	},
 	{
 		"name": "Muffintop",
-		"link": "/wiki/Muffintop",
+		"link": "Muffintop",
 		"img": "4/4c/Muffintop_Avatar.png",
-		"file": "muffintop_front",
+		"file": "c/cc/Muffintop_front.png",
 		"cost": "1",
 		"race": "Monster",
 		"rarity": "Uncommon",
@@ -712,21 +713,20 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Goodness Me!",
-				"icon_title": "Special_Heal",
+				"icon_title": "2/2e/Special_Heal.png",
 				"description": "Destroys itself in order to heal and/or cure poison from a friendly non-Undead Phobie.",
 				"attack_range": "1",
 				"heal": "550",
 				"attack_type": "Line of Sight",
-				"effect_range": "Single Target Attack",
-				"icon_url": "2/2e/Special_Heal.png"
+				"effect_range": "Single Target Attack"
 			}
 		]
 	},
 	{
 		"name": "Electricat",
-		"link": "/wiki/Electricat",
+		"link": "Electricat",
 		"img": "8/88/Electricat_Avatar.png",
-		"file": "electricat_front",
+		"file": "9/99/Electricat_front.png",
 		"cost": "1",
 		"race": "Monster",
 		"rarity": "Uncommon",
@@ -743,9 +743,9 @@ const heros =
 	},
 	{
 		"name": "Tickles",
-		"link": "/wiki/Tickles",
+		"link": "Tickles",
 		"img": "3/31/Tickles_Avatar.png",
-		"file": "Tickles_front",
+		"file": "9/95/Tickles_front.png",
 		"cost": "1",
 		"rarity": "Uncommon",
 		"race": "Monster",
@@ -760,17 +760,16 @@ const heros =
 			{
 				"type": "Passive",
 				"title": "Trap Absorber",
-				"icon_title": "Passive Trap Removal",
-				"description": "Disarm demy trap without triggering it if standing on it at the end of your turn.",
-				"icon_url": "b/b2/Passive_Trap_Removal.png"
+				"icon_title": "b/b2/Passive_Trap_Removal.png",
+				"description": "Disarm demy trap without triggering it if standing on it at the end of your turn."
 			}
 		]
 	},
 	{
 		"name": "Henrietta",
-		"link": "/wiki/Henrietta",
+		"link": "Henrietta",
 		"img": "1/15/Henrietta_Avatar.png",
-		"file": "henrietta_front",
+		"file": "6/68/Henrietta_front.png",
 		"cost": "1",
 		"race": "Monster",
 		"rarity": "Rare",
@@ -788,9 +787,9 @@ const heros =
 	},
 	{
 		"name": "Blue",
-		"link": "/wiki/Blue",
+		"link": "Blue",
 		"img": "a/a8/Blue_Avatar.webp",
-		"file": "Blue_Front",
+		"file": "7/70/Blue_Front.png",
 		"cost": "1",
 		"race": "Monster",
 		"rarity": "Rare",
@@ -801,30 +800,28 @@ const heros =
 			{
 				"type": "Passive",
 				"title": "Deflated!",
-				"icon_title": "Deflated",
+				"icon_title": "c/ce/Deflated.png",
 				"description": "If killed by an enemy unit, the enemy unit will have its damage reduced.",
 				"debuff": "350",
-				"effect_duration": "2",
-				"icon_url": "c/ce/Deflated.png"
+				"effect_duration": "2"
 			},
 			{
 				"type": "Passive",
 				"title": "Surprise!",
-				"icon_title": "Surprise",
+				"icon_title": "9/9c/Surprise.png",
 				"description": "If placed beside an enemy unit at the end of a turn, destroys itself and reduces the damage of any surrounding enemy unit(s).",
 				"attack_range": "1",
 				"debuff": "350",
 				"effect_duration": "2",
-				"attack_type": "Self-Initiated AOE",
-				"icon_url": "9/9c/Surprise.png"
+				"attack_type": "Self-Initiated AOE"
 			}
 		]
 	},
 	{
 		"name": "Sockassin",
-		"link": "/wiki/Sockassin",
+		"link": "Sockassin",
 		"img": "f/ff/Sockassin_Avatar.png",
-		"file": "sockassin_front",
+		"file": "2/26/Sockassin_front.png",
 		"cost": "1",
 		"race": "Monster",
 		"rarity": "Ultra Rare",
@@ -842,9 +839,9 @@ const heros =
 	},
 	{
 		"name": "Gesundheit",
-		"link": "/wiki/Gesundheit",
+		"link": "Gesundheit",
 		"img": "c/c5/Gesundheit_Avatar.png",
-		"file": "gesundheit_front",
+		"file": "8/8f/Gesundheit_front.png",
 		"cost": "2",
 		"race": "Monster",
 		"rarity": "Common",
@@ -860,9 +857,9 @@ const heros =
 	},
 	{
 		"name": "Suckee",
-		"link": "/wiki/Suckee",
+		"link": "Suckee",
 		"img": "d/d9/Suckee_Avatar.png",
-		"file": "suckee_front",
+		"file": "9/95/Suckee_front.png",
 		"cost": "2",
 		"race": "Monster",
 		"rarity": "Common",
@@ -884,7 +881,7 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Blood Sucker",
-				"icon_title": "Special_Charge",
+				"icon_title": "9/94/Special_Charge.png",
 				"description": "Allows the unit to move 1 tile and perform a melee attack with a single action.",
 				"attack_range": "2",
 				"attack": "325",
@@ -892,17 +889,16 @@ const heros =
 				"lifesteal": "50%",
 				"cooldown": "1",
 				"attack_type": "Line of Sight",
-				"effect_range": "Single Target Attack",
-				"icon_url": "9/94/Special_Charge.png"
+				"effect_range": "Single Target Attack"
 			}
 		]
 	},
 	{
 		"name": "Wiggy",
-		"link": "/wiki/Wiggy",
+		"link": "Wiggy",
 		"img": "5/59/Wiggy_Avatar.png",
 		"cost": "2",
-		"file": "wiggy_front",
+		"file": "a/a6/Wiggy_front.png",
 		"description": "That's a nice ear you've got there...",
 		"race": "Monster",
 		"rarity": "Common",
@@ -918,9 +914,9 @@ const heros =
 	},
 	{
 		"name": "Maggie",
-		"link": "/wiki/Maggie",
+		"link": "Maggie",
 		"img": "3/3b/Maggie_Avatar.png",
-		"file": "maggie_front",
+		"file": "6/6f/Maggie_front.png",
 		"cost": "2",
 		"race": "Monster",
 		"rarity": "Common",
@@ -936,9 +932,9 @@ const heros =
 	},
 	{
 		"name": "Finnigan",
-		"link": "/wiki/Finnigan",
+		"link": "Finnigan",
 		"img": "b/b3/Finnigan_Avatar.png",
-		"file": "finnigan_front",
+		"file": "c/ce/Finnigan_front.png",
 		"cost": "2",
 		"race": "Monster",
 		"rarity": "Uncommon",
@@ -953,21 +949,20 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Gore",
-				"icon_title": "Special_Push",
+				"icon_title": "a/a4/Special_Push.png",
 				"description": "Damages and pushes an enemy unit backwards 1 tile. Default direction is a straight line.",
 				"attack_range": "1",
 				"attack": "250",
 				"attack_type": "Line of Sight",
-				"effect_range": "Single Target Attack",
-				"icon_url": "a/a4/Special_Push.png"
+				"effect_range": "Single Target Attack"
 			}
 		]
 	},
 	{
 		"name": "Uni Corn",
-		"link": "/wiki/Uni_Corn",
+		"link": "Uni_Corn",
 		"img": "9/94/Uni_Corn_Avatar.png",
-		"file": "uniCorn_front",
+		"file": "5/5f/UniCorn_front.png",
 		"cost": "2",
 		"race": "Monster",
 		"rarity": "Uncommon",
@@ -982,22 +977,21 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Shucks",
-				"icon_title": "Special_Trap",
+				"icon_title": "a/a9/Special_Trap.png",
 				"description": "Places a trap. Can be set off by an enemy unit at the end of any turn, except the turn it's laid.",
 				"attack_range": "1",
 				"trap": "425",
 				"cooldown": "2",
 				"attack_type": "Line of Sight",
-				"effect_range": "Single Target Attack",
-				"icon_url": "a/a9/Special_Trap.png"
+				"effect_range": "Single Target Attack"
 			}
 		]
 	},
 	{
 		"name": "Red",
-		"link": "/wiki/Red",
+		"link": "Red",
 		"img": "3/31/Red.png",
-		"file": "Red_front",
+		"file": "7/7c/Red_front.png",
 		"cost": "2",
 		"race": "Monster",
 		"rarity": "Rare",
@@ -1022,7 +1016,7 @@ const heros =
 	},
 	{
 		"name": "Bad Omen",
-		"link": "/wiki/Bad_Omen",
+		"link": "Bad_Omen",
 		"img": "8/8d/Bad_Omen_Avatar.png",
 		"race": "Monster",
 		"cost": "2",
@@ -1034,12 +1028,12 @@ const heros =
 		"attack_type": "Line of Sight",
 		"damage_range": "Single Target Attack",
 		"attack": "320",
-		"file": "BadOmen_front",
+		"file": "d/d9/BadOmen_front.png",
 		"abilities": [
 			{
 				"type": "SpecialAbility",
 				"title": "Bad luck",
-				"icon_title": "Special_AttackDebuff",
+				"icon_title": "2/21/Special_AttackDebuff.png",
 				"description": "Reduces the damage of an enemy unit as well as all enemy unit directly adjacent to it.",
 				"attack_range": "1",
 				"attack_type": "Line of Sight",
@@ -1047,16 +1041,15 @@ const heros =
 				"debuff": "250",
 				"duration": "2",
 				"cooldown": "2",
-				"unlocking": "1",
-				"icon_url": "2/21/Special_AttackDebuff.png"
+				"unlocking": "1"
 			}
 		]
 	},
 	{
 		"name": "Cupcake",
-		"link": "/wiki/Cupcake",
+		"link": "Cupcake",
 		"img": "5/51/Cupcake_Avatar.png",
-		"file": "Cupcake_Front",
+		"file": "4/4e/Cupcake_Front.png",
 		"cost": "2",
 		"race": "Monster",
 		"rarity": "Ultra Rare",
@@ -1066,7 +1059,7 @@ const heros =
 		"abilities": [
 			{
 				"type": "SpecialAbility",
-				"icon_title": "Special_Heal&DmgBuff",
+				"icon_title": "4/47/Special_Heal%26DmgBuff.png",
 				"title": "I Feel Great!",
 				"description": "Heals and/or cures poison from a friendly non-Undead unit and increases the damage of the unit for the current turn.",
 				"attack_type": "Line of Sight",
@@ -1074,16 +1067,15 @@ const heros =
 				"effect_range": "Single Target Attack",
 				"heal": "650",
 				"buff": "300",
-				"unlocking": "1",
-				"icon_url": "4/47/Special_Heal%26DmgBuff.png"
+				"unlocking": "1"
 			}
 		]
 	},
 	{
 		"name": "Minotaur",
-		"link": "/wiki/Minotaur",
+		"link": "Minotaur",
 		"img": "7/7a/Minotaur_Avatar.png",
-		"file": "Minotaur_front",
+		"file": "d/da/Minotaur_front.png",
 		"cost": "3",
 		"race": "Monster",
 		"rarity": "Common",
@@ -1100,9 +1092,9 @@ const heros =
 	},
 	{
 		"name": "Mike Roscopic",
-		"link": "/wiki/Mike_Roscopic",
+		"link": "Mike_Roscopic",
 		"img": "c/c4/Mike_Roscopic_Avatar.png",
-		"file": "MikeRoscopic_front",
+		"file": "4/44/MikeRoscopic_front.png",
 		"cost": "3",
 		"race": "Monster",
 		"rarity": "Common",
@@ -1119,9 +1111,9 @@ const heros =
 	},
 	{
 		"name": "Venus",
-		"link": "/wiki/Venus",
+		"link": "Venus",
 		"img": "6/6e/Venus_Avatar.png",
-		"file": "Venus_front",
+		"file": "4/44/Venus_front.png",
 		"cost": "3",
 		"race": "Monster",
 		"rarity": "Uncommon",
@@ -1137,23 +1129,22 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Catching Flies",
-				"icon_title": "Special_Trap",
+				"icon_title": "a/a9/Special_Trap.png",
 				"description": "Places a trap. Can be set off by an enemy unit at the end of any turn, except the turn it's laid.",
 				"attack_range": "2",
 				"splash": "No",
 				"trap": "500",
 				"cooldown": "1",
 				"attack_type": "Line of Sight",
-				"effect_range": "Single Target Attack",
-				"icon_url": "a/a9/Special_Trap.png"
+				"effect_range": "Single Target Attack"
 			}
 		]
 	},
 	{
 		"name": "Spud",
-		"link": "/wiki/Spud",
+		"link": "Spud",
 		"img": "0/0f/Spud_Avatar.png",
-		"file": "Spud_front",
+		"file": "7/79/Spud_front.png",
 		"cost": "3",
 		"race": "Monster",
 		"rarity": "Uncommon",
@@ -1170,9 +1161,9 @@ const heros =
 	},
 	{
 		"name": "Le Shovell",
-		"link": "/wiki/Le_Shovell",
+		"link": "Le_Shovell",
 		"img": "8/80/Le_Shovell_Avatar.png",
-		"file": "LeShovell_front",
+		"file": "f/f2/LeShovell_front.png",
 		"cost": "3",
 		"race": "Monster",
 		"rarity": "Uncommon",
@@ -1187,22 +1178,21 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Nudge",
-				"icon_title": "Special_Push",
+				"icon_title": "a/a4/Special_Push.png",
 				"description": "Pushes a friendly unit 1 tile. Default direction is a straight line.",
 				"attack_range": "1",
 				"attack_type": "Line of Sight",
 				"effect_range": "Single Target Attack",
 				"cooldown": "2",
-				"unlocking": "2",
-				"icon_url": "a/a4/Special_Push.png"
+				"unlocking": "2"
 			}
 		]
 	},
 	{
 		"name": "Mozzy",
-		"link": "/wiki/Mozzy",
+		"link": "Mozzy",
 		"img": "d/d1/Mozzy_Avatar.png",
-		"file": "Mozzy Front",
+		"file": "0/09/Mozzy_Front.png",
 		"cost": "3",
 		"race": "Monster",
 		"rarity": "Uncommon",
@@ -1217,18 +1207,17 @@ const heros =
 			{
 				"type": "Passive",
 				"title": "Skeeter Leech",
-				"icon_title": "Passive_Health_Leech",
+				"icon_title": "6/68/Passive_Health_Leech.png",
 				"description": "Leeches 100% of damage dealt as HP.",
-				"lifesteal": "100%",
-				"icon_url": "6/68/Passive_Health_Leech.png"
+				"lifesteal": "100%"
 			}
 		]
 	},
 	{
 		"name": "Capn Quackers",
-		"link": "/wiki/Capn_Quackers",
+		"link": "Capn_Quackers",
 		"img": "8/80/CapnQuackers.png",
-		"file": "CapnQuackers front",
+		"file": "3/36/CapnQuackers_front.png",
 		"cost": "3",
 		"race": "Monster",
 		"rarity": "Uncommon",
@@ -1243,23 +1232,22 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Instigator",
-				"icon_title": "Special_Trap_Weakness",
+				"icon_title": "b/b2/Special_Trap_Weakness.png",
 				"description": "Places a trap that when activated increases damage taken of the victim. Can be set off any turn by an enemy unit or enemy trap in the trap's tile, except the turn your trap is laid.",
 				"attack_range": "2",
 				"attack": "300",
 				"buff": "150",
 				"effect_duration": "2",
 				"cooldown": "1",
-				"attack_type": "Line of Sight",
-				"icon_url": "b/b2/Special_Trap_Weakness.png"
+				"attack_type": "Line of Sight"
 			}
 		]
 	},
 	{
 		"name": "Tick",
-		"link": "/wiki/Tick",
+		"link": "Tick",
 		"img": "6/6e/Tick_Avatar.png",
-		"file": "Tick_Front",
+		"file": "c/c0/Tick_Front.png",
 		"cost": "3",
 		"race": "Monster",
 		"rarity": "Ultra Rare",
@@ -1273,7 +1261,7 @@ const heros =
 		"abilities": [
 			{
 				"type": "SpecialAbility",
-				"icon_title": "Special_Disease",
+				"icon_title": "9/91/Special_Disease.png",
 				"title": "In The Lymelight",
 				"description": "Deals damage an disease to an enemy unit as well as all enemy units directly adjacent to it. Disease, once appiled is permanent and can never be healed. Mechanicals can't be diseased.",
 				"attack_type": "Line of Sight",
@@ -1282,16 +1270,15 @@ const heros =
 				"disease": "250",
 				"effect_range": "Targeted AOE Attack",
 				"unlocking": "1",
-				"cooldown": "1",
-				"icon_url": "9/91/Special_Disease.png"
+				"cooldown": "1"
 			}
 		]
 	},
 	{
 		"name": "Slammer Head",
-		"link": "/wiki/Slammer_Head",
+		"link": "Slammer_Head",
 		"img": "f/ff/Slammerhead_Avatar.png",
-		"file": "SlammerHead_front",
+		"file": "f/fd/SlammerHead_front.png",
 		"rarity": "Common",
 		"cost": "4",
 		"race": "Monster",
@@ -1306,21 +1293,20 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Play Smashface",
-				"icon_title": "Special_Push",
+				"icon_title": "a/a4/Special_Push.png",
 				"description": "Push back",
 				"attack_range": "1",
 				"attack": "350",
 				"attack_type": "Line of Sight",
-				"effect_range": "Single Target Attack",
-				"icon_url": "a/a4/Special_Push.png"
+				"effect_range": "Single Target Attack"
 			}
 		]
 	},
 	{
 		"name": "Moley Bully",
-		"link": "/wiki/Moley_Bully",
+		"link": "Moley_Bully",
 		"img": "0/0f/Moley_Bully_Avatar.png",
-		"file": "Moleybully front",
+		"file": "6/6c/Moleybully_front.png",
 		"description": "You should get that checked!",
 		"cost": "4",
 		"rarity": "Common",
@@ -1336,9 +1322,9 @@ const heros =
 	},
 	{
 		"name": "Temptresss",
-		"link": "/wiki/Temptresss",
+		"link": "Temptresss",
 		"img": "c/c4/Temptresss_Avatar.png",
-		"file": "Temptress_front",
+		"file": "e/e1/Temptress_front.png",
 		"cost": "4",
 		"rarity": "Uncommon",
 		"race": "Monster",
@@ -1353,7 +1339,7 @@ const heros =
 		"abilities": [
 			{
 				"type": "SpecialAbility",
-				"icon_title": "Special_Electrical",
+				"icon_title": "f/fd/Special_Electrical.png",
 				"title": "Electisssity",
 				"attack_range": "2",
 				"attack": "300",
@@ -1362,16 +1348,15 @@ const heros =
 				"effect_range": "Targeted AOE Attack",
 				"cooldown": "2",
 				"electric": "325",
-				"description": "Deals damage and electrical damage to adjacent enemy units. Enemy units 2 tiles away and within line of sight are dealt 50% damage.",
-				"icon_url": "f/fd/Special_Electrical.png"
+				"description": "Deals damage and electrical damage to adjacent enemy units. Enemy units 2 tiles away and within line of sight are dealt 50% damage."
 			}
 		]
 	},
 	{
 		"name": "Ginsting",
-		"link": "/wiki/Ginsting",
+		"link": "Ginsting",
 		"img": "b/b0/Ginsting_Avatar.png",
-		"file": "Ginsting_front",
+		"file": "9/90/Ginsting_front.png",
 		"cost": "4",
 		"rarity": "Uncommon",
 		"stress_level": "10",
@@ -1388,22 +1373,21 @@ const heros =
 				"type": "SpecialAbility",
 				"title": "Beeeeesssssss!!!",
 				"description": "Deals damage to an enemy unit as well as 50% damage to enemy units adjacent to it.",
-				"icon_title": "Special_Bee_Attack",
+				"icon_title": "1/1a/Special_Bee_Attack.png",
 				"attack_type": "Line of Sight",
 				"effect_range": "Targeted AOE Attack",
 				"attack_range": "2",
 				"attack": "370",
 				"splash": "yes",
-				"cooldown": "1",
-				"icon_url": "1/1a/Special_Bee_Attack.png"
+				"cooldown": "1"
 			}
 		]
 	},
 	{
 		"name": "Sheeping Gas",
-		"link": "/wiki/Sheeping_Gas",
+		"link": "Sheeping_Gas",
 		"img": "c/c3/Sheeping_Gas_Avatar.png",
-		"file": "SheepingGas_front",
+		"file": "4/41/SheepingGas_front.png",
 		"rarity": "Uncommon",
 		"cost": "4",
 		"health": "1400",
@@ -1421,7 +1405,7 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Phew!",
-				"icon_title": "Special_PoisonAOE",
+				"icon_title": "9/97/Special_PoisonAOE.png",
 				"description": "Deals damage and poisons all adjacent enemy units. Mechanicals can't be poisoned.",
 				"attack_range": "1",
 				"attack_type": "Self-Initiated AOE",
@@ -1429,16 +1413,15 @@ const heros =
 				"duration": "3",
 				"poison": "500",
 				"attack": "500",
-				"effect_range": "Singe Target Attack",
-				"icon_url": "9/97/Special_PoisonAOE.png"
+				"effect_range": "Singe Target Attack"
 			}
 		]
 	},
 	{
 		"name": "Honey Bear",
-		"link": "/wiki/Honey_Bear",
+		"link": "Honey_Bear",
 		"img": "4/41/Honey_Bear_Avatar.png",
-		"file": "HoneyBear_front",
+		"file": "0/00/HoneyBear_front.png",
 		"cost": "4",
 		"race": "Monster",
 		"rarity": "Uncommon",
@@ -1453,20 +1436,19 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "It's Over Honey!",
-				"icon_title": "Special_Mud",
+				"icon_title": "b/b0/Special_Mud.png",
 				"description": "Disables all map tiles. Any disabled terrain have no effect — panic points, lava, traps, stim pads, and healing spas.",
 				"attack_range": "3",
 				"effect_duration": "2",
-				"cooldown": "2",
-				"icon_url": "b/b0/Special_Mud.png"
+				"cooldown": "2"
 			}
 		]
 	},
 	{
 		"name": "Clobster",
-		"link": "/wiki/Clobster",
+		"link": "Clobster",
 		"img": "6/66/Clobster_Avatar.png",
-		"file": "Clobster_front",
+		"file": "8/86/Clobster_front.png",
 		"cost": "4",
 		"rarity": "Rare",
 		"race": "Monster",
@@ -1481,21 +1463,20 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Burrow",
-				"icon_title": "Special_Burrow",
+				"icon_title": "e/ef/Special_Burrow.png",
 				"description": "Moves the unit. It can bypass all obstacles and phobies in the way except for pits.",
 				"movement_range": "4",
 				"movement_type": "Bypassing",
 				"cooldown": "1",
-				"unlocking": "1",
-				"icon_url": "e/ef/Special_Burrow.png"
+				"unlocking": "1"
 			}
 		]
 	},
 	{
 		"name": "Poison Ivy",
-		"link": "/wiki/Poison_Ivy",
+		"link": "Poison_Ivy",
 		"img": "4/47/Poison_Ivy_Avatar.png",
-		"file": "poisonivy_front",
+		"file": "f/f7/Poisonivy_front.png",
 		"cost": "4",
 		"rarity": "Rare",
 		"health": "1350",
@@ -1523,9 +1504,9 @@ const heros =
 	},
 	{
 		"name": "Ash",
-		"link": "/wiki/Ash",
+		"link": "Ash",
 		"img": "b/b1/Ash.png",
-		"file": "Ash Card Front",
+		"file": "a/a7/Ash_Card_Front.png",
 		"cost": "4",
 		"race": "Monster",
 		"rarity": "Rare",
@@ -1542,22 +1523,21 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "A Friend in Need",
-				"icon_title": "Ash - Special PullFriend",
+				"icon_title": "0/08/Ash_-_Special_PullFriend.png",
 				"description": "Pulls a friendly unit in 1 tile. Default direction is a straight line.",
 				"attack_range": "2",
 				"cooldown": "1",
 				"unlocking": "1",
 				"attack_type": "Line of Sight",
-				"effect_range": "Single Target Attack",
-				"icon_url": "0/08/Ash_-_Special_PullFriend.png"
+				"effect_range": "Single Target Attack"
 			}
 		]
 	},
 	{
 		"name": "Werewolf",
-		"link": "/wiki/Werewolf",
+		"link": "Werewolf",
 		"img": "2/22/Werewolf_portrait.png",
-		"file": "Werewolf",
+		"file": "f/f5/Werewolf.png",
 		"cost": "4",
 		"race": "Monster",
 		"rarity": "Ultra Rare",
@@ -1578,9 +1558,9 @@ const heros =
 	},
 	{
 		"name": "Staremaster",
-		"link": "/wiki/Staremaster",
+		"link": "Staremaster",
 		"img": "7/7e/Staremaster_Avatar.png",
-		"file": "Staremaster_front",
+		"file": "b/b4/Staremaster_front.png",
 		"cost": "5",
 		"race": "Monster",
 		"rarity": "Common",
@@ -1595,9 +1575,9 @@ const heros =
 	},
 	{
 		"name": "Quagmire",
-		"link": "/wiki/Quagmire",
+		"link": "Quagmire",
 		"img": "b/b7/Quagmire_Avatar.png",
-		"file": "Quagmire front",
+		"file": "3/39/Quagmire_front.png",
 		"cost": "5",
 		"race": "Monster",
 		"rarity": "Common",
@@ -1611,19 +1591,18 @@ const heros =
 		"abilities": [
 			{
 				"type": "Passive",
-				"icon_title": "Passive_Healing_Pool",
+				"icon_title": "c/ca/Passive_Healing_Pool.png",
 				"title": "Boggle Bath",
 				"description": "At the beginning of each of your turns, the unit heals damage. Does not cure poison.",
-				"heal": "300",
-				"icon_url": "c/ca/Passive_Healing_Pool.png"
+				"heal": "300"
 			}
 		]
 	},
 	{
 		"name": "Ray Chargels",
-		"link": "/wiki/Ray_Chargels",
+		"link": "Ray_Chargels",
 		"img": "9/92/Ray_Chargels_Avatar.png",
-		"file": "RayChargles front",
+		"file": "1/17/RayChargles_front.png",
 		"cost": "5",
 		"race": "Monster",
 		"rarity": "Common",
@@ -1639,9 +1618,9 @@ const heros =
 	},
 	{
 		"name": "Woolly Bully",
-		"link": "/wiki/Woolly_Bully",
+		"link": "Woolly_Bully",
 		"img": "7/7c/Woolly_Bully_Avatar.png",
-		"file": "Woollybully front",
+		"file": "4/44/Woollybully_front.png",
 		"cost": "5",
 		"race": "Monster",
 		"rarity": "Uncommon",
@@ -1656,7 +1635,7 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Peek-a-booOO!",
-				"icon_title": "Special_AttackDebuff",
+				"icon_title": "2/21/Special_AttackDebuff.png",
 				"description": "Reduces the damage of an enemy unit.",
 				"attack_range": "2",
 				"debuff": "300",
@@ -1664,16 +1643,15 @@ const heros =
 				"cooldown": "2",
 				"unlocking": "1",
 				"attack_type": "Line of Sight",
-				"effect_range": "Single Target Attack",
-				"icon_url": "2/21/Special_AttackDebuff.png"
+				"effect_range": "Single Target Attack"
 			}
 		]
 	},
 	{
 		"name": "Perma",
-		"link": "/wiki/Perma",
+		"link": "Perma",
 		"img": "4/4a/Perma_Avatar.png",
-		"file": "Perma Front",
+		"file": "5/51/Perma_Front.png",
 		"cost": "5",
 		"race": "Monster",
 		"rarity": "Uncommon",
@@ -1700,9 +1678,9 @@ const heros =
 	},
 	{
 		"name": "Miss Moffat",
-		"link": "/wiki/Miss_Moffat",
+		"link": "Miss_Moffat",
 		"img": "5/5d/Miss_Moffat_Avatar.png",
-		"file": "MissMoffat_front",
+		"file": "9/9f/MissMoffat_front.png",
 		"cost": "5",
 		"race": "Monster",
 		"rarity": "Rare",
@@ -1720,23 +1698,22 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Come Closer",
-				"icon_title": "Special_Pull",
+				"icon_title": "f/f3/Special_Pull.png",
 				"description": "Damages and pulls an enemy unit in 1 tile. Default direction is a straight line.",
 				"attack_range": "2",
 				"attack": "250",
 				"cooldown": "1",
 				"unlocking": "1",
 				"attack_type": "Line of Sight",
-				"effect_range": "Single Target Attack",
-				"icon_url": "f/f3/Special_Pull.png"
+				"effect_range": "Single Target Attack"
 			}
 		]
 	},
 	{
 		"name": "Noxious",
-		"link": "/wiki/Noxious",
+		"link": "Noxious",
 		"img": "7/7e/Noxious_Avatar.png",
-		"file": "Noxious front",
+		"file": "b/bd/Noxious_front.png",
 		"cost": "5",
 		"race": "Monster",
 		"rarity": "Rare",
@@ -1751,7 +1728,7 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Toxic Spittle",
-				"icon_title": "Special_Poison",
+				"icon_title": "5/56/Special_Poison.png",
 				"description": "Deals damage and poison to an enemy unit and all adjacent enemy units. Mechanicals can't be poisoned.",
 				"attack_range": "2",
 				"attack": "300",
@@ -1760,16 +1737,15 @@ const heros =
 				"cooldown": "2",
 				"unlocking": "1",
 				"attack_type": "Line of Sight",
-				"effect_range": "Targeted AOE Attack",
-				"icon_url": "5/56/Special_Poison.png"
+				"effect_range": "Targeted AOE Attack"
 			}
 		]
 	},
 	{
 		"name": "Sasquatch",
-		"link": "/wiki/Sasquatch",
+		"link": "Sasquatch",
 		"img": "5/5c/Sasquatch_Avatar.png",
-		"file": "Sasquatch_front",
+		"file": "a/ae/Sasquatch_front.png",
 		"description": "",
 		"race": "Monster",
 		"cost": "5",
@@ -1796,9 +1772,9 @@ const heros =
 	},
 	{
 		"name": "Hazmat",
-		"link": "/wiki/Hazmat",
+		"link": "Hazmat",
 		"img": "0/01/Hazmat_Avatar.png",
-		"file": "Hazmat",
+		"file": "6/68/Hazmat.png",
 		"cost": "5",
 		"race": "Monster",
 		"rarity": "Ultra Rare",
@@ -1826,9 +1802,9 @@ const heros =
 	},
 	{
 		"name": "Wabbit",
-		"link": "/wiki/Wabbit",
+		"link": "Wabbit",
 		"img": "8/8a/Wabbit_Avatar.png",
-		"file": "Wabbit Front",
+		"file": "5/54/Wabbit_Front.png",
 		"cost": "5",
 		"race": "Monster",
 		"rarity": "Ultra Rare",
@@ -1854,9 +1830,9 @@ const heros =
 	},
 	{
 		"name": "Tiny Tim",
-		"link": "/wiki/Tiny_Tim",
+		"link": "Tiny_Tim",
 		"img": "1/17/Tiny_Tim_Avatar.png",
-		"file": "tiny_tim_front",
+		"file": "e/ea/Tiny_tim_front.png",
 		"cost": "6",
 		"rarity": "Common",
 		"race": "Monster",
@@ -1877,9 +1853,9 @@ const heros =
 	},
 	{
 		"name": "Boofairy",
-		"link": "/wiki/Boofairy",
+		"link": "Boofairy",
 		"img": "a/a0/Boofairy_Avatar.png",
-		"file": "Boofairy front",
+		"file": "0/05/Boofairy_front.png",
 		"cost": "6",
 		"race": "Monster",
 		"rarity": "Uncommon",
@@ -1894,22 +1870,21 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Stage Fright",
-				"icon_title": "Special_AttackDebuff",
+				"icon_title": "2/21/Special_AttackDebuff.png",
 				"description": "Reduces the damage of an enemy unit.",
 				"attack_range": "1",
 				"debuff": "600",
 				"effect_duration": "2",
 				"attack_type": "Line of Sight",
-				"effect_range": "Single Target Attack",
-				"icon_url": "2/21/Special_AttackDebuff.png"
+				"effect_range": "Single Target Attack"
 			}
 		]
 	},
 	{
 		"name": "Klepto",
-		"link": "/wiki/Klepto",
+		"link": "Klepto",
 		"img": "e/ef/Klepto_Avatar.png",
-		"file": "Klepto front",
+		"file": "7/7e/Klepto_front.png",
 		"cost": "6",
 		"race": "Monster",
 		"rarity": "Uncommon",
@@ -1926,9 +1901,9 @@ const heros =
 	},
 	{
 		"name": "Hematic Ginsting",
-		"link": "/wiki/Hematic_Ginsting",
+		"link": "Hematic_Ginsting",
 		"img": "8/8d/Hematic_Ginsting_Avatar.png",
-		"file": "HematicGinsting front",
+		"file": "f/fc/HematicGinsting_front.png",
 		"cost": "6",
 		"race": "Monster",
 		"rarity": "Rare",
@@ -1943,23 +1918,22 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "More Beeeesssssss!",
-				"icon_title": "Special_Bee_Attack",
+				"icon_title": "1/1a/Special_Bee_Attack.png",
 				"description": "Deals damage to an enemy unit, as well as 50% damage to enemy units adjacent to it.",
 				"attack_range": "2",
 				"attack": "500",
 				"splash": "yes",
 				"cooldown": "1",
 				"attack_type": "Line of Sight",
-				"effect_range": "Targeted AOE Attack",
-				"icon_url": "1/1a/Special_Bee_Attack.png"
+				"effect_range": "Targeted AOE Attack"
 			}
 		]
 	},
 	{
 		"name": "Rambolina",
-		"link": "/wiki/Rambolina",
+		"link": "Rambolina",
 		"img": "1/11/Rambolina_Avatar.png",
-		"file": "Rambolina front",
+		"file": "1/10/Rambolina_front.png",
 		"cost": "6",
 		"race": "Monster",
 		"rarity": "Rare",
@@ -1974,23 +1948,22 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Ramalam Ya!",
-				"icon_title": "Special_Push",
+				"icon_title": "a/a4/Special_Push.png",
 				"description": "Damages and pushes an enemy unit backwards 1 tile, as well as all adjacent enemy units. Default direction is a straight line.",
 				"attack_range": "1",
 				"attack": "390",
 				"splash": "yes",
 				"cooldown": "2",
 				"attack_type": "Line of Sight",
-				"effect_range": "Targeted AOE Attack",
-				"icon_url": "a/a4/Special_Push.png"
+				"effect_range": "Targeted AOE Attack"
 			}
 		]
 	},
 	{
 		"name": "Brutewurst",
-		"link": "/wiki/Brutewurst",
+		"link": "Brutewurst",
 		"img": "9/93/Brutewurst_Avatar.png",
-		"file": "Brutewurst_front",
+		"file": "a/a4/Brutewurst_front.png",
 		"cost": "6",
 		"race": "Monster",
 		"rarity": "Rare",
@@ -2006,7 +1979,7 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Bovieitis",
-				"icon_title": "Special_Disease",
+				"icon_title": "9/91/Special_Disease.png",
 				"description": "Deals damage and disease to an enemy unit and all adjacent enemy units. Mechanicals can't be diseased.",
 				"attack_range": "2",
 				"attack": "500",
@@ -2015,16 +1988,15 @@ const heros =
 				"cooldown": "1",
 				"unlocking": "1",
 				"attack_type": "Self-Initiated AOE",
-				"effect_range": "Single Target Attack",
-				"icon_url": "9/91/Special_Disease.png"
+				"effect_range": "Single Target Attack"
 			}
 		]
 	},
 	{
 		"name": "Babadook",
-		"link": "/wiki/Babadook",
+		"link": "Babadook",
 		"img": "1/1f/Babadook_Avatar.png",
-		"file": "Babadook Front",
+		"file": "b/bd/Babadook_Front.png",
 		"cost": "6",
 		"race": "Monster",
 		"rarity": "Rare",
@@ -2040,23 +2012,22 @@ const heros =
 				"type": "SpecialAbility",
 				"title": "Debilitator",
 				"description": "Deals damage, disables and resets cooldown timer for special abilities of an enemy unit and all adjacent enemy units. Adjacent enemy units recieve 50% damage.",
-				"icon_title": "Special_ResetAbility",
+				"icon_title": "c/cc/Special_ResetAbility.png",
 				"attack_type": "Line of Sight",
 				"effect_range": "Targeted AOE Attack",
 				"attack_range": "2",
 				"attack": "400",
 				"splash": "yes",
 				"unlocking": "1",
-				"cooldown": "2",
-				"icon_url": "c/cc/Special_ResetAbility.png"
+				"cooldown": "2"
 			}
 		]
 	},
 	{
 		"name": "Puff",
-		"link": "/wiki/Puff",
+		"link": "Puff",
 		"img": "9/90/Puff_Avatar.png",
-		"file": "Puff_front",
+		"file": "4/49/Puff_front.png",
 		"cost": "6",
 		"race": "Monster",
 		"rarity": "Ultra Rare",
@@ -2073,7 +2044,7 @@ const heros =
 		"abilities": [
 			{
 				"type": "SpecialAbility",
-				"icon_title": "Special_Beam_Yellow",
+				"icon_title": "2/2b/Special_Beam_Yellow.png",
 				"title": "Inferninator",
 				"description": "Can target an enemy if that tile forms a straight line with your tile. Enemy unit is damaged as well as enemy units behind. Impacted tiles set on fire.",
 				"attack_range": "2",
@@ -2083,16 +2054,15 @@ const heros =
 				"cooldown": "1",
 				"unlocking": "1",
 				"attack_type": "Line of Sight",
-				"effect_range": "Beam Attack",
-				"icon_url": "2/2b/Special_Beam_Yellow.png"
+				"effect_range": "Beam Attack"
 			}
 		]
 	},
 	{
 		"name": "Baaaad Sheep",
-		"link": "/wiki/Baaaad_Sheep",
+		"link": "Baaaad_Sheep",
 		"img": "5/51/Baaaad_Sheep_Avatar.png",
-		"file": "Baaaad_Sheep_Front",
+		"file": "f/fe/Baaaad_Sheep_Front.png",
 		"cost": "6",
 		"race": "Monster",
 		"rarity": "Ultra Rare",
@@ -2109,7 +2079,7 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Colossal",
-				"icon_title": "Special_PoisonAOE",
+				"icon_title": "9/97/Special_PoisonAOE.png",
 				"description": "Deals damage and poisons all adjacent enemy units 2 tiles away from the target that are in Line of Sight, and the second row will recieve 50% damage. Mechanicals can't be poisoned.",
 				"attack_type": "Self-Initiated AOE",
 				"attack_range": "2",
@@ -2118,16 +2088,15 @@ const heros =
 				"poison": "500",
 				"attack": "475",
 				"splash": "yes",
-				"effect_range": "Single Target Attack",
-				"icon_url": "9/97/Special_PoisonAOE.png"
+				"effect_range": "Single Target Attack"
 			}
 		]
 	},
 	{
 		"name": "El Espinoso",
-		"link": "/wiki/El_Espinoso",
+		"link": "El_Espinoso",
 		"img": "8/83/El_Espinoso_Avatar.png",
-		"file": "El Espinoso Front",
+		"file": "f/f9/El_Espinoso_Front.png",
 		"cost": "6",
 		"rarity": "Ultra Rare",
 		"race": "Monster",
@@ -2150,9 +2119,9 @@ const heros =
 	},
 	{
 		"name": "Chonkeys",
-		"link": "/wiki/Chonkeys",
+		"link": "Chonkeys",
 		"img": "4/4d/Chonkeys_Avatar.png",
-		"file": "Chonkeys Front New",
+		"file": "3/30/Chonkeys_Front_New.png",
 		"cost": "6",
 		"race": "Monster",
 		"rarity": "Ultra Rare",
@@ -2179,9 +2148,9 @@ const heros =
 	},
 	{
 		"name": "Alley Gator",
-		"link": "/wiki/Alley_Gator",
+		"link": "Alley_Gator",
 		"img": "d/db/Alley_Gator_Avatar.png",
-		"file": "AlleyGator_front",
+		"file": "4/4c/AlleyGator_front.png",
 		"cost": "7",
 		"rarity": "Common",
 		"race": "Monster",
@@ -2196,19 +2165,18 @@ const heros =
 			{
 				"type": "Passive",
 				"title": "Regatorate",
-				"icon_title": "Passive_Healing_Pool",
+				"icon_title": "c/ca/Passive_Healing_Pool.png",
 				"description": "At the beginning of each of your turns, the unit heals damage. Does not cure poison.",
-				"heal": "400",
-				"icon_url": "c/ca/Passive_Healing_Pool.png"
+				"heal": "400"
 			}
 		]
 	},
 	{
 		"name": "Ogre",
-		"link": "/wiki/Ogre",
+		"link": "Ogre",
 		"img": "d/db/Ogre_Avatar.png",
 		"cost": "7",
-		"file": "ogre_front",
+		"file": "7/78/Ogre_front.png",
 		"race": "Monster",
 		"rarity": "Uncommon",
 		"movement_range": "2",
@@ -2230,9 +2198,9 @@ const heros =
 	},
 	{
 		"name": "Sparky",
-		"link": "/wiki/Sparky",
+		"link": "Sparky",
 		"img": "d/d6/Sparky_Avatar.png",
-		"file": "Sparky_front",
+		"file": "d/d7/Sparky_front.png",
 		"cost": "7",
 		"race": "Monster",
 		"rarity": "Uncommon",
@@ -2250,9 +2218,9 @@ const heros =
 	},
 	{
 		"name": "Mr Tramples",
-		"link": "/wiki/Mr_Tramples",
+		"link": "Mr_Tramples",
 		"img": "b/b0/Mr_Tramples_Avatar.png",
-		"file": "MrTramples_front",
+		"file": "3/39/MrTramples_front.png",
 		"cost": "7",
 		"race": "Monster",
 		"rarity": "Rare",
@@ -2267,7 +2235,7 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Bull Rush",
-				"icon_title": "Special_Ram",
+				"icon_title": "3/33/Special_Ram.png",
 				"description": "Moves the unit through enemy unit's tiles or empty tiles to an unoccupied tile 3 tiles away. All enemy tiles moved through are damaged in the process. Pathfinding prioritizes enemy tiles over empty tiles.",
 				"attack_range": "3",
 				"attack": "550",
@@ -2275,16 +2243,15 @@ const heros =
 				"cooldown": "1",
 				"unlocking": "1",
 				"attack_type": "Line of Sight",
-				"effect_range": "Dash Attack",
-				"icon_url": "3/33/Special_Ram.png"
+				"effect_range": "Dash Attack"
 			}
 		]
 	},
 	{
 		"name": "Narciskink",
-		"link": "/wiki/Narciskink",
+		"link": "Narciskink",
 		"img": "3/3f/Narciskink.png",
-		"file": "Narciskink_front",
+		"file": "6/68/Narciskink_front.png",
 		"cost": "7",
 		"race": "Monster",
 		"rarity": "Rare",
@@ -2299,24 +2266,22 @@ const heros =
 			{
 				"type": "Passive",
 				"title": "Pitsy Patsy",
-				"icon_title": "Passive ActionDebuffAOE",
-				"description": "End of own turn: All adjacent Phobies actions per turn are reduced by 1 for 1 turn, affects both friends and enemies.",
-				"icon_url": "7/71/Passive_ActionDebuffAOE.png"
+				"icon_title": "7/71/Passive_ActionDebuffAOE.png",
+				"description": "End of own turn: All adjacent Phobies actions per turn are reduced by 1 for 1 turn, affects both friends and enemies."
 			},
 			{
 				"type": "Passive",
 				"title": "Babbly Jabber",
-				"icon_title": "Passive Damage Distributed",
-				"description": "Damage taken is distributed equally to all adjacent friendly Units.",
-				"icon_url": "e/ef/Passive_Damage_Distributed.png"
+				"icon_title": "e/ef/Passive_Damage_Distributed.png",
+				"description": "Damage taken is distributed equally to all adjacent friendly Units."
 			}
 		]
 	},
 	{
 		"name": "Fire Ant",
-		"link": "/wiki/Fire_Ant",
+		"link": "Fire_Ant",
 		"img": "4/46/Fire_Ant_Avatar.png",
-		"file": "FireAnt_front",
+		"file": "9/9d/FireAnt_front.png",
 		"cost": "7",
 		"race": "Monster",
 		"rarity": "Ultra Rare",
@@ -2333,7 +2298,7 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Flaming Picnic",
-				"icon_title": "Special_Trap_Fire",
+				"icon_title": "7/7f/Special_Trap_Fire.png",
 				"description": "Places a trap. When set off, damages the unit that set it plus all adjacent enemy units for 50% damage. Lays a fire tile on all valid tiles within a range of 2.",
 				"attack_range": "2",
 				"attack": "150",
@@ -2343,16 +2308,15 @@ const heros =
 				"duration": "2",
 				"cooldown": "1",
 				"attack_type": "Lob",
-				"effect_range": "Targeted AOE Attack",
-				"icon_url": "7/7f/Special_Trap_Fire.png"
+				"effect_range": "Targeted AOE Attack"
 			}
 		]
 	},
 	{
 		"name": "Bogart",
-		"link": "/wiki/Bogart",
+		"link": "Bogart",
 		"img": "1/17/Bogart_Avatar.webp",
-		"file": "Bogart_Front",
+		"file": "6/60/Bogart_Front.png",
 		"cost": "7",
 		"race": "Monster",
 		"rarity": "Ultra Rare",
@@ -2366,7 +2330,7 @@ const heros =
 		"abilities": [
 			{
 				"type": "SpecialAbility",
-				"icon_title": "Special_Detonate",
+				"icon_title": "d/df/Special_Detonate.png",
 				"title": "Got a Light",
 				"description": "Sticks to an enemy unit and explodes at the end of the enemy's next turn, damaging all enemy units adjacent to it. The bomb falls to the ground if the enemy dies before it explodes.",
 				"attack_type": "Line of Sight",
@@ -2375,16 +2339,15 @@ const heros =
 				"splash": "Yes",
 				"effect_range": "Targeted AOE Attack",
 				"unlocking": "1",
-				"cooldown": "2",
-				"icon_url": "d/df/Special_Detonate.png"
+				"cooldown": "2"
 			}
 		]
 	},
 	{
 		"name": "Billy",
-		"link": "/wiki/Billy",
+		"link": "Billy",
 		"img": "4/48/Billy_Avatar.png",
-		"file": "Billy",
+		"file": "9/95/Billy.png",
 		"cost": "7",
 		"rarity": "Ultra Rare",
 		"race": "Monster",
@@ -2407,9 +2370,9 @@ const heros =
 	},
 	{
 		"name": "Hercubees",
-		"link": "/wiki/Hercubees",
+		"link": "Hercubees",
 		"img": "1/1d/Hercubees_Avatar.png",
-		"file": "Hercules_front",
+		"file": "c/c6/Hercules_front.png",
 		"cost": "7",
 		"rarity": "Ultra Rare",
 		"health": "1800",
@@ -2425,22 +2388,21 @@ const heros =
 				"type": "SpecialAbility",
 				"title": "Murder of Beessss!",
 				"description": "Deals damage to an enemy unit, 50% damage to all adjacent enemy units, and 25% damage to all enemy units 2 tiles away from the target",
-				"icon_title": "Special_Bee_Attack",
+				"icon_title": "1/1a/Special_Bee_Attack.png",
 				"attack_type": "Line of Sight",
 				"effect_range": "Splash AOE Attack",
 				"attack_range": "2",
 				"attack": "600",
 				"splash": "yes",
-				"cooldown": "1",
-				"icon_url": "1/1a/Special_Bee_Attack.png"
+				"cooldown": "1"
 			}
 		]
 	},
 	{
 		"name": "Doc Holliday",
-		"link": "/wiki/Doc_Holliday",
+		"link": "Doc_Holliday",
 		"img": "9/9e/Doc_Holliday_Avatar.png",
-		"file": "Doc Holliday",
+		"file": "1/14/Doc_Holliday.png",
 		"cost": "7",
 		"race": "Monster",
 		"rarity": "Ultra Rare",
@@ -2455,23 +2417,22 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Flosso",
-				"icon_title": "Special_Pull",
+				"icon_title": "f/f3/Special_Pull.png",
 				"description": "Damages and pulls an enemy unit in 2 tiles. Pathfinding prioritizes tiles closer to your heart.",
 				"attack_range": "3",
 				"attack": "300",
 				"cooldown": "2",
 				"unlocking": "2",
 				"attack_type": "Line of Sight",
-				"effect_range": "Single Target Attack",
-				"icon_url": "f/f3/Special_Pull.png"
+				"effect_range": "Single Target Attack"
 			}
 		]
 	},
 	{
 		"name": "Skibidi",
-		"link": "/wiki/Skibidi",
+		"link": "Skibidi",
 		"img": "f/ff/Skibidi_Avatar.png",
-		"file": "Skibidi front",
+		"file": "3/31/Skibidi_front.png",
 		"cost": "7",
 		"race": "Monster",
 		"rarity": "Ultra Rare",
@@ -2486,23 +2447,22 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Plunger",
-				"icon_title": "Special_Pull",
+				"icon_title": "f/f3/Special_Pull.png",
 				"description": "Damages and pulls an enemy unit in 1 tile reducing that unit's actions by 1 on its next turn.",
 				"attack_range": "2",
 				"attack": "300",
 				"cooldown": "2",
 				"unlocking": "1",
 				"attack_type": "Line of Sight",
-				"effect_range": "Single Target Attack",
-				"icon_url": "f/f3/Special_Pull.png"
+				"effect_range": "Single Target Attack"
 			}
 		]
 	},
 	{
 		"name": "Barzilla",
-		"link": "/wiki/Barzilla",
+		"link": "Barzilla",
 		"img": "d/d0/Barzilla_Avatar.png",
-		"file": "Barzilla front",
+		"file": "2/26/Barzilla_front.png",
 		"description": "He's Big in Japan!",
 		"cost": "8",
 		"rarity": "Common",
@@ -2520,9 +2480,9 @@ const heros =
 	},
 	{
 		"name": "Yeti",
-		"link": "/wiki/Yeti",
+		"link": "Yeti",
 		"img": "9/96/Yeti_Avatar.png",
-		"file": "Yeti_front",
+		"file": "e/e2/Yeti_front.png",
 		"cost": "8",
 		"race": "Monster",
 		"rarity": "Ultra Rare",
@@ -2538,23 +2498,22 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Snowcone",
-				"icon_title": "Special_Ice",
+				"icon_title": "c/c0/Special_Ice.png",
 				"description": "Freezes an enemy unit. Frozen units can't move or attack. Fire melts ice by 1 round.",
 				"attack_range": "2",
 				"effect_duration": "2",
 				"cooldown": "3",
 				"unlocking": "1",
 				"attack_type": "Line of Sight",
-				"effect_range": "Single Target Attack",
-				"icon_url": "c/c0/Special_Ice.png"
+				"effect_range": "Single Target Attack"
 			}
 		]
 	},
 	{
 		"name": "Doughzer",
-		"link": "/wiki/Doughzer",
+		"link": "Doughzer",
 		"img": "7/7c/Doughzer_Avatar.png",
-		"file": "Doughzer_front",
+		"file": "8/87/Doughzer_front.png",
 		"cost": "8",
 		"race": "Monster",
 		"rarity": "Ultra Rare",
@@ -2569,23 +2528,22 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "No Rush",
-				"icon_title": "Special_MovementDebuff",
+				"icon_title": "d/d9/Special_MovementDebuff.png",
 				"description": "Prevents an enemy unit from moving.",
 				"attack_range": "2",
 				"effect_duration": "2",
 				"effect_range": "Single Target Attack",
 				"cooldown": "2",
 				"unlocking": "1",
-				"attack_type": "Line of Sight",
-				"icon_url": "d/d9/Special_MovementDebuff.png"
+				"attack_type": "Line of Sight"
 			}
 		]
 	},
 	{
 		"name": "Smother Mother",
-		"link": "/wiki/Smother_Mother",
+		"link": "Smother_Mother",
 		"img": "b/b5/Smother_Mother_Avatar.png",
-		"file": "smotherMother_front",
+		"file": "9/96/SmotherMother_front.png",
 		"cost": "9",
 		"race": "Monster",
 		"rarity": "Ultra Rare",
@@ -2600,23 +2558,22 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Grabbee",
-				"icon_title": "Special_Pull",
+				"icon_title": "f/f3/Special_Pull.png",
 				"description": "Damages and pulls an enemy unit in 1 tile. Default direction is a straight line.",
 				"attack_range": "2",
 				"attack": "440",
 				"cooldown": "1",
 				"unlocking": "1",
 				"attack_type": "Line of Sight",
-				"effect_range": "Single Target Attack",
-				"icon_url": "f/f3/Special_Pull.png"
+				"effect_range": "Single Target Attack"
 			}
 		]
 	},
 	{
 		"name": "BOOM",
-		"link": "/wiki/BOOM",
+		"link": "BOOM",
 		"img": "3/39/BOOM_Avatar.png",
-		"file": "boom_front",
+		"file": "4/47/Boom_front.png",
 		"cost": "1",
 		"race": "Mechanical",
 		"rarity": "Common",
@@ -2627,22 +2584,21 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Special Delivery",
-				"icon_title": "Special_Detonate",
+				"icon_title": "d/df/Special_Detonate.png",
 				"description": "Destroys itself in order to deliver damage to all adjacent enemy units.",
 				"attack_range": "1",
 				"attack": "550",
 				"attack_type": "Self-Initiated AOE",
 				"cooldown": "1",
-				"effect_range": "Targeted AOE Attack",
-				"icon_url": "d/df/Special_Detonate.png"
+				"effect_range": "Targeted AOE Attack"
 			}
 		]
 	},
 	{
 		"name": "Cowbell",
-		"link": "/wiki/Cowbell",
+		"link": "Cowbell",
 		"img": "7/7a/Cowbell_Avatar.png",
-		"file": "cowbell_front",
+		"file": "b/b2/Cowbell_front.png",
 		"cost": "1",
 		"race": "Mechanical",
 		"rarity": "Common",
@@ -2658,9 +2614,9 @@ const heros =
 	},
 	{
 		"name": "Rusty",
-		"link": "/wiki/Rusty",
+		"link": "Rusty",
 		"img": "a/a0/Rusty_Avatar.png",
-		"file": "rusty_front",
+		"file": "2/29/Rusty_front.png",
 		"cost": "1",
 		"race": "Mechanical",
 		"rarity": "Rare",
@@ -2671,21 +2627,21 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Gotcha",
-				"icon_title": "Special_MovementDebuff",
+				"icon_title": "d/d9/Special_MovementDebuff.png",
 				"description": "Destroys itself in order to prevent an enemy unit from moving.",
 				"attack_range": "1",
 				"effect_duration": "2",
 				"unlocking": "1",
 				"attack_type": "Line of Sight",
-				"effect_range": "Single Target Attack",
-				"icon_url": "d/d9/Special_MovementDebuff.png"
+				"effect_range": "Single Target Attack"
 			}
 		]
 	},
 	{
 		"name": "Slayerrrrrr",
-		"link": "/wiki/Slayerrrrrr",
+		"link": "Slayerrrrrr",
 		"img": "6/60/Slayerrrrrr_Avatar.webp",
+		"file": "0/0f/Slayerrrrrr_Front.png",
 		"cost": "1",
 		"description": "Like a normal cat but cooler",
 		"race": "Mechanical",
@@ -2701,9 +2657,9 @@ const heros =
 	},
 	{
 		"name": "Droney",
-		"link": "/wiki/Droney",
+		"link": "Droney",
 		"img": "9/98/Droney_Avatar.png",
-		"file": "droney_front",
+		"file": "e/ea/Droney_front.png",
 		"cost": "2",
 		"race": "Mechanical",
 		"rarity": "Common",
@@ -2719,9 +2675,9 @@ const heros =
 	},
 	{
 		"name": "K-9000",
-		"link": "/wiki/K-9000",
+		"link": "K-9000",
 		"img": "0/09/K_9000_Avatar.png",
-		"file": "K9000_front",
+		"file": "3/3c/K9000_front.png",
 		"description": "Dead or Alive your bone's coming with me!",
 		"cost": "2",
 		"rarity": "Common",
@@ -2737,9 +2693,9 @@ const heros =
 	},
 	{
 		"name": "Tinny",
-		"link": "/wiki/Tinny",
+		"link": "Tinny",
 		"img": "4/43/Tinny_Avatar.png",
-		"file": "Tinny Front",
+		"file": "e/eb/Tinny_Front.png",
 		"cost": "2",
 		"race": "Mechanical",
 		"rarity": "Common",
@@ -2764,9 +2720,9 @@ const heros =
 	},
 	{
 		"name": "Haphe",
-		"link": "/wiki/Haphe",
+		"link": "Haphe",
 		"img": "b/bc/Haphe_Avatar.png",
-		"file": "Haphe_front",
+		"file": "6/6b/Haphe_front.png",
 		"cost": "2",
 		"rarity": "Uncommon",
 		"race": "Mechanical",
@@ -2788,9 +2744,9 @@ const heros =
 	},
 	{
 		"name": "Eyepod",
-		"link": "/wiki/Eyepod",
+		"link": "Eyepod",
 		"img": "a/a9/Eyepod.png",
-		"file": "Eyepod front",
+		"file": "8/8e/Eyepod_front.png",
 		"cost": "2",
 		"race": "Mechanical",
 		"rarity": "Uncommon",
@@ -2805,20 +2761,19 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Turbos!",
-				"icon_title": "Special_MovementBuff",
+				"icon_title": "8/80/Special_MovementBuff.png",
 				"description": "Moves the unit to the target location.",
 				"unlocking": "1",
 				"cooldown": "1",
-				"effect_range": "Single Target Attack",
-				"icon_url": "8/80/Special_MovementBuff.png"
+				"effect_range": "Single Target Attack"
 			}
 		]
 	},
 	{
 		"name": "Mr Spilly",
-		"link": "/wiki/Mr_Spilly",
+		"link": "Mr_Spilly",
 		"img": "4/45/Mr_Spilly_Avatar.png",
-		"file": "Mr Spilly Front",
+		"file": "9/9e/Mr_Spilly_Front.png",
 		"cost": "2",
 		"race": "Mechanical",
 		"rarity": "Uncommon",
@@ -2841,9 +2796,9 @@ const heros =
 	},
 	{
 		"name": "KERBLOOM",
-		"link": "/wiki/KERBLOOM",
+		"link": "KERBLOOM",
 		"img": "c/c0/KERBLOOM_Avatar.png",
-		"file": "Kerbloom front",
+		"file": "9/93/Kerbloom_front.png",
 		"cost": "2",
 		"rarity": "Rare",
 		"race": "Mechanical",
@@ -2854,22 +2809,21 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Bye Bye!",
-				"icon_title": "Special_Detonate",
+				"icon_title": "d/df/Special_Detonate.png",
 				"description": "Destroys itself in order to deal damage and push all adjacent enemy units.",
 				"attack_range": "1",
 				"attack": "800",
 				"unlocking": "1",
 				"attack_type": "Self-Initiated AOE",
-				"effect_range": "Targeted AOE Attack",
-				"icon_url": "d/df/Special_Detonate.png"
+				"effect_range": "Targeted AOE Attack"
 			}
 		]
 	},
 	{
 		"name": "BoMangles",
-		"link": "/wiki/BoMangles",
+		"link": "BoMangles",
 		"img": "9/91/BoMangles_Avatar.png",
-		"file": "BoMangles_front",
+		"file": "f/f4/BoMangles_front.png",
 		"cost": "3",
 		"race": "Mechanical",
 		"rarity": "Common",
@@ -2886,9 +2840,9 @@ const heros =
 	},
 	{
 		"name": "Misanthrope",
-		"link": "/wiki/Misanthrope",
+		"link": "Misanthrope",
 		"img": "a/a1/Misanthrope_Avatar.png",
-		"file": "Misanthrope_front",
+		"file": "b/b0/Misanthrope_front.png",
 		"cost": "3",
 		"race": "Mechanical",
 		"rarity": "Common",
@@ -2905,9 +2859,9 @@ const heros =
 	},
 	{
 		"name": "Clinico",
-		"link": "/wiki/Clinico",
+		"link": "Clinico",
 		"img": "6/6c/Clinico_Avatar.png",
-		"file": "Clinico_front",
+		"file": "6/6f/Clinico_front.png",
 		"cost": "3",
 		"race": "Mechanical",
 		"rarity": "Uncommon",
@@ -2924,23 +2878,22 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Oops-Away",
-				"icon_title": "Special_Heal",
+				"icon_title": "2/2e/Special_Heal.png",
 				"description": "Heals and/or cures poison from a friendly non-Undead unit.",
 				"attack_range": "1",
 				"heal": "750",
 				"cooldown": "2",
 				"attack_type": "Line of Sight",
-				"effect_range": "Single Target Attack",
-				"icon_url": "2/2e/Special_Heal.png"
+				"effect_range": "Single Target Attack"
 			}
 		]
 	},
 	{
 		"name": "Dial",
-		"link": "/wiki/Dial",
+		"link": "Dial",
 		"img": "e/e2/Dial_Avatar.png",
 		"cost": "3",
-		"file": "dial_front",
+		"file": "8/89/Dial_front.png",
 		"race": "Mechanical",
 		"rarity": "Rare",
 		"movement_range": "2",
@@ -2966,9 +2919,9 @@ const heros =
 	},
 	{
 		"name": "Sulky",
-		"link": "/wiki/Sulky",
+		"link": "Sulky",
 		"img": "c/c2/Sulky_Avatar.png",
-		"file": "Sulky",
+		"file": "4/47/Sulky.png",
 		"cost": "3",
 		"rarity": "Rare",
 		"race": "Mechanical",
@@ -2983,18 +2936,17 @@ const heros =
 			{
 				"type": "Passive",
 				"title": "Killing Machine",
-				"icon_title": "Passive_Kill_Bonus",
+				"icon_title": "5/5f/Passive_Kill_Bonus.png",
 				"description": "Each time it directly kills an enemy, it's damage increases.",
-				"buff": "150 (For each enemy it kills)",
-				"icon_url": "5/5f/Passive_Kill_Bonus.png"
+				"buff": "150 (For each enemy it kills)"
 			}
 		]
 	},
 	{
 		"name": "Jar Cannon",
-		"link": "/wiki/Jar_Cannon",
+		"link": "Jar_Cannon",
 		"img": "2/28/Jar_Cannon_Avatar.png",
-		"file": "Jarcannon_front",
+		"file": "d/df/Jarcannon_front.png",
 		"cost": "3",
 		"race": "Mechanical",
 		"rarity": "Ultra Rare",
@@ -3011,9 +2963,9 @@ const heros =
 	},
 	{
 		"name": "KABOOM",
-		"link": "/wiki/KABOOM",
+		"link": "KABOOM",
 		"img": "e/e7/KABOOM_Avatar.png",
-		"file": "Kaboom_front",
+		"file": "0/04/Kaboom_front.png",
 		"cost": "3",
 		"race": "Mechanical",
 		"rarity": "Ultra Rare",
@@ -3025,23 +2977,22 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Poof!",
-				"icon_title": "Special_Detonate",
+				"icon_title": "d/df/Special_Detonate.png",
 				"description": "Destroys itself in order to deliver damage to all adjacent enemy units.",
 				"attack_range": "1",
 				"attack": "1400",
 				"splash": "No",
 				"unlocking": "1",
 				"attack_type": "Line of Sight",
-				"effect_range": "Self-Initiated AOE",
-				"icon_url": "d/df/Special_Detonate.png"
+				"effect_range": "Self-Initiated AOE"
 			}
 		]
 	},
 	{
 		"name": "Hydra",
-		"link": "/wiki/Hydra",
+		"link": "Hydra",
 		"img": "8/8a/Hydra_Avatar.png",
-		"file": "Hydra front",
+		"file": "b/b1/Hydra_front.png",
 		"quote": "Hydra? I hardly know ya!",
 		"cost": "4",
 		"rarity": "Common",
@@ -3057,9 +3008,9 @@ const heros =
 	},
 	{
 		"name": "In-Oculus",
-		"link": "/wiki/In-Oculus",
+		"link": "In-Oculus",
 		"img": "b/be/In_Oculus_Avatar.png",
-		"file": "In-oculus_front",
+		"file": "a/a0/In-oculus_front.png",
 		"cost": "4",
 		"race": "Mechanical",
 		"rarity": "Uncommon",
@@ -3075,10 +3026,10 @@ const heros =
 	},
 	{
 		"name": "I-Scream",
-		"link": "/wiki/I-Scream",
+		"link": "I-Scream",
 		"img": "2/28/I%E2%80%92Scream.png",
 		"cost": "4",
-		"file": "iscream_front",
+		"file": "8/85/Iscream_front.png",
 		"race": "Mechanical",
 		"rarity": "Rare",
 		"movement_range": "1",
@@ -3092,23 +3043,22 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Death a la Mode",
-				"icon_title": "Special_Ice",
+				"icon_title": "c/c0/Special_Ice.png",
 				"description": "Freezes an enemy unit. Frozen units can't move or attack. Fire melts ice by 1 round.",
 				"attack_range": "2",
 				"effect_duration": "2",
 				"cooldown": "3",
 				"unlocking": "1",
 				"attack_type": "Line of Sight",
-				"effect_range": "Single Target Attack",
-				"icon_url": "c/c0/Special_Ice.png"
+				"effect_range": "Single Target Attack"
 			}
 		]
 	},
 	{
 		"name": "Doctor Dermic",
-		"link": "/wiki/Doctor_Dermic",
+		"link": "Doctor_Dermic",
 		"img": "5/57/Doctor_Dermic_Avatar.png",
-		"file": "DoctorDermic_front",
+		"file": "5/5a/DoctorDermic_front.png",
 		"cost": "4",
 		"rarity": "Rare",
 		"race": "Mechanical",
@@ -3123,22 +3073,21 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Pure Adrenaline",
-				"icon_title": "Special_Heal",
+				"icon_title": "2/2e/Special_Heal.png",
 				"description": "Heals and/or cures poison from a friendly non-Undead unit.",
 				"attack_type": "Line of Sight",
 				"attack_range": "1",
 				"heal": "1500",
 				"effect_range": "Single Target Attack",
-				"cooldown": "3",
-				"icon_url": "2/2e/Special_Heal.png"
+				"cooldown": "3"
 			}
 		]
 	},
 	{
 		"name": "Gonzo Bonzo",
-		"link": "/wiki/Gonzo_Bonzo",
+		"link": "Gonzo_Bonzo",
 		"img": "a/a8/Gonzo_Bonzo_Avatar.png",
-		"file": "GonzoBonzo front",
+		"file": "4/46/GonzoBonzo_front.png",
 		"cost": "4",
 		"rarity": "Rare",
 		"race": "Mechanical",
@@ -3153,7 +3102,7 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Clang! Clang!",
-				"icon_title": "Special_AttackBuff",
+				"icon_title": "1/12/Special_AttackBuff.png",
 				"description": "Increases the damage of a friendly unit for the current turn.",
 				"attack_range": "2",
 				"buff": "250",
@@ -3161,16 +3110,15 @@ const heros =
 				"attack_type": "Line of Sight",
 				"effect_range": "Single Target Attack",
 				"cooldown": "2",
-				"unlocking": "1",
-				"icon_url": "1/12/Special_AttackBuff.png"
+				"unlocking": "1"
 			}
 		]
 	},
 	{
 		"name": "Paddles",
-		"link": "/wiki/Paddles",
+		"link": "Paddles",
 		"img": "f/f0/Paddles_Avatar.png",
-		"file": "Paddles_front",
+		"file": "4/41/Paddles_front.png",
 		"cost": "4",
 		"rarity": "Rare",
 		"race": "Mechanical",
@@ -3186,23 +3134,22 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Jump Start",
-				"icon_title": "Special_MovementBuff",
+				"icon_title": "8/80/Special_MovementBuff.png",
 				"description": "Increases the movement range of a friendly unit by 1 tile.",
 				"effect_range": "Single Target Attack",
 				"additional_movement": "1",
 				"effect_duration": "1",
 				"attack_type": "Line of Sight",
 				"unlocking": "1",
-				"cooldown": "2",
-				"icon_url": "8/80/Special_MovementBuff.png"
+				"cooldown": "2"
 			}
 		]
 	},
 	{
 		"name": "Giggles",
-		"link": "/wiki/Giggles",
+		"link": "Giggles",
 		"img": "a/af/Giggles_Avatar.png",
-		"file": "Giggles_Front",
+		"file": "9/9b/Giggles_Front.png",
 		"cost": "4",
 		"race": "Mechanical",
 		"rarity": "Rare",
@@ -3218,9 +3165,9 @@ const heros =
 	},
 	{
 		"name": "Twitchy",
-		"link": "/wiki/Twitchy",
+		"link": "Twitchy",
 		"img": "2/2e/Twitchy_Avatar.png",
-		"file": "Twitchy Front",
+		"file": "e/ec/Twitchy_Front.png",
 		"cost": "4",
 		"rarity": "Rare",
 		"race": "Mechanical",
@@ -3235,23 +3182,22 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Shocking Surprise!",
-				"icon_title": "Special_Trap",
+				"icon_title": "a/a9/Special_Trap.png",
 				"description": "Places a trap. Can be set off dealing damage and electrical damage at the end of any turn by an enemy unit or enemy trap in the trap's tile, except the turn your trap is laid.",
 				"attack_range": "2",
 				"trap": "400",
 				"electric": "400",
 				"cooldown": "1",
 				"attack_type": "Line of Sight",
-				"effect_range": "Single Target Attack",
-				"icon_url": "a/a9/Special_Trap.png"
+				"effect_range": "Single Target Attack"
 			}
 		]
 	},
 	{
 		"name": "Radihater",
-		"link": "/wiki/Radihater",
+		"link": "Radihater",
 		"img": "b/bc/Radihater_Avatar.png",
-		"file": "Radihater_Front",
+		"file": "c/c9/Radihater_Front.png",
 		"cost": "4",
 		"race": "Mechanical",
 		"rarity": "Ultra Rare",
@@ -3266,21 +3212,20 @@ const heros =
 			{
 				"type": "Passive",
 				"title": "Blowing Steam",
-				"icon_title": "Blowing Steam",
+				"icon_title": "d/d8/Blowing_Steam.png",
 				"description": "When Angry, the unit will attack at the end of its turn and damage all adjacent enemy units.",
 				"attack_range": "1",
 				"attack": "375",
 				"attack_type": "Self-Initiated AOE",
-				"damage_range": "Single Target Attack",
-				"icon_url": "d/d8/Blowing_Steam.png"
+				"damage_range": "Single Target Attack"
 			}
 		]
 	},
 	{
 		"name": "Heavo",
-		"link": "/wiki/Heavo",
+		"link": "Heavo",
 		"img": "8/80/Heavo_Avatar.png",
-		"file": "Heavo_front",
+		"file": "6/63/Heavo_front.png",
 		"cost": "5",
 		"race": "Mechanical",
 		"rarity": "Common",
@@ -3296,9 +3241,9 @@ const heros =
 	},
 	{
 		"name": "Medibot",
-		"link": "/wiki/Medibot",
+		"link": "Medibot",
 		"img": "5/5a/Medibot_Avatar.png",
-		"file": "Medibot_front",
+		"file": "5/5d/Medibot_front.png",
 		"cost": "5",
 		"race": "Mechanical",
 		"rarity": "Rare",
@@ -3313,22 +3258,21 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "TLC",
-				"icon_title": "Special_Heal",
+				"icon_title": "2/2e/Special_Heal.png",
 				"description": "Heals and/or cures poison from a friendly non-Undead unit.",
 				"attack_range": "1",
 				"heal": "1000",
 				"cooldown": "2",
 				"attack_type": "Line of Sight",
-				"effect_range": "Single Target Attack",
-				"icon_url": "2/2e/Special_Heal.png"
+				"effect_range": "Single Target Attack"
 			}
 		]
 	},
 	{
 		"name": "Blue Speedola",
-		"link": "/wiki/Blue_Speedola",
+		"link": "Blue_Speedola",
 		"img": "2/2f/BlueSpeedola_portrait.png",
-		"file": "BlueSpeedola",
+		"file": "9/96/BlueSpeedola.png",
 		"cost": "5",
 		"race": "Mechanical",
 		"rarity": "Rare",
@@ -3351,9 +3295,9 @@ const heros =
 	},
 	{
 		"name": "Repeller",
-		"link": "/wiki/Repeller",
+		"link": "Repeller",
 		"img": "d/d7/Repeller_Avatar.png",
-		"file": "Repeller_front",
+		"file": "e/e6/Repeller_front.png",
 		"cost": "5",
 		"race": "Mechanical",
 		"rarity": "Rare",
@@ -3368,7 +3312,7 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Crowd Control",
-				"icon_title": "Special_Push",
+				"icon_title": "a/a4/Special_Push.png",
 				"description": "Damages and pushes an enemy unit backwards 1 tile, as well as all adjacent enemy units. Default direction is a straight line.",
 				"attack_range": "3",
 				"attack": "320",
@@ -3376,17 +3320,16 @@ const heros =
 				"cooldown": "2",
 				"unlocking": "2",
 				"attack_type": "Line of Sight",
-				"effect_range": "Targeted AOE Attack",
-				"icon_url": "a/a4/Special_Push.png"
+				"effect_range": "Targeted AOE Attack"
 			}
 		]
 	},
 	{
 		"name": "Tri-Volta",
-		"link": "/wiki/Tri-Volta",
+		"link": "Tri-Volta",
 		"img": "d/dd/Tri-Volta.png",
 		"cost": "5",
-		"file": "Tri-Volta Card Front",
+		"file": "a/a9/Tri-Volta_Card_Front.png",
 		"race": "Mechanical",
 		"rarity": "Rare",
 		"movement_range": "2",
@@ -3413,9 +3356,9 @@ const heros =
 	},
 	{
 		"name": "Morty",
-		"link": "/wiki/Morty",
+		"link": "Morty",
 		"img": "8/8c/Morty_Avatar.png",
-		"file": "Morty_front",
+		"file": "4/46/Morty_front.png",
 		"cost": "5",
 		"race": "Mechanical",
 		"rarity": "Ultra Rare",
@@ -3431,9 +3374,9 @@ const heros =
 	},
 	{
 		"name": "Red Speedola",
-		"link": "/wiki/Red_Speedola",
+		"link": "Red_Speedola",
 		"img": "7/72/RedSpeedola_portrait.png",
-		"file": "RedSpeedola",
+		"file": "f/fe/RedSpeedola.png",
 		"cost": "6",
 		"race": "Mechanical",
 		"rarity": "Common",
@@ -3456,9 +3399,9 @@ const heros =
 	},
 	{
 		"name": "Sabian",
-		"link": "/wiki/Sabian",
+		"link": "Sabian",
 		"img": "0/0f/Sabian.png",
-		"file": "Sabian Card Front",
+		"file": "4/49/Sabian_Card_Front.png",
 		"cost": "6",
 		"race": "Mechanical",
 		"rarity": "Uncommon",
@@ -3474,9 +3417,9 @@ const heros =
 	},
 	{
 		"name": "Blondie",
-		"link": "/wiki/Blondie",
+		"link": "Blondie",
 		"img": "3/37/Blondie_Avatar.png",
-		"file": "Blondie front",
+		"file": "2/2b/Blondie_front.png",
 		"cost": "6",
 		"race": "Mechanical",
 		"rarity": "Rare",
@@ -3491,7 +3434,7 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Heavy Metal!",
-				"icon_title": "Special_AttackDebuff",
+				"icon_title": "2/21/Special_AttackDebuff.png",
 				"description": "Reduces damage of all enemy units 2 tiles away and within line of sight have their damage reduced by 50% of ability's effect.",
 				"attack_range": "2",
 				"debuff": "300",
@@ -3499,16 +3442,15 @@ const heros =
 				"cooldown": "3",
 				"unlocking": "1",
 				"attack_type": "Self-Initiated AOE",
-				"effect_range": "Targeted AOE Attack",
-				"icon_url": "2/21/Special_AttackDebuff.png"
+				"effect_range": "Targeted AOE Attack"
 			}
 		]
 	},
 	{
 		"name": "Zappy",
-		"link": "/wiki/Zappy",
+		"link": "Zappy",
 		"img": "9/97/Zappy_Avatar.png",
-		"file": "Zappy front",
+		"file": "2/2c/Zappy_front.png",
 		"cost": "6",
 		"race": "Mechanical",
 		"rarity": "Rare",
@@ -3525,20 +3467,19 @@ const heros =
 			{
 				"type": "Passive",
 				"title": "Counter Attack",
-				"icon_title": "Passive_CounterAttack",
+				"icon_title": "2/23/Passive_CounterAttack.png",
 				"description": "Enemies that deal damage to it receive a portion of the damage dealt. Additional portion applies to Mechanical.",
 				"effect_range": "Single Target Attack",
 				"reflect": "35%",
-				"electric": "35%",
-				"icon_url": "2/23/Passive_CounterAttack.png"
+				"electric": "35%"
 			}
 		]
 	},
 	{
 		"name": "Attractor",
-		"link": "/wiki/Attractor",
+		"link": "Attractor",
 		"img": "c/cf/Attractor_Avatar.png",
-		"file": "Attractor_front",
+		"file": "5/59/Attractor_front.png",
 		"cost": "6",
 		"race": "Mechanical",
 		"rarity": "Rare",
@@ -3553,7 +3494,7 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Magnetize",
-				"icon_title": "Special_Pull",
+				"icon_title": "f/f3/Special_Pull.png",
 				"description": "Damages and pulls an enemy unit in 1 tile as well as all adjacent enemy units. Adjacent units suffer 50% damage. Default direction is a straight line.",
 				"attack_range": "3",
 				"attack": "320",
@@ -3562,16 +3503,15 @@ const heros =
 				"cooldown": "2",
 				"unlocking": "2",
 				"attack_type": "Line of Sight",
-				"effect_range": "Targeted AOE Attack",
-				"icon_url": "f/f3/Special_Pull.png"
+				"effect_range": "Targeted AOE Attack"
 			}
 		]
 	},
 	{
 		"name": "Furnaceface",
-		"link": "/wiki/Furnaceface",
+		"link": "Furnaceface",
 		"img": "1/17/Furnaceface_Avatar.png",
-		"file": "Furnaceface_Front",
+		"file": "a/a5/Furnaceface_Front.png",
 		"cost": "6",
 		"race": "Mechanical",
 		"rarity": "Ultra Rare",
@@ -3598,9 +3538,9 @@ const heros =
 	},
 	{
 		"name": "Hoovey",
-		"link": "/wiki/Hoovey",
+		"link": "Hoovey",
 		"img": "0/06/Hoovey_Avatar.png",
-		"file": "Hoovey Front",
+		"file": "f/f1/Hoovey_Front.png",
 		"cost": "6",
 		"race": "Mechanical",
 		"rarity": "Ultra Rare",
@@ -3615,18 +3555,17 @@ const heros =
 			{
 				"type": "Passive",
 				"title": "Love Sucks",
-				"icon_title": "Passive HeartHeal",
+				"icon_title": "6/66/Passive_HeartHeal.png",
 				"description": "Heals your heart by the amount of damage dealt to enemy Phobies or the enemy Heart.",
-				"heartheal": "100%",
-				"icon_url": "6/66/Passive_HeartHeal.png"
+				"heartheal": "100%"
 			}
 		]
 	},
 	{
 		"name": "Fishtank",
-		"link": "/wiki/Fishtank",
+		"link": "Fishtank",
 		"img": "8/82/Fishtank_Avatar.png",
-		"file": "Fishtank_front",
+		"file": "d/d9/Fishtank_front.png",
 		"cost": "7",
 		"race": "Mechanical",
 		"rarity": "Common",
@@ -3642,9 +3581,9 @@ const heros =
 	},
 	{
 		"name": "Motherload",
-		"link": "/wiki/Motherload",
+		"link": "Motherload",
 		"img": "b/b1/Motherload_Avatar.png",
-		"file": "Motherload_front",
+		"file": "8/8d/Motherload_front.png",
 		"cost": "7",
 		"race": "Mechanical",
 		"rarity": "Rare",
@@ -3659,7 +3598,7 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Motherload",
-				"icon_title": "Special_Motherload_Attack",
+				"icon_title": "d/dc/Special_Motherload_Attack.png",
 				"description": "Damages all enemy units directly adjacent to it. All enemy units 2 tiles away and within line of sight are dealt 50% damage.",
 				"attack_range": "2",
 				"attack": "520",
@@ -3667,16 +3606,15 @@ const heros =
 				"cooldown": "1",
 				"unlocking": "1",
 				"attack_type": "Self-Initiated AOE",
-				"effect_range": "Targeted AOE Attack",
-				"icon_url": "d/dc/Special_Motherload_Attack.png"
+				"effect_range": "Targeted AOE Attack"
 			}
 		]
 	},
 	{
 		"name": "Oopsy Baby",
-		"link": "/wiki/Oopsy_Baby",
+		"link": "Oopsy_Baby",
 		"img": "e/e9/Oopsy_Baby_Avatar.png",
-		"file": "OopsyBaby_front",
+		"file": "1/14/OopsyBaby_front.png",
 		"cost": "7",
 		"race": "Mechanical",
 		"rarity": "Rare",
@@ -3692,7 +3630,7 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Cry Baby!",
-				"icon_title": "Special_AttackDebuff",
+				"icon_title": "2/21/Special_AttackDebuff.png",
 				"description": "Reduces the damage of an enemy unit.",
 				"attack_range": "3",
 				"debuff": "350",
@@ -3700,16 +3638,15 @@ const heros =
 				"cooldown": "2",
 				"unlocking": "1",
 				"attack_type": "Line of Sight",
-				"effect_range": "Single Target Attack",
-				"icon_url": "2/21/Special_AttackDebuff.png"
+				"effect_range": "Single Target Attack"
 			}
 		]
 	},
 	{
 		"name": "Heavo 2.0",
-		"link": "/wiki/Heavo_2.0",
+		"link": "Heavo_2.0",
 		"img": "a/a2/Heavo_20_Avatar.png",
-		"file": "Heavo20_front",
+		"file": "8/89/Heavo20_front.png",
 		"cost": "7",
 		"race": "Mechanical",
 		"rarity": "Rare",
@@ -3724,7 +3661,7 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Excessive Force!",
-				"icon_title": "Special_Push",
+				"icon_title": "a/a4/Special_Push.png",
 				"description": "Damages and pushes an enemy unit backwards 1 tile, as well as all adjacent enemy units. Default direction is a single line.",
 				"attack_range": "2",
 				"attack": "390",
@@ -3732,16 +3669,15 @@ const heros =
 				"cooldown": "2",
 				"unlocking": "1",
 				"attack_type": "Lob",
-				"effect_range": "Targeted AOE Attack",
-				"icon_url": "a/a4/Special_Push.png"
+				"effect_range": "Targeted AOE Attack"
 			}
 		]
 	},
 	{
 		"name": "Pearl",
-		"link": "/wiki/Pearl",
+		"link": "Pearl",
 		"img": "3/34/Pearl_Avatar.png",
-		"file": "Pearl Front",
+		"file": "1/16/Pearl_Front.png",
 		"cost": "7",
 		"race": "Mechanical",
 		"rarity": "Rare",
@@ -3756,7 +3692,7 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Rejection",
-				"icon_title": "Special_Push",
+				"icon_title": "a/a4/Special_Push.png",
 				"description": "Damages and pushes away all enemy units directly adjacent to it. All enemy units 2 tiles away and within line of sight are dealt by 50% damage and pushed away as well.",
 				"attack_range": "2",
 				"attack": "400",
@@ -3764,16 +3700,15 @@ const heros =
 				"attack_type": "Self-Initiated AOE",
 				"effect_range": "Single Target Attack",
 				"unlocking": "1",
-				"cooldown": "2",
-				"icon_url": "a/a4/Special_Push.png"
+				"cooldown": "2"
 			}
 		]
 	},
 	{
 		"name": "Blast-0 Matic",
-		"link": "/wiki/Blast-0_Matic",
+		"link": "Blast-0_Matic",
 		"img": "1/17/Blast_0_Matic_Avatar.png",
-		"file": "BlastOMatic_front",
+		"file": "5/5f/BlastOMatic_front.png",
 		"cost": "7",
 		"rarity": "Ultra Rare",
 		"race": "Mechanical",
@@ -3790,7 +3725,7 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Friggin Lazer",
-				"icon_title": "Special_Laser_LineAttack",
+				"icon_title": "f/f0/Special_Laser_LineAttack.png",
 				"description": "Damages and pushes an enemy unit backwards 1 unit. Default direction is a straight line.",
 				"attack_range": "2",
 				"attack": "450",
@@ -3798,16 +3733,15 @@ const heros =
 				"cooldown": "1",
 				"unlocking": "1",
 				"attack_type": "Line of Sight",
-				"effect_range": "Beam Attack",
-				"icon_url": "f/f0/Special_Laser_LineAttack.png"
+				"effect_range": "Beam Attack"
 			}
 		]
 	},
 	{
 		"name": "Ace",
-		"link": "/wiki/Ace",
+		"link": "Ace",
 		"img": "3/3c/Ace.png",
-		"file": "Ace Card Front",
+		"file": "2/2c/Ace_Card_Front.png",
 		"cost": "8",
 		"race": "Mechanical",
 		"rarity": "Uncommon",
@@ -3824,9 +3758,9 @@ const heros =
 	},
 	{
 		"name": "Zildjian",
-		"link": "/wiki/Zildjian",
+		"link": "Zildjian",
 		"img": "1/1a/Zildjian.png",
-		"file": "Zildjian front",
+		"file": "e/ed/Zildjian_front.png",
 		"cost": "8",
 		"race": "Mechanical",
 		"rarity": "Rare",
@@ -3842,7 +3776,7 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "",
-				"icon_title": "Special_MurderWing_Projectile",
+				"icon_title": "3/36/Special_MurderWing_Projectile.png",
 				"description": "Damages and pulls an enemy unit in 1 tile as well as all adjacent enemy units. Adjacent units suffer 50% damage. Default direction is a straight line.",
 				"attack_range": "2",
 				"attack": "500",
@@ -3850,16 +3784,15 @@ const heros =
 				"unlocking": "2",
 				"cooldown": "1",
 				"attack_type": "Self-Initiated AOE",
-				"effect_range": "Single Target Attack",
-				"icon_url": "3/36/Special_MurderWing_Projectile.png"
+				"effect_range": "Single Target Attack"
 			}
 		]
 	},
 	{
 		"name": "Subnoxious",
-		"link": "/wiki/Subnoxious",
+		"link": "Subnoxious",
 		"img": "9/92/Subnoxious_Avatar.webp",
-		"file": "Subnoxious front",
+		"file": "5/54/Subnoxious_front.png",
 		"cost": "8",
 		"race": "Mechanical",
 		"rarity": "Ultra Rare",
@@ -3875,7 +3808,7 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Toxic Blast",
-				"icon_title": "Special_Poison",
+				"icon_title": "5/56/Special_Poison.png",
 				"description": "Deals damage and poison to an enemy unit and all adjacent enemy units. Mechanicals can't be poisoned.",
 				"attack_range": "2",
 				"attack": "400",
@@ -3884,16 +3817,15 @@ const heros =
 				"cooldown": "2",
 				"unlocking": "0",
 				"attack_type": "Line of Sight",
-				"effect_range": "Targeted AOE Attack",
-				"icon_url": "5/56/Special_Poison.png"
+				"effect_range": "Targeted AOE Attack"
 			}
 		]
 	},
 	{
 		"name": "Butcher",
-		"link": "/wiki/Butcher",
+		"link": "Butcher",
 		"img": "a/ae/Butcher_Avatar.png",
-		"file": "butcher",
+		"file": "f/fb/Butcher.png",
 		"cost": "8",
 		"race": "Mechanical",
 		"rarity": "Ultra Rare",
@@ -3919,9 +3851,9 @@ const heros =
 	},
 	{
 		"name": "Heavo 3.0",
-		"link": "/wiki/Heavo_3.0",
+		"link": "Heavo_3.0",
 		"img": "6/6f/Heavo_30_Avatar.png",
-		"file": "heavo30_front",
+		"file": "1/1d/Heavo30_front.png",
 		"cost": "9",
 		"race": "Mechanical",
 		"rarity": "Ultra Rare",
@@ -3939,9 +3871,9 @@ const heros =
 	},
 	{
 		"name": "Frosty",
-		"link": "/wiki/Frosty",
+		"link": "Frosty",
 		"img": "3/3d/Frosty_Avatar.png",
-		"file": "Frosty_Front",
+		"file": "5/55/Frosty_Front.png",
 		"cost": "9",
 		"race": "Mechanical",
 		"rarity": "Ultra Rare",
@@ -3956,7 +3888,7 @@ const heros =
 		"abilities": [
 			{
 				"type": "SpecialAbility",
-				"icon_title": "Special_Ice",
+				"icon_title": "c/c0/Special_Ice.png",
 				"title": "Freeze Ray",
 				"description": "Can target an enemy if it's tile forms a straight line with your tile. Enemy unit is frozen as well as enemy units behind. Frozen units can't move or attack. Fire melts by 1 round.",
 				"attack_range": "2",
@@ -3964,16 +3896,15 @@ const heros =
 				"cooldown": "3",
 				"unlocking": "1",
 				"attack_type": "Line of Sight",
-				"effect_range": "Single Target Attack",
-				"icon_url": "c/c0/Special_Ice.png"
+				"effect_range": "Single Target Attack"
 			}
 		]
 	},
 	{
 		"name": "Heavo Plaid",
-		"link": "/wiki/Heavo_Plaid",
+		"link": "Heavo_Plaid",
 		"img": "2/29/Heavo_Plaid_Avatar.png",
-		"file": "Heavoplaid_front",
+		"file": "b/bb/Heavoplaid_front.png",
 		"cost": "9",
 		"race": "Mechanical",
 		"rarity": "Ultra Rare",
@@ -3990,9 +3921,9 @@ const heros =
 	},
 	{
 		"name": "Batula",
-		"link": "/wiki/Batula",
+		"link": "Batula",
 		"img": "8/82/Batula_Avatar.png",
-		"file": "batula_front",
+		"file": "2/24/Batula_front.png",
 		"cost": "1",
 		"race": "Dimensional",
 		"rarity": "Common",
@@ -4008,9 +3939,9 @@ const heros =
 	},
 	{
 		"name": "Boomer",
-		"link": "/wiki/Boomer",
+		"link": "Boomer",
 		"img": "5/59/Boomer_Avatar.png",
-		"file": "Boomer_front",
+		"file": "2/2d/Boomer_front.png",
 		"cost": "1",
 		"race": "Dimensional",
 		"rarity": "Rare",
@@ -4021,17 +3952,16 @@ const heros =
 			{
 				"type": "Passive",
 				"title": "Stasis",
-				"icon_title": "Passive_Slow",
-				"description": "Can't be pushed, pulled, teleported, or swapped.",
-				"icon_url": "c/c9/Passive_Slow.png"
+				"icon_title": "c/c9/Passive_Slow.png",
+				"description": "Can't be pushed, pulled, teleported, or swapped."
 			}
 		]
 	},
 	{
 		"name": "Eternal Knight",
-		"link": "/wiki/Eternal_Knight",
+		"link": "Eternal_Knight",
 		"img": "3/3d/Eternal_Knight_Avatar.png",
-		"file": "eternalKnight_front",
+		"file": "b/b7/EternalKnight_front.png",
 		"cost": "2",
 		"race": "Dimensional",
 		"rarity": "Common",
@@ -4047,9 +3977,9 @@ const heros =
 	},
 	{
 		"name": "Squiggles",
-		"link": "/wiki/Squiggles",
+		"link": "Squiggles",
 		"img": "8/88/Squiggles_Avatar.png",
-		"file": "Squiggles_front",
+		"file": "f/f0/Squiggles_front.png",
 		"cost": "2",
 		"race": "Dimensional",
 		"rarity": "Uncommon",
@@ -4064,18 +3994,17 @@ const heros =
 			{
 				"type": "Passive",
 				"title": "Heart Attack",
-				"icon_title": "Passive_Heart_Attack",
+				"icon_title": "6/62/Passive_Heart_Attack.png",
 				"description": "Deals additional damage when attacking the enemy Heart.",
-				"buff": "400 (When attacking the Enemy Heart.)",
-				"icon_url": "6/62/Passive_Heart_Attack.png"
+				"buff": "400 (When attacking the Enemy Heart.)"
 			}
 		]
 	},
 	{
 		"name": "Bloat",
-		"link": "/wiki/Bloat",
+		"link": "Bloat",
 		"img": "f/ff/Bloat_Avatar.webp",
-		"file": "Bloat",
+		"file": "e/e4/Bloat.png",
 		"cost": "2",
 		"race": "Dimensional",
 		"rarity": "Uncommon",
@@ -4091,23 +4020,22 @@ const heros =
 		"abilities": [
 			{
 				"type": "SpecialAbility",
-				"icon_title": "Special_Electrical",
+				"icon_title": "f/fd/Special_Electrical.png",
 				"title": "High Voltage",
 				"description": "Damages all enemy units directly adjacent to it. All enemy units 2 tiles away and within line of sight are dealt 50% damage.",
 				"attack_type": "Self-Initiated AOE",
 				"attack_range": "2",
 				"attack": "300",
 				"splash": "no",
-				"electric": "300",
-				"icon_url": "f/fd/Special_Electrical.png"
+				"electric": "300"
 			}
 		]
 	},
 	{
 		"name": "Galaxy Cat",
-		"link": "/wiki/Galaxy_Cat",
+		"link": "Galaxy_Cat",
 		"img": "1/17/Galaxycat.png",
-		"file": "Galaxycat_front",
+		"file": "b/ba/Galaxycat_front.png",
 		"description": "From a galaxy far, far away...",
 		"cost": "2",
 		"race": "Dimensional",
@@ -4123,9 +4051,9 @@ const heros =
 	},
 	{
 		"name": "Impy",
-		"link": "/wiki/Impy",
+		"link": "Impy",
 		"img": "c/ca/Impy.png",
-		"file": "Impy_front",
+		"file": "9/94/Impy_front.png",
 		"cost": "2",
 		"race": "Dimensional",
 		"rarity": "Rare",
@@ -4141,14 +4069,13 @@ const heros =
 			{
 				"type": "Passive",
 				"title": "Immune",
-				"icon_title": "Icon_fire",
-				"description": "Immune to fire and lava damage.",
-				"icon_url": "2/2c/Icon_fire.png"
+				"icon_title": "2/2c/Icon_fire.png",
+				"description": "Immune to fire and lava damage."
 			},
 			{
 				"type": "SpecialAbility",
 				"title": "Ignite!",
-				"icon_title": "Special Fire",
+				"icon_title": "1/1b/Special_Fire.png",
 				"description": "Sets a tile on fire. Fire deals damage to Phobies that remain on it at end of each turn.",
 				"attack_range": "2",
 				"fire": "200",
@@ -4156,16 +4083,15 @@ const heros =
 				"cooldown": "1",
 				"duration": "2",
 				"attack_type": "Line of Sight",
-				"effect_range": "Single Target Attack",
-				"icon_url": "1/1b/Special_Fire.png"
+				"effect_range": "Single Target Attack"
 			}
 		]
 	},
 	{
 		"name": "Stabby",
-		"link": "/wiki/Stabby",
+		"link": "Stabby",
 		"img": "9/9f/Stabby_Avatar.png",
-		"file": "Stabby_front",
+		"file": "a/aa/Stabby_front.png",
 		"cost": "3",
 		"race": "Dimensional",
 		"rarity": "Common",
@@ -4181,18 +4107,17 @@ const heros =
 			{
 				"type": "Passive",
 				"title": "It's Voodoo",
-				"icon_title": "Passive_CounterAttack",
+				"icon_title": "2/23/Passive_CounterAttack.png",
 				"description": "Enemies that deal damage to Stabby receive a portion of the damage dealt.",
-				"reflect": "30%",
-				"icon_url": "2/23/Passive_CounterAttack.png"
+				"reflect": "30%"
 			}
 		]
 	},
 	{
 		"name": "Thunder Rocks",
-		"link": "/wiki/Thunder_Rocks",
+		"link": "Thunder_Rocks",
 		"img": "2/23/Thunder_Rocks_Avatar.png",
-		"file": "ThunderRocks_front",
+		"file": "1/19/ThunderRocks_front.png",
 		"cost": "3",
 		"race": "Dimensional",
 		"rarity": "Common",
@@ -4209,9 +4134,9 @@ const heros =
 	},
 	{
 		"name": "Flail",
-		"link": "/wiki/Flail",
+		"link": "Flail",
 		"img": "c/c3/Flail_Avatar.png",
-		"file": "flail",
+		"file": "1/1d/Flail.png",
 		"cost": "3",
 		"race": "Dimensional",
 		"rarity": "Common",
@@ -4228,9 +4153,9 @@ const heros =
 	},
 	{
 		"name": "Tooth Fairy",
-		"link": "/wiki/Tooth_Fairy",
+		"link": "Tooth_Fairy",
 		"img": "0/0f/Tooth_Fairy_Avatar.png",
-		"file": "Tooth_Fairy_Front",
+		"file": "c/c5/Tooth_Fairy_Front.png",
 		"cost": "3",
 		"race": "Dimensional",
 		"rarity": "Uncommon",
@@ -4246,9 +4171,9 @@ const heros =
 	},
 	{
 		"name": "Snowball",
-		"link": "/wiki/Snowball",
+		"link": "Snowball",
 		"img": "2/22/Snowball_Avatar.png",
-		"file": "Snowball_front",
+		"file": "0/05/Snowball_front.png",
 		"cost": "3",
 		"race": "Dimensional",
 		"rarity": "Rare",
@@ -4265,7 +4190,7 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Shishkabab",
-				"icon_title": "Special_Fireball",
+				"icon_title": "d/d4/Special_Fireball.png",
 				"description": "Deals damage and sets an enemy unit's tile on fire.",
 				"attack_range": "2",
 				"attack": "320",
@@ -4274,16 +4199,15 @@ const heros =
 				"duration": "1",
 				"cooldown": "1",
 				"attack_type": "Line of Sight",
-				"effect_range": "Single Target Attack",
-				"icon_url": "d/d4/Special_Fireball.png"
+				"effect_range": "Single Target Attack"
 			}
 		]
 	},
 	{
 		"name": "Pan",
-		"link": "/wiki/Pan",
+		"link": "Pan",
 		"img": "3/3a/Pan_Avatar.png",
-		"file": "Pan Front",
+		"file": "a/a5/Pan_Front.png",
 		"cost": "3",
 		"race": "Dimensional",
 		"rarity": "Rare",
@@ -4298,23 +4222,22 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Focus Pokus",
-				"icon_title": "Special_AttackBuff",
+				"icon_title": "1/12/Special_AttackBuff.png",
 				"description": "Creates a limited-time Stim Pad on the selected tile. Stim Pads boost the damage of any Phobie that stays on the tile.",
 				"attack_range": "1",
 				"buff": "250",
 				"effect_duration": "2",
 				"cooldown": "3",
 				"unlocking": "1",
-				"attack_type": "Line of Sight",
-				"icon_url": "1/12/Special_AttackBuff.png"
+				"attack_type": "Line of Sight"
 			}
 		]
 	},
 	{
 		"name": "Jammy Fish",
-		"link": "/wiki/Jammy_Fish",
+		"link": "Jammy_Fish",
 		"img": "5/58/Jammy_Fish_Avatar.png",
-		"file": "Jammy Fish",
+		"file": "c/c2/Jammy_Fish.png",
 		"cost": "3",
 		"race": "Dimensional",
 		"rarity": "Ultra Rare",
@@ -4336,10 +4259,10 @@ const heros =
 	},
 	{
 		"name": "Rockus",
-		"link": "/wiki/Rockus",
+		"link": "Rockus",
 		"img": "4/4a/Rockus_Avatar.png",
 		"cost": "4",
-		"file": "rockus_front",
+		"file": "9/90/Rockus_front.png",
 		"race": "Dimensional",
 		"rarity": "Common",
 		"movement_range": "2",
@@ -4360,9 +4283,9 @@ const heros =
 	},
 	{
 		"name": "Gargles",
-		"link": "/wiki/Gargles",
+		"link": "Gargles",
 		"img": "b/b1/Gargles_Avatar.png",
-		"file": "{{PAGENAME}} front",
+		"file": "a/a6/Gargles_front.png",
 		"cost": "4",
 		"rarity": "Uncommon",
 		"race": "Dimensional",
@@ -4376,21 +4299,20 @@ const heros =
 		"abilities": [
 			{
 				"type": "SpecialAbility",
-				"icon_title": "Special_Stone",
+				"icon_title": "d/dc/Special_Stone.png",
 				"title": "Petrify",
 				"description": "Transforms into stone, making it immovable, undamageable and untargetable. Lasts for 3 rounds, ending at beginning of enemy's turn.",
 				"duration": "3",
 				"cooldown": "4",
-				"unlocking": "1",
-				"icon_url": "d/dc/Special_Stone.png"
+				"unlocking": "1"
 			}
 		]
 	},
 	{
 		"name": "Hexxy",
-		"link": "/wiki/Hexxy",
+		"link": "Hexxy",
 		"img": "b/b4/Hexxy_Avatar.png",
-		"file": "Hexxy",
+		"file": "8/8d/Hexxy.png",
 		"cost": "4",
 		"race": "Dimensional",
 		"rarity": "Uncommon",
@@ -4406,18 +4328,17 @@ const heros =
 			{
 				"type": "Passive",
 				"title": "It's Witchcraft",
-				"icon_title": "Passive_CounterAttack",
+				"icon_title": "2/23/Passive_CounterAttack.png",
 				"description": "Enemies that deal damage to it receive a damage debuff.",
-				"debuff": "200",
-				"icon_url": "2/23/Passive_CounterAttack.png"
+				"debuff": "200"
 			}
 		]
 	},
 	{
 		"name": "Furkin Leepricarn",
-		"link": "/wiki/Furkin_Leepricarn",
+		"link": "Furkin_Leepricarn",
 		"img": "1/19/Furkin_Leepricarn_Avatar.png",
-		"file": "FurkinLeepricarn_front",
+		"file": "3/37/FurkinLeepricarn_front.png",
 		"cost": "4",
 		"race": "Dimensional",
 		"rarity": "Rare",
@@ -4432,22 +4353,21 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Unlucky Charm!",
-				"icon_title": "Special_ResetAbility",
+				"icon_title": "c/cc/Special_ResetAbility.png",
 				"description": "Resets cooldown timer of an enemy unit's special ability to its max amount of time. Cannot target enemies without special abilities.",
 				"attack_range": "4",
 				"cooldown": "3",
 				"unlocking": "1",
 				"attack_type": "Lob",
-				"effect_range": "Single Target Attack",
-				"icon_url": "c/cc/Special_ResetAbility.png"
+				"effect_range": "Single Target Attack"
 			}
 		]
 	},
 	{
 		"name": "Sssizzzle",
-		"link": "/wiki/Sssizzzle",
+		"link": "Sssizzzle",
 		"img": "5/5d/Sssizzzle_Avatar.webp",
-		"file": "Sssizzzle_Front",
+		"file": "7/73/Sssizzzle_Front.png",
 		"cost": "4",
 		"race": "Dimensional",
 		"rarity": "Rare",
@@ -4465,9 +4385,9 @@ const heros =
 	},
 	{
 		"name": "Grimes",
-		"link": "/wiki/Grimes",
+		"link": "Grimes",
 		"img": "d/d8/Grimes_Avatar.png",
-		"file": "Grimes_front",
+		"file": "b/be/Grimes_front.png",
 		"cost": "4",
 		"rarity": "Ultra Rare",
 		"race": "Dimensional",
@@ -4482,18 +4402,17 @@ const heros =
 			{
 				"type": "Passive",
 				"title": "Body Count",
-				"icon_title": "Passive_Kill_Bonus",
+				"icon_title": "5/5f/Passive_Kill_Bonus.png",
 				"description": "Each time it directly kills an enemy, it's damage increases.",
-				"buff": "200 (For each enemy he kills)",
-				"icon_url": "5/5f/Passive_Kill_Bonus.png"
+				"buff": "200 (For each enemy he kills)"
 			}
 		]
 	},
 	{
 		"name": "The Glob",
-		"link": "/wiki/The_Glob",
+		"link": "The_Glob",
 		"img": "d/dc/The_Glob_Avatar.png",
-		"file": "TheGlob front",
+		"file": "8/81/TheGlob_front.png",
 		"cost": "4",
 		"rarity": "Ultra Rare",
 		"race": "Dimensional",
@@ -4513,9 +4432,9 @@ const heros =
 	},
 	{
 		"name": "Prometheus",
-		"link": "/wiki/Prometheus",
+		"link": "Prometheus",
 		"img": "f/f4/Prometheus_Avatar.png",
-		"file": "Prometheus front",
+		"file": "0/00/Prometheus_front.png",
 		"cost": "4",
 		"race": "Dimensional",
 		"rarity": "Ultra Rare",
@@ -4542,9 +4461,9 @@ const heros =
 	},
 	{
 		"name": "Gloomstare",
-		"link": "/wiki/Gloomstare",
+		"link": "Gloomstare",
 		"img": "8/8f/Gloomstare_Avatar.png",
-		"file": "Gloomstare Front",
+		"file": "c/c1/Gloomstare_Front.png",
 		"cost": "4",
 		"race": "Dimensional",
 		"rarity": "Ultra Rare",
@@ -4570,9 +4489,9 @@ const heros =
 	},
 	{
 		"name": "Psyclops",
-		"link": "/wiki/Psyclops",
+		"link": "Psyclops",
 		"img": "1/16/Psyclops_Avatar.png",
-		"file": "Psyclops_front",
+		"file": "f/f8/Psyclops_front.png",
 		"cost": "5",
 		"race": "Dimensional",
 		"rarity": "Common",
@@ -4588,9 +4507,9 @@ const heros =
 	},
 	{
 		"name": "Charon",
-		"link": "/wiki/Charon",
+		"link": "Charon",
 		"img": "0/0b/Charon_Avatar.png",
-		"file": "Charon_front",
+		"file": "0/06/Charon_front.png",
 		"cost": "5",
 		"race": "Dimensional",
 		"rarity": "Uncommon",
@@ -4604,19 +4523,18 @@ const heros =
 		"abilities": [
 			{
 				"type": "Passive",
-				"icon_title": "Passive_Mud",
+				"icon_title": "5/58/Passive_Mud.png",
 				"title": "No Fare",
 				"description": "Disables map tiles by moving",
-				"effect_duration": "2",
-				"icon_url": "5/58/Passive_Mud.png"
+				"effect_duration": "2"
 			}
 		]
 	},
 	{
 		"name": "Baba Yaga",
-		"link": "/wiki/Baba_Yaga",
+		"link": "Baba_Yaga",
 		"img": "8/86/Baba_Yaga_Avatar.png",
-		"file": "Babayaga_front",
+		"file": "d/df/Babayaga_front.png",
 		"cost": "5",
 		"race": "Dimensional",
 		"rarity": "Rare",
@@ -4630,7 +4548,7 @@ const heros =
 		"abilities": [
 			{
 				"type": "SpecialAbility",
-				"icon_title": "Special_Trap",
+				"icon_title": "a/a9/Special_Trap.png",
 				"title": "Baba Boom!",
 				"description": "Places a trap. Can be set off by an enemy unit at the end of any turn, except the turn it's laid. Damages the unit that set it off, plus adjacent units for 50% damage.",
 				"attack_range": "2",
@@ -4638,16 +4556,15 @@ const heros =
 				"splash": "Yes",
 				"cooldown": "1",
 				"attack_type": "Line of Sight",
-				"effect_range": "Targeted AOE Attack",
-				"icon_url": "a/a9/Special_Trap.png"
+				"effect_range": "Targeted AOE Attack"
 			}
 		]
 	},
 	{
 		"name": "Doom Doom",
-		"link": "/wiki/Doom_Doom",
+		"link": "Doom_Doom",
 		"img": "f/f1/Doom_Doom_Avatar.png",
-		"file": "DoomDoom_front",
+		"file": "f/f0/DoomDoom_front.png",
 		"cost": "5",
 		"race": "Dimensional",
 		"rarity": "Rare",
@@ -4669,17 +4586,16 @@ const heros =
 			{
 				"type": "Passive",
 				"title": "Trap Absorber",
-				"icon_title": "Passive Trap Removal",
-				"description": "Disarm enemy trap without triggering it if standing on it at the end of your turn.",
-				"icon_url": "b/b2/Passive_Trap_Removal.png"
+				"icon_title": "b/b2/Passive_Trap_Removal.png",
+				"description": "Disarm enemy trap without triggering it if standing on it at the end of your turn."
 			}
 		]
 	},
 	{
 		"name": "Lila",
-		"link": "/wiki/Lila",
+		"link": "Lila",
 		"img": "7/77/Lila_Avatar.webp",
-		"file": "Lila_Front",
+		"file": "e/ed/Lila_Front.png",
 		"cost": "5",
 		"race": "Dimensional",
 		"rarity": "Rare",
@@ -4694,23 +4610,22 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Toxi Moxie",
-				"icon_title": "Special_DiseaseTrap",
+				"icon_title": "9/96/Special_DiseaseTrap.png",
 				"description": "Places a trap. Can be set off at the end of any turn by an enemy unit or enemy trap in the trap's tile, except the turn your trap is laid. Mechanicals can't be diseased.",
 				"attack_range": "2",
 				"trap": "300",
 				"disease": "300",
 				"cooldown": "1",
 				"attack_type": "Line of Sight",
-				"effect_range": "Single Target Attack",
-				"icon_url": "9/96/Special_DiseaseTrap.png"
+				"effect_range": "Single Target Attack"
 			}
 		]
 	},
 	{
 		"name": "Paitunia",
-		"link": "/wiki/Paitunia",
+		"link": "Paitunia",
 		"img": "a/af/Paitunia.png",
-		"file": "Paitunia front",
+		"file": "2/23/Paitunia_front.png",
 		"cost": "5",
 		"race": "Dimensional",
 		"rarity": "Rare",
@@ -4731,9 +4646,9 @@ const heros =
 	},
 	{
 		"name": "Sir Probesalot",
-		"link": "/wiki/Sir_Probesalot",
+		"link": "Sir_Probesalot",
 		"img": "7/72/Sir_Probesalot_Avatar.png",
-		"file": "Sir Probesalot Front",
+		"file": "2/23/Sir_Probesalot_Front.png",
 		"cost": "5",
 		"race": "Dimensional",
 		"rarity": "Ultra Rare",
@@ -4760,9 +4675,9 @@ const heros =
 	},
 	{
 		"name": "Bluelien",
-		"link": "/wiki/Bluelien",
+		"link": "Bluelien",
 		"img": "c/c3/Bluelien_Avatar.png",
-		"file": "Bluelien_front",
+		"file": "f/f5/Bluelien_front.png",
 		"cost": "5",
 		"race": "Dimensional",
 		"rarity": "Ultra Rare",
@@ -4777,22 +4692,21 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Spa Treatment",
-				"icon_title": "Special_Heal_AOE",
+				"icon_title": "e/ee/Special_Heal_AOE.png",
 				"description": "Creates a healing pool on any tile that doesn't contain terrain. The healing pool lasts for 4 rounds before disappearing.",
 				"attack_range": "2",
 				"healpool": "200",
 				"duration": "4",
 				"cooldown": "2",
-				"attack_type": "Line of Sight",
-				"icon_url": "e/ee/Special_Heal_AOE.png"
+				"attack_type": "Line of Sight"
 			}
 		]
 	},
 	{
 		"name": "Mistle Toad",
-		"link": "/wiki/Mistle_Toad",
+		"link": "Mistle_Toad",
 		"img": "5/55/MistleToad_Icon.png",
-		"file": "Mistle Toad Front",
+		"file": "1/1b/Mistle_Toad_Front.png",
 		"cost": "5",
 		"race": "Dimensional",
 		"rarity": "Ultra Rare",
@@ -4819,9 +4733,9 @@ const heros =
 	},
 	{
 		"name": "Octo-Buddy",
-		"link": "/wiki/Octo-Buddy",
+		"link": "Octo-Buddy",
 		"img": "7/7b/Octo-Buddy_Avatar.png",
-		"file": "Octo-Buddy Front",
+		"file": "8/86/Octo-Buddy_Front.png",
 		"cost": "5",
 		"race": "Dimensional",
 		"rarity": "Ultra Rare",
@@ -4847,9 +4761,9 @@ const heros =
 	},
 	{
 		"name": "Mount Crushmore",
-		"link": "/wiki/Mount_Crushmore",
+		"link": "Mount_Crushmore",
 		"img": "b/b8/Mount_Crushmore_Avatar.png",
-		"file": "MountCrushmore front",
+		"file": "6/64/MountCrushmore_front.png",
 		"cost": "6",
 		"race": "Dimensional",
 		"rarity": "Uncommon",
@@ -4864,22 +4778,21 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Terrorform",
-				"icon_title": "Special_Terraform",
+				"icon_title": "c/cb/Special_Terraform.png",
 				"description": "Can be used to create or remove obstacles on adjacent tiles. Created obstacles have HP, are immovable and are targetable by both teams.",
 				"attack_range": "1",
 				"obstacle2": "2000",
 				"cooldown": "2",
 				"attack_type": "Line of Sight",
-				"effect_range": "Single Target Attack",
-				"icon_url": "c/cb/Special_Terraform.png"
+				"effect_range": "Single Target Attack"
 			}
 		]
 	},
 	{
 		"name": "Octo Naughty",
-		"link": "/wiki/Octo_Naughty",
+		"link": "Octo_Naughty",
 		"img": "0/01/Octo_Naughty_Avatar.png",
-		"file": "OctoNaughty front",
+		"file": "7/72/OctoNaughty_front.png",
 		"cost": "6",
 		"race": "Dimensional",
 		"rarity": "Rare",
@@ -4893,7 +4806,7 @@ const heros =
 		"abilities": [
 			{
 				"type": "SpecialAbility",
-				"icon_title": "Special_Pull",
+				"icon_title": "f/f3/Special_Pull.png",
 				"title": "Suction Cupped",
 				"description": "Damages and pulls an enemy unit in 1 tile. Default direction is a straight line.",
 				"attack_range": "2",
@@ -4901,16 +4814,15 @@ const heros =
 				"cooldown": "1",
 				"unlocking": "1",
 				"attack_type": "Line of Sight",
-				"effect_range": "Single Target Attack",
-				"icon_url": "f/f3/Special_Pull.png"
+				"effect_range": "Single Target Attack"
 			}
 		]
 	},
 	{
 		"name": "Pasgetti",
-		"link": "/wiki/Pasgetti",
+		"link": "Pasgetti",
 		"img": "1/1f/Pasgetti_Avatar.png",
-		"file": "Pasgetti front",
+		"file": "6/6d/Pasgetti_front.png",
 		"cost": "6",
 		"race": "Dimensional",
 		"rarity": "Rare",
@@ -4925,23 +4837,22 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Sporegetti",
-				"icon_title": "Special_Disease",
+				"icon_title": "9/91/Special_Disease.png",
 				"description": "Deals damage and disease to an enemy unit. Disease, once applied, is permanent and can never be healed.",
 				"attack_range": "2",
 				"attack": "250",
 				"disease": "250",
 				"cooldown": "1",
 				"attack_type": "Line of Sight",
-				"effect_range": "Single Target Attack",
-				"icon_url": "9/91/Special_Disease.png"
+				"effect_range": "Single Target Attack"
 			}
 		]
 	},
 	{
 		"name": "Fantôme",
-		"link": "/wiki/Fant%C3%B4me",
+		"link": "Fant%C3%B4me",
 		"img": "e/ef/Fant%C3%B4me_Avatar.png",
-		"file": "Fantome_front",
+		"file": "8/88/Fantome_front.png",
 		"cost": "6",
 		"race": "Dimensional",
 		"rarity": "Rare",
@@ -4956,22 +4867,21 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Transposer",
-				"icon_title": "Special_Teleport",
+				"icon_title": "4/45/Special_Teleport.png",
 				"description": "Ability teleports an friendly unit within range to an unoccupied tile adjacent to your unit, the friendly unit will have its Ability Cooldown reset.",
 				"attack_range": "2",
 				"cooldown": "3",
 				"unlocking": "2",
 				"attack_type": "Line of Sight",
-				"effect_range": "Single Target Attack",
-				"icon_url": "4/45/Special_Teleport.png"
+				"effect_range": "Single Target Attack"
 			}
 		]
 	},
 	{
 		"name": "Alastor",
-		"link": "/wiki/Alastor",
+		"link": "Alastor",
 		"img": "3/39/Alastor_Avatar.png",
-		"file": "Alastor front",
+		"file": "e/e1/Alastor_front.png",
 		"cost": "6",
 		"race": "Dimensional",
 		"rarity": "Ultra Rare",
@@ -4986,18 +4896,17 @@ const heros =
 			{
 				"type": "Passive",
 				"title": "Life Force",
-				"icon_title": "Passive_Health_Leech",
+				"icon_title": "6/68/Passive_Health_Leech.png",
 				"description": "Tranfers the same amount of damage to opponents back to itself as health",
-				"lifesteal": "100%",
-				"icon_url": "6/68/Passive_Health_Leech.png"
+				"lifesteal": "100%"
 			}
 		]
 	},
 	{
 		"name": "Scritch",
-		"link": "/wiki/Scritch",
+		"link": "Scritch",
 		"img": "7/73/Scritch_Avatar.png",
-		"file": "Scritch front",
+		"file": "1/14/Scritch_front.png",
 		"cost": "6",
 		"race": "Dimensional",
 		"rarity": "Ultra Rare",
@@ -5012,23 +4921,22 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Helping Hand",
-				"icon_title": "Special_AttackBuff",
+				"icon_title": "1/12/Special_AttackBuff.png",
 				"description": "Increases the damage of a friendly unit for the current turn.",
 				"attack_range": "2",
 				"buff": "300",
 				"effect_duration": "1",
 				"cooldown": "2",
 				"unlocking": "1",
-				"attack_type": "Line of Sight",
-				"icon_url": "1/12/Special_AttackBuff.png"
+				"attack_type": "Line of Sight"
 			}
 		]
 	},
 	{
 		"name": "Rocketman",
-		"link": "/wiki/Rocketman",
+		"link": "Rocketman",
 		"img": "8/80/Rocketman_Avatar.png",
-		"file": "Rocketman front",
+		"file": "f/f0/Rocketman_front.png",
 		"cost": "6",
 		"race": "Dimensional",
 		"rarity": "Ultra Rare",
@@ -5042,7 +4950,7 @@ const heros =
 		"abilities": [
 			{
 				"type": "SpecialAbility",
-				"icon_title": "Special_Ice",
+				"icon_title": "c/c0/Special_Ice.png",
 				"title": "Cryostasis",
 				"description": "Freezes an enemy unit. Frozen units can't move or attack. Fire melts by 1 round.",
 				"attack_range": "1",
@@ -5050,16 +4958,15 @@ const heros =
 				"cooldown": "3",
 				"unlocking": "1",
 				"attack_type": "Line of Sight",
-				"effect_range": "Single Target Attack",
-				"icon_url": "c/c0/Special_Ice.png"
+				"effect_range": "Single Target Attack"
 			}
 		]
 	},
 	{
 		"name": "Cecilia",
-		"link": "/wiki/Cecilia",
+		"link": "Cecilia",
 		"img": "b/be/Whitemushroom.png",
-		"file": "Whitemushroom front",
+		"file": "4/48/Whitemushroom_front.png",
 		"cost": "6",
 		"race": "Dimensional",
 		"rarity": "Ultra Rare",
@@ -5075,22 +4982,21 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Fertilize",
-				"icon_title": "Special DiseasePool",
+				"icon_title": "b/b1/Special_DiseasePool.png",
 				"description": "Can be used to create or remove infected ground on adjacent tiles. Created infected ground lasts for 4 turns",
 				"attack_range": "2",
 				"disease": "150",
 				"effect_duration": "4",
 				"cooldown": "1",
-				"attack_type": "Line of Sight",
-				"icon_url": "b/b1/Special_DiseasePool.png"
+				"attack_type": "Line of Sight"
 			}
 		]
 	},
 	{
 		"name": "Preacher",
-		"link": "/wiki/Preacher",
+		"link": "Preacher",
 		"img": "5/5f/Preacher_Avatar.png",
-		"file": "Preacher Front",
+		"file": "f/fb/Preacher_Front.png",
 		"cost": "6",
 		"race": "Dimensional",
 		"rarity": "Ultra Rare",
@@ -5114,9 +5020,9 @@ const heros =
 	},
 	{
 		"name": "Greylien",
-		"link": "/wiki/Greylien",
+		"link": "Greylien",
 		"img": "8/82/Greylien_Avatar.png",
-		"file": "Greylien_front",
+		"file": "3/36/Greylien_front.png",
 		"cost": "7",
 		"race": "Dimensional",
 		"rarity": "Rare",
@@ -5130,23 +5036,22 @@ const heros =
 		"abilities": [
 			{
 				"type": "SpecialAbility",
-				"icon_title": "Special_Swap",
+				"icon_title": "0/05/Special_Swap.png",
 				"title": "Ole Switcher You!",
 				"description": "Causes your unit to swap places with an enemy unit within range.",
 				"attack_range": "2",
 				"cooldown": "3",
 				"unlocking": "1",
 				"attack_type": "Line of Sight",
-				"effect_range": "Single Target Attack",
-				"icon_url": "0/05/Special_Swap.png"
+				"effect_range": "Single Target Attack"
 			}
 		]
 	},
 	{
 		"name": "Brony",
-		"link": "/wiki/Brony",
+		"link": "Brony",
 		"img": "1/17/Brony_Avatar.png",
-		"file": "Brony_front",
+		"file": "b/b1/Brony_front.png",
 		"cost": "7",
 		"rarity": "Ultra Rare",
 		"race": "Dimensional",
@@ -5161,19 +5066,18 @@ const heros =
 				"attack_range": "3",
 				"cooldown": "4",
 				"unlocking": "1",
-				"icon_title": "Special_Peace",
+				"icon_title": "6/6c/Special_Peace.png",
 				"effect_duration": "2",
 				"attack_type": "Self-Initiated AOE",
-				"effect_range": "Targeted AOE Attack",
-				"icon_url": "6/6c/Special_Peace.png"
+				"effect_range": "Targeted AOE Attack"
 			}
 		]
 	},
 	{
 		"name": "Leshy",
-		"link": "/wiki/Leshy",
+		"link": "Leshy",
 		"img": "c/c1/Leshy_Avatar.png",
-		"file": "Leshy_front",
+		"file": "6/68/Leshy_front.png",
 		"cost": "7",
 		"rarity": "Ultra Rare",
 		"race": "Dimensional",
@@ -5188,23 +5092,22 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Group Hug",
-				"icon_title": "Special_HealAOE",
+				"icon_title": "b/b2/Special_HealAOE.png",
 				"description": "Heals and/or cures poison from all adjacent friendly non-Undead units.",
 				"attack_range": "1",
 				"heal": "1100",
 				"cooldown": "3",
 				"unlocking": "1",
 				"attack_type": "Self-Initiated AOE",
-				"effect_range": "Targeted AOE Attack",
-				"icon_url": "b/b2/Special_HealAOE.png"
+				"effect_range": "Targeted AOE Attack"
 			}
 		]
 	},
 	{
 		"name": "Edgar Allen",
-		"link": "/wiki/Edgar_Allen",
+		"link": "Edgar_Allen",
 		"img": "d/d1/EdgarAllen_portrait.png",
-		"file": "EdgarAllen",
+		"file": "3/3e/EdgarAllen.png",
 		"cost": "7",
 		"race": "Dimensional",
 		"rarity": "Ultra Rare",
@@ -5231,9 +5134,9 @@ const heros =
 	},
 	{
 		"name": "Undertaker",
-		"link": "/wiki/Undertaker",
+		"link": "Undertaker",
 		"img": "b/b3/Undertaker_Avatar.png",
-		"file": "undertaker",
+		"file": "c/c7/Undertaker.png",
 		"cost": "7",
 		"race": "Dimensional",
 		"rarity": "Ultra Rare",
@@ -5259,9 +5162,9 @@ const heros =
 	},
 	{
 		"name": "Skinwalker",
-		"link": "/wiki/Skinwalker",
+		"link": "Skinwalker",
 		"img": "3/32/SkinWalker.png",
-		"file": "Skinwalker Card Front",
+		"file": "e/e9/Skinwalker_Card_Front.png",
 		"race": "Dimensional",
 		"cost": "7",
 		"rarity": "Ultra Rare",
@@ -5276,7 +5179,7 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Undying Rage",
-				"icon_title": "Skinwalker - Special Undying Rage",
+				"icon_title": "2/28/Skinwalker_-_Special_Undying_Rage.png",
 				"description": "Transforms the unit to its alternate stats for 3 rounds. The unit cannot fall below 1 HP while transformed.",
 				"attack_range": "1",
 				"attack_type": "Self-Initiated AOE",
@@ -5284,16 +5187,15 @@ const heros =
 				"lifesteal": "40%",
 				"duration": "3",
 				"cooldown": "4",
-				"unlocking": "1",
-				"icon_url": "2/28/Skinwalker_-_Special_Undying_Rage.png"
+				"unlocking": "1"
 			}
 		]
 	},
 	{
 		"name": "Coco",
-		"link": "/wiki/Coco",
+		"link": "Coco",
 		"img": "3/3a/Coco_Avatar.png",
-		"file": "Coco front",
+		"file": "f/f6/Coco_front.png",
 		"cost": "7",
 		"race": "Dimensional",
 		"rarity": "Ultra Rare",
@@ -5319,9 +5221,9 @@ const heros =
 	},
 	{
 		"name": "Firehorse",
-		"link": "/wiki/Firehorse",
+		"link": "Firehorse",
 		"img": "1/1b/Firehorse_Avatar.png",
-		"file": "Firehorse front",
+		"file": "3/37/Firehorse_front.png",
 		"cost": "7",
 		"race": "Dimensional",
 		"rarity": "Ultra Rare",
@@ -5346,9 +5248,9 @@ const heros =
 	},
 	{
 		"name": "Sera",
-		"link": "/wiki/Sera",
+		"link": "Sera",
 		"img": "d/d5/Sera.png",
-		"file": "Sera_front",
+		"file": "6/65/Sera_front.png",
 		"cost": "7",
 		"race": "Dimensional",
 		"rarity": "Ultra Rare",
@@ -5363,23 +5265,22 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Smite!",
-				"icon_title": "Special_LineAttack",
+				"icon_title": "d/d6/Special_LineAttack.png",
 				"description": "Damage is applied to the target and distributed to all adjacent enemy Phobies, equally divided",
 				"attack_range": "2",
 				"attack": "800",
 				"unlocking": "1",
 				"cooldown": "",
 				"attack_type": "Line of Sight",
-				"effect_range": "Single Target Attack",
-				"icon_url": "d/d6/Special_LineAttack.png"
+				"effect_range": "Single Target Attack"
 			}
 		]
 	},
 	{
 		"name": "Boss",
-		"link": "/wiki/Boss",
+		"link": "Boss",
 		"img": "f/f0/Boss_Avatar.png",
-		"file": "boss_front",
+		"file": "1/14/Boss_front.png",
 		"cost": "8",
 		"race": "Dimensional",
 		"rarity": "Ultra Rare",
@@ -5396,7 +5297,7 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "You're Fired!",
-				"icon_title": "Special_Fire",
+				"icon_title": "1/1b/Special_Fire.png",
 				"description": "Deals damage to an enemy unit and all adjacent enemy units. Sets fire on tiles within 2 range. Melts ice by 1 phase.",
 				"attack_range": "2",
 				"attack": "275",
@@ -5405,16 +5306,15 @@ const heros =
 				"cooldown": "2",
 				"unlocking": "1",
 				"attack_type": "Line of Sight",
-				"effect_range": "Targeted AOE Attack",
-				"icon_url": "1/1b/Special_Fire.png"
+				"effect_range": "Targeted AOE Attack"
 			}
 		]
 	},
 	{
 		"name": "Russell",
-		"link": "/wiki/Russell",
+		"link": "Russell",
 		"img": "f/f2/Russel_Avatar.png",
-		"file": "Russell_front",
+		"file": "0/08/Russell_front.png",
 		"cost": "8",
 		"race": "Dimensional",
 		"rarity": "Ultra Rare",
@@ -5429,7 +5329,7 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "The Caw!",
-				"icon_title": "Special_Poison_All_Map",
+				"icon_title": "4/43/Special_Poison_All_Map.png",
 				"description": "Poisons all non-mechanical enemy units.",
 				"attack_range": "All Map",
 				"poison": "250",
@@ -5437,16 +5337,15 @@ const heros =
 				"cooldown": "4",
 				"unlocking": "1",
 				"attack_type": "All Map",
-				"effect_range": "All Map",
-				"icon_url": "4/43/Special_Poison_All_Map.png"
+				"effect_range": "All Map"
 			}
 		]
 	},
 	{
 		"name": "Heart Breaker",
-		"link": "/wiki/Heart_Breaker",
+		"link": "Heart_Breaker",
 		"img": "f/fd/Heart_Breaker_Avatar.png",
-		"file": "heartBreaker_front",
+		"file": "9/9d/HeartBreaker_front.png",
 		"cost": "8",
 		"race": "Dimensional",
 		"rarity": "Ultra Rare",
@@ -5461,22 +5360,21 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Beside Myself",
-				"icon_title": "Special_Teleport",
+				"icon_title": "4/45/Special_Teleport.png",
 				"description": "Ability teleports an enemy unit within range to an unoccupied tile adjacent to your unit.",
 				"attack_range": "3",
 				"cooldown": "3",
 				"unlocking": "2",
 				"attack_type": "Line of Sight",
-				"effect_range": "Single Target Attack",
-				"icon_url": "4/45/Special_Teleport.png"
+				"effect_range": "Single Target Attack"
 			}
 		]
 	},
 	{
 		"name": "Beauty",
-		"link": "/wiki/Beauty",
+		"link": "Beauty",
 		"img": "1/1b/Beauty_Avatar.png",
-		"file": "beauty_front",
+		"file": "e/e2/Beauty_front.png",
 		"cost": "8",
 		"race": "Dimensional",
 		"rarity": "Ultra Rare",
@@ -5492,24 +5390,23 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Behold!",
-				"icon_title": "Special_LineAttack",
+				"icon_title": "d/d6/Special_LineAttack.png",
 				"description": "Can target an enemy if it's tile forms a straight line with your tile. The unit is damaged as well as enemy units behind.",
 				"attack_range": "2",
 				"attack": "500",
 				"cooldown": "1",
 				"unlocking": "1",
 				"attack_type": "Line of Sight",
-				"effect_range": "Beam Attack",
-				"icon_url": "d/d6/Special_LineAttack.png"
+				"effect_range": "Beam Attack"
 			}
 		]
 	},
 	{
 		"name": "The Collector",
-		"link": "/wiki/The_Collector",
+		"link": "The_Collector",
 		"img": "0/00/The_Collector_Avatar.png",
 		"cost": "8",
-		"file": "TheCollector_front",
+		"file": "e/e2/TheCollector_front.png",
 		"race": "Dimensional",
 		"rarity": "Ultra Rare",
 		"movement_range": "2",
@@ -5530,9 +5427,9 @@ const heros =
 	},
 	{
 		"name": "Omega",
-		"link": "/wiki/Omega",
+		"link": "Omega",
 		"img": "b/b2/Omega.png",
-		"file": "Omega Card Front",
+		"file": "a/ac/Omega_Card_Front.png",
 		"cost": "8",
 		"rarity": "Ultra Rare",
 		"race": "Dimensional",
@@ -5543,7 +5440,7 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "This is the End",
-				"icon_title": "Omega - Special AttackBuff Area",
+				"icon_title": "5/56/Omega_-_Special_AttackBuff_Area.png",
 				"description": "Increases the damage of friendly and enemy units within range of 3.",
 				"attack_range": "3",
 				"cooldown": "4",
@@ -5551,16 +5448,15 @@ const heros =
 				"buff": "250",
 				"effect_duration": "1",
 				"attack_type": "Self-Initiated AOE",
-				"effect_range": "Targeted AOE Attack",
-				"icon_url": "5/56/Omega_-_Special_AttackBuff_Area.png"
+				"effect_range": "Targeted AOE Attack"
 			}
 		]
 	},
 	{
 		"name": "Akira",
-		"link": "/wiki/Akira",
+		"link": "Akira",
 		"img": "0/04/Akira_Avatar.png",
-		"file": "Akira_front",
+		"file": "5/5b/Akira_front.png",
 		"cost": "9",
 		"race": "Dimensional",
 		"rarity": "Ultra Rare",
@@ -5577,21 +5473,20 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Yoinks",
-				"icon_title": "Special_Pull_All_Map",
+				"icon_title": "d/dd/Special_Pull_All_Map.png",
 				"description": "Pulls all units within line of sight (friendly and enemy) towards your unit 1 tile. Default direction is a straight line.",
 				"cooldown": "3",
 				"unlocking": "2",
 				"attack_type": "All Map",
-				"effect_range": "All Map",
-				"icon_url": "d/dd/Special_Pull_All_Map.png"
+				"effect_range": "All Map"
 			}
 		]
 	},
 	{
 		"name": "Numbskull",
-		"link": "/wiki/Numbskull",
+		"link": "Numbskull",
 		"img": "b/be/Numbskull_portrait.png",
-		"file": "Numbskull",
+		"file": "4/4e/Numbskull.png",
 		"cost": "1",
 		"race": "Undead",
 		"rarity": "Common",
@@ -5607,9 +5502,9 @@ const heros =
 	},
 	{
 		"name": "Ted",
-		"link": "/wiki/Ted",
+		"link": "Ted",
 		"img": "8/83/Ted_Avatar.png",
-		"file": "ted_front",
+		"file": "2/2e/Ted_front.png",
 		"cost": "1",
 		"race": "Undead",
 		"rarity": "Common",
@@ -5624,26 +5519,24 @@ const heros =
 			{
 				"type": "Passive",
 				"title": "Resurrect",
-				"icon_title": "Passive_Resurrect",
+				"icon_title": "0/00/Passive_Resurrect.png",
 				"description": "Resurrects from bones state if not stepped on, or over a pit or obstacle, at the end of the turn.",
-				"resurrect": "200",
-				"icon_url": "0/00/Passive_Resurrect.png"
+				"resurrect": "200"
 			},
 			{
 				"type": "Passive",
 				"title": "Newlydeads",
-				"icon_title": "Passive_Matching_uid34",
+				"icon_title": "c/cb/Passive_Matching_uid34.png",
 				"description": "Grants damage buff for as long as friendly bride Jill is on site.",
-				"buff": "150",
-				"icon_url": "c/cb/Passive_Matching_uid34.png"
+				"buff": "150"
 			}
 		]
 	},
 	{
 		"name": "Contortio",
-		"link": "/wiki/Contortio",
+		"link": "Contortio",
 		"img": "3/33/Contortio_Avatar.png",
-		"file": "contortio_front",
+		"file": "d/de/Contortio_front.png",
 		"cost": "1",
 		"race": "Undead",
 		"rarity": "Common",
@@ -5659,9 +5552,9 @@ const heros =
 	},
 	{
 		"name": "Jill",
-		"link": "/wiki/Jill",
+		"link": "Jill",
 		"img": "b/b2/Jill_Avatar.png",
-		"file": "jill_front",
+		"file": "7/7d/Jill_front.png",
 		"cost": "1",
 		"race": "Undead",
 		"rarity": "Rare",
@@ -5676,27 +5569,25 @@ const heros =
 			{
 				"type": "Passive",
 				"title": "Resurrect",
-				"icon_title": "Passive_Resurrect",
+				"icon_title": "0/00/Passive_Resurrect.png",
 				"description": "Resurrects from bones state if not stepped on, or over a pit or obstacle, at the end of the turn.",
 				"effect_range": "",
-				"resurrect": "175",
-				"icon_url": "0/00/Passive_Resurrect.png"
+				"resurrect": "175"
 			},
 			{
 				"type": "Passive",
 				"title": "Newlydeads",
-				"icon_title": "Passive_Matching_uid35",
+				"icon_title": "5/58/Passive_Matching_uid35.png",
 				"description": "Grants damage buff for as long as friendly groom Ted is on site.",
-				"buff": "150",
-				"icon_url": "5/58/Passive_Matching_uid35.png"
+				"buff": "150"
 			}
 		]
 	},
 	{
 		"name": "Cassowary",
-		"link": "/wiki/Cassowary",
+		"link": "Cassowary",
 		"img": "1/1f/Cassowary_Avatar.png",
-		"file": "cassowary_front",
+		"file": "8/8b/Cassowary_front.png",
 		"cost": "2",
 		"race": "Undead",
 		"rarity": "Common",
@@ -5711,22 +5602,21 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Caw Claw",
-				"icon_title": "Special_Charge",
+				"icon_title": "9/94/Special_Charge.png",
 				"description": "Allows the unit to move 1 tile and perform a melee attack with a single action.",
 				"attack_range": "2",
 				"attack": "425",
 				"cooldown": "1",
 				"attack_type": "Line of Sight",
-				"effect_range": "Single Target Attack",
-				"icon_url": "9/94/Special_Charge.png"
+				"effect_range": "Single Target Attack"
 			}
 		]
 	},
 	{
 		"name": "Creep",
-		"link": "/wiki/Creep",
+		"link": "Creep",
 		"img": "c/cb/Creep_Avatar.png",
-		"file": "creep_front",
+		"file": "c/c1/Creep_front.png",
 		"cost": "2",
 		"race": "Undead",
 		"rarity": "Uncommon",
@@ -5740,7 +5630,7 @@ const heros =
 		"abilities": [
 			{
 				"type": "SpecialAbility",
-				"icon_title": "Special_Poison",
+				"icon_title": "5/56/Special_Poison.png",
 				"title": "Excretiating",
 				"description": "Damages an enemy unit and poisons it. Mechanicals can't be poisoned.",
 				"attack_range": "2",
@@ -5749,16 +5639,15 @@ const heros =
 				"duration": "4",
 				"cooldown": "2",
 				"attack_type": "Line of Sight",
-				"effect_range": "Single Target Attack",
-				"icon_url": "5/56/Special_Poison.png"
+				"effect_range": "Single Target Attack"
 			}
 		]
 	},
 	{
 		"name": "Flopsy",
-		"link": "/wiki/Flopsy",
+		"link": "Flopsy",
 		"img": "f/f4/Flopsy_Avatar.png",
-		"file": "flopsy_front",
+		"file": "8/8b/Flopsy_front.png",
 		"cost": "2",
 		"race": "Undead",
 		"rarity": "Uncommon",
@@ -5773,26 +5662,24 @@ const heros =
 			{
 				"type": "Passive",
 				"title": "Resurrect",
-				"icon_title": "Passive_Resurrect",
+				"icon_title": "0/00/Passive_Resurrect.png",
 				"description": "Resurrects from bones state if not stepped on, or over a pit or obstacle, at the end of the turn.",
-				"resurrect": "125",
-				"icon_url": "0/00/Passive_Resurrect.png"
+				"resurrect": "125"
 			},
 			{
 				"type": "Passive",
 				"title": "Pack Attack",
-				"icon_title": "Passive_Matching_uid71",
+				"icon_title": "6/67/Passive_Matching_uid71.png",
 				"description": "Grants damage buff for as long as friendly Jackalope King is on site.",
-				"buff": "150",
-				"icon_url": "6/67/Passive_Matching_uid71.png"
+				"buff": "150"
 			}
 		]
 	},
 	{
 		"name": "Mopsy",
-		"link": "/wiki/Mopsy",
+		"link": "Mopsy",
 		"img": "2/2f/Mopsy_Avatar.png",
-		"file": "Mopsy_front",
+		"file": "8/8e/Mopsy_front.png",
 		"cost": "2",
 		"race": "Undead",
 		"rarity": "Uncommon",
@@ -5807,26 +5694,24 @@ const heros =
 			{
 				"type": "Passive",
 				"title": "Resurrect",
-				"icon_title": "Passive_Resurrect",
+				"icon_title": "0/00/Passive_Resurrect.png",
 				"description": "Resurrects from bones state if not stepped on, or over a pit or obstacle, at the end of the turn.",
-				"resurrect": "125",
-				"icon_url": "0/00/Passive_Resurrect.png"
+				"resurrect": "125"
 			},
 			{
 				"type": "Passive",
 				"title": "Pack Attack",
-				"icon_title": "Passive_Matching_uid71",
+				"icon_title": "6/67/Passive_Matching_uid71.png",
 				"description": "Grants damage buff for as long as friendly Jackalope King is on site.",
-				"buff": "150",
-				"icon_url": "6/67/Passive_Matching_uid71.png"
+				"buff": "150"
 			}
 		]
 	},
 	{
 		"name": "CottonTale",
-		"link": "/wiki/CottonTale",
+		"link": "CottonTale",
 		"img": "b/b6/Cottontale_Avatar.png",
-		"file": "cottonTale_front",
+		"file": "7/7d/CottonTale_front.png",
 		"cost": "2",
 		"race": "Undead",
 		"rarity": "Uncommon",
@@ -5841,26 +5726,24 @@ const heros =
 			{
 				"type": "Passive",
 				"title": "Resurrect",
-				"icon_title": "Passive_Resurrect",
+				"icon_title": "0/00/Passive_Resurrect.png",
 				"description": "Resurrects from bones state if not stepped on, or over a pit or obstacle, at the end of the turn.",
-				"resurrect": "125",
-				"icon_url": "0/00/Passive_Resurrect.png"
+				"resurrect": "125"
 			},
 			{
 				"type": "Passive",
 				"title": "Pack Attack",
-				"icon_title": "Passive_Matching_uid71",
+				"icon_title": "6/67/Passive_Matching_uid71.png",
 				"description": "Grants damage buff for as long as friendly Jackalope King is on site.",
-				"buff": "150",
-				"icon_url": "6/67/Passive_Matching_uid71.png"
+				"buff": "150"
 			}
 		]
 	},
 	{
 		"name": "Lenny",
-		"link": "/wiki/Lenny",
+		"link": "Lenny",
 		"img": "b/b2/Lenny_Avatar.png",
-		"file": "Lenny Front",
+		"file": "5/58/Lenny_Front.png",
 		"description": "All wrapped up in getting a-head!",
 		"cost": "2",
 		"race": "Undead",
@@ -5876,9 +5759,9 @@ const heros =
 	},
 	{
 		"name": "Baby Snakey",
-		"link": "/wiki/Baby_Snakey",
+		"link": "Baby_Snakey",
 		"img": "f/fe/Baby_Snakey_Avatar.png",
-		"file": "BabySnakey_front",
+		"file": "7/7a/BabySnakey_front.png",
 		"cost": "3",
 		"race": "Undead",
 		"rarity": "Common",
@@ -5895,9 +5778,9 @@ const heros =
 	},
 	{
 		"name": "Murder Wing",
-		"link": "/wiki/Murder_Wing",
+		"link": "Murder_Wing",
 		"img": "f/fb/Murder_Wing_Avatar.png",
-		"file": "Murderwing_front",
+		"file": "f/fd/Murderwing_front.png",
 		"cost": "3",
 		"race": "Undead",
 		"rarity": "Uncommon",
@@ -5913,23 +5796,22 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Monty",
-				"icon_title": "Special_MurderWing_Projectile",
+				"icon_title": "3/36/Special_MurderWing_Projectile.png",
 				"description": "Deals damage to an enemy unit.",
 				"attack_range": "2",
 				"attack": "450",
 				"splash": "No",
 				"cooldown": "1",
 				"attack_type": "Line of Sight",
-				"effect_range": "Single Target Attack",
-				"icon_url": "3/36/Special_MurderWing_Projectile.png"
+				"effect_range": "Single Target Attack"
 			}
 		]
 	},
 	{
 		"name": "Grave Digger",
-		"link": "/wiki/Grave_Digger",
+		"link": "Grave_Digger",
 		"img": "d/dc/Grave_Digger_Avatar.png",
-		"file": "Gravedigger_front",
+		"file": "3/34/Gravedigger_front.png",
 		"cost": "3",
 		"race": "Undead",
 		"rarity": "Uncommon",
@@ -5944,22 +5826,21 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Terrorform",
-				"icon_title": "Special_Terraform",
+				"icon_title": "c/cb/Special_Terraform.png",
 				"description": "Can be used to create or remove obstacles on adjacent tiles. Created obstacles have HP, are immovable and are targetable by both teams.",
 				"attack_range": "1",
 				"obstacle": "2000",
 				"cooldown": "2",
 				"attack_type": "Line of Sight",
-				"effect_range": "Single Target Attack",
-				"icon_url": "c/cb/Special_Terraform.png"
+				"effect_range": "Single Target Attack"
 			}
 		]
 	},
 	{
 		"name": "Bad Sushi",
-		"link": "/wiki/Bad_Sushi",
+		"link": "Bad_Sushi",
 		"img": "a/a8/Bad_Sushi_Avatar.png",
-		"file": "BadSushi_front",
+		"file": "a/a9/BadSushi_front.png",
 		"cost": "3",
 		"race": "Undead",
 		"rarity": "Uncommon",
@@ -5971,7 +5852,7 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Fish Fight!",
-				"icon_title": "Special_Poison",
+				"icon_title": "5/56/Special_Poison.png",
 				"description": "Deals damage and poisons all adjacent enemy units. Mechanicals can't be poisoned.",
 				"attack_range": "1",
 				"attack": "600",
@@ -5980,16 +5861,15 @@ const heros =
 				"duration": "3",
 				"unlocking": "1",
 				"attack_type": "Self-Initiated AOE",
-				"effect_range": "Targeted AOE Attack",
-				"icon_url": "5/56/Special_Poison.png"
+				"effect_range": "Targeted AOE Attack"
 			}
 		]
 	},
 	{
 		"name": "Jackalope King",
-		"link": "/wiki/Jackalope_King",
+		"link": "Jackalope_King",
 		"img": "c/c3/Jackalope_King_Avatar.png",
-		"file": "JackalopeKing_front",
+		"file": "8/8e/JackalopeKing_front.png",
 		"cost": "3",
 		"race": "Undead",
 		"rarity": "Rare",
@@ -6005,26 +5885,24 @@ const heros =
 			{
 				"type": "Passive",
 				"title": "Resurrect",
-				"icon_title": "Passive_Resurrect",
+				"icon_title": "0/00/Passive_Resurrect.png",
 				"description": "Resurrects from bones state if not stepped on, or over a pit or obstacle, at the end of the turn.",
-				"resurrect": "200",
-				"icon_url": "0/00/Passive_Resurrect.png"
+				"resurrect": "200"
 			},
 			{
 				"type": "Passive",
 				"title": "Pack Attack",
-				"icon_title": "Passive_Matching_uid74",
+				"icon_title": "8/83/Passive_Matching_uid74.png",
 				"description": "Grants damage buff for as long as any of the friendly Jackalopes (Flopsy, Mopsy, or CottonTale) is on site.",
-				"buff": "200",
-				"icon_url": "8/83/Passive_Matching_uid74.png"
+				"buff": "200"
 			}
 		]
 	},
 	{
 		"name": "Whiskers",
-		"link": "/wiki/Whiskers",
+		"link": "Whiskers",
 		"img": "1/16/Whiskers.png",
-		"file": "Whiskers Card Front",
+		"file": "8/87/Whiskers_Card_Front.png",
 		"cost": "3",
 		"race": "Undead",
 		"rarity": "Rare",
@@ -6047,17 +5925,16 @@ const heros =
 			{
 				"type": "Passive",
 				"title": "Trap Absorber",
-				"icon_title": "Passive Trap Removal",
-				"description": "Disarm enemy trap without triggering it if standing on it at the end of your turn.",
-				"icon_url": "b/b2/Passive_Trap_Removal.png"
+				"icon_title": "b/b2/Passive_Trap_Removal.png",
+				"description": "Disarm enemy trap without triggering it if standing on it at the end of your turn."
 			}
 		]
 	},
 	{
 		"name": "Benny",
-		"link": "/wiki/Benny",
+		"link": "Benny",
 		"img": "2/22/Benny.png",
-		"file": "Benny Card Front",
+		"file": "2/23/Benny_Card_Front.png",
 		"cost": "3",
 		"race": "Undead",
 		"rarity": "Rare",
@@ -6073,20 +5950,19 @@ const heros =
 			{
 				"type": "Passive",
 				"title": "Resurrect",
-				"icon_title": "Passive_Resurrect",
+				"icon_title": "0/00/Passive_Resurrect.png",
 				"description": "Resurrects from bones state if not stepped on, or over a pit or obstacle, at the end of the turn.",
-				"resurrect": "300",
-				"icon_url": "0/00/Passive_Resurrect.png"
+				"resurrect": "300"
 			}
 		]
 	},
 	{
 		"name": "Creepy Devil",
-		"link": "/wiki/Creepy_Devil",
+		"link": "Creepy_Devil",
 		"img": "8/87/Creepy_Devil_Avatar.png",
 		"cost": "3",
 		"race": "Undead",
-		"file": "creepydevil_front",
+		"file": "9/98/Creepydevil_front.png",
 		"rarity": "Ultra Rare",
 		"movement_range": "2",
 		"movement_type": "Walking",
@@ -6109,9 +5985,9 @@ const heros =
 	},
 	{
 		"name": "Blinky",
-		"link": "/wiki/Blinky",
+		"link": "Blinky",
 		"img": "b/b8/Blinky_Avatar.png",
-		"file": "Blinky_front",
+		"file": "e/e4/Blinky_front.png",
 		"description": "Blink and you'll be gone!",
 		"cost": "4",
 		"rarity": "Common",
@@ -6127,9 +6003,9 @@ const heros =
 	},
 	{
 		"name": "Unbearable",
-		"link": "/wiki/Unbearable",
+		"link": "Unbearable",
 		"img": "2/2b/Unbearable_Avatar.png",
-		"file": "Unbearable_front",
+		"file": "4/49/Unbearable_front.png",
 		"description": "He has the right to bear arms... anyone's arms!",
 		"cost": "4",
 		"rarity": "Common",
@@ -6145,9 +6021,9 @@ const heros =
 	},
 	{
 		"name": "Daisy",
-		"link": "/wiki/Daisy",
+		"link": "Daisy",
 		"img": "5/50/Daisy_portrait.png",
-		"file": "Daisy_front",
+		"file": "b/b6/Daisy_front.png",
 		"cost": "4",
 		"race": "Undead",
 		"rarity": "Uncommon",
@@ -6162,18 +6038,17 @@ const heros =
 			{
 				"type": "Passive",
 				"title": "Resurrect",
-				"icon_title": "Passive_Resurrect",
+				"icon_title": "0/00/Passive_Resurrect.png",
 				"description": "Resurrects from bones state if not stepped on, or over a pit or obstacle, at the end of the turn.",
-				"resurrect": "200",
-				"icon_url": "0/00/Passive_Resurrect.png"
+				"resurrect": "200"
 			}
 		]
 	},
 	{
 		"name": "Primate 9",
-		"link": "/wiki/Primate_9",
+		"link": "Primate_9",
 		"img": "e/ee/Primate_9_Avatar.png",
-		"file": "Primate9_front",
+		"file": "b/b3/Primate9_front.png",
 		"cost": "4",
 		"rarity": "Uncommon",
 		"race": "Undead",
@@ -6188,22 +6063,21 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Bad Monkey!",
-				"icon_title": "Special_Charge",
+				"icon_title": "9/94/Special_Charge.png",
 				"description": "Allows the unit to move 1 tile and perform a melee attack with a single action.",
 				"attack_range": "2",
 				"attack": "425",
 				"attack_type": "Line of Sight",
 				"effect_range": "Singe Target Attack",
-				"cooldown": "1",
-				"icon_url": "9/94/Special_Charge.png"
+				"cooldown": "1"
 			}
 		]
 	},
 	{
 		"name": "Snappy",
-		"link": "/wiki/Snappy",
+		"link": "Snappy",
 		"img": "6/64/SNAPPY_Avatar.png",
-		"file": "Snappy_Front",
+		"file": "f/fb/Snappy_Front.png",
 		"cost": "4",
 		"race": "Undead",
 		"rarity": "Uncommon",
@@ -6219,9 +6093,9 @@ const heros =
 	},
 	{
 		"name": "Alfred",
-		"link": "/wiki/Alfred",
+		"link": "Alfred",
 		"img": "1/13/Alfred_Avatar.png",
-		"file": "Alfred Front",
+		"file": "6/64/Alfred_Front.png",
 		"cost": "4",
 		"race": "Undead",
 		"rarity": "Ultra Rare",
@@ -6242,18 +6116,17 @@ const heros =
 			{
 				"type": "Passive",
 				"title": "Resurrect",
-				"icon_title": "Passive_Resurrect",
+				"icon_title": "0/00/Passive_Resurrect.png",
 				"description": "Resurrects from bones state if not stepped on, or over a pit or obstacle, at the end of the turn.",
-				"resurrect": "325",
-				"icon_url": "0/00/Passive_Resurrect.png"
+				"resurrect": "325"
 			}
 		]
 	},
 	{
 		"name": "Badside Manners",
-		"link": "/wiki/Badside_Manners",
+		"link": "Badside_Manners",
 		"img": "8/89/Badside_Manners_Avatar.png",
-		"file": "Badside_Manners_Front",
+		"file": "c/cb/Badside_Manners_Front.png",
 		"cost": "5",
 		"race": "Undead",
 		"rarity": "Common",
@@ -6269,9 +6142,9 @@ const heros =
 	},
 	{
 		"name": "Fetch",
-		"link": "/wiki/Fetch",
+		"link": "Fetch",
 		"img": "9/99/Fetch_Avatar.png",
-		"file": "Fetch_front",
+		"file": "a/a9/Fetch_front.png",
 		"cost": "5",
 		"race": "Undead",
 		"rarity": "Uncommon",
@@ -6286,21 +6159,20 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Butthead!",
-				"icon_title": "Special_Push",
+				"icon_title": "a/a4/Special_Push.png",
 				"description": "Damages and pushes an enemy unit backwards 1 unit. Default direction is a straight line.",
 				"attack_range": "1",
 				"attack": "600",
 				"attack_type": "Line of Sight",
-				"effect_range": "Single Target Attack",
-				"icon_url": "a/a4/Special_Push.png"
+				"effect_range": "Single Target Attack"
 			}
 		]
 	},
 	{
 		"name": "Guillaume",
-		"link": "/wiki/Guillaume",
+		"link": "Guillaume",
 		"img": "8/8a/Guillaume_Avatar.png",
-		"file": "Guillaume Front",
+		"file": "0/05/Guillaume_Front.png",
 		"cost": "5",
 		"race": "Undead",
 		"rarity": "Uncommon",
@@ -6321,18 +6193,17 @@ const heros =
 			{
 				"type": "Passive",
 				"title": "Resurrect",
-				"icon_title": "Passive_Resurrect",
+				"icon_title": "0/00/Passive_Resurrect.png",
 				"description": "Resurrects from bones state if not stepped on, or over a pit or obstacle, at the end of the turn.",
-				"resurrect": "388",
-				"icon_url": "0/00/Passive_Resurrect.png"
+				"resurrect": "388"
 			}
 		]
 	},
 	{
 		"name": "Zomboni",
-		"link": "/wiki/Zomboni",
+		"link": "Zomboni",
 		"img": "9/9b/Zomboni_portrait.png",
-		"file": "Zomboni",
+		"file": "6/69/Zomboni.png",
 		"cost": "5",
 		"race": "Undead",
 		"rarity": "Rare",
@@ -6358,9 +6229,9 @@ const heros =
 	},
 	{
 		"name": "Smiley",
-		"link": "/wiki/Smiley",
+		"link": "Smiley",
 		"img": "1/11/Smiley_Avatar.png",
-		"file": "Smiley_front",
+		"file": "1/11/Smiley_front.png",
 		"cost": "5",
 		"race": "Undead",
 		"rarity": "Rare",
@@ -6378,20 +6249,19 @@ const heros =
 			{
 				"type": "Passive",
 				"title": "Halitosis",
-				"icon_title": "Passive_DiseaseAOE",
+				"icon_title": "c/c6/Passive_DiseaseAOE.png",
 				"description": "Disease all adjacent non-mechanical enemies at the end of your turns.",
 				"attack_range": "1",
 				"disease": "425",
-				"attack_type": "Self-Initiated AOE",
-				"icon_url": "c/c6/Passive_DiseaseAOE.png"
+				"attack_type": "Self-Initiated AOE"
 			}
 		]
 	},
 	{
 		"name": "Maestro",
-		"link": "/wiki/Maestro",
+		"link": "Maestro",
 		"img": "f/f4/Maestro_Avatar.png",
-		"file": "Conductor_Front",
+		"file": "8/80/Conductor_Front.png",
 		"cost": "5",
 		"race": "Undead",
 		"rarity": "Ultra Rare",
@@ -6418,9 +6288,9 @@ const heros =
 	},
 	{
 		"name": "Jaws",
-		"link": "/wiki/Jaws",
+		"link": "Jaws",
 		"img": "9/93/Jaws_Avatar.png",
-		"file": "Jaws_Front",
+		"file": "0/0c/Jaws_Front.png",
 		"cost": "5",
 		"race": "Undead",
 		"rarity": "Ultra Rare",
@@ -6446,9 +6316,9 @@ const heros =
 	},
 	{
 		"name": "Cerberus",
-		"link": "/wiki/Cerberus",
+		"link": "Cerberus",
 		"img": "a/a1/Cerberus_Avatar.png",
-		"file": "Cerberus front",
+		"file": "b/b1/Cerberus_front.png",
 		"description": "Hell's Best Friend!",
 		"cost": "6",
 		"race": "Undead",
@@ -6464,9 +6334,9 @@ const heros =
 	},
 	{
 		"name": "Eratic",
-		"link": "/wiki/Eratic",
+		"link": "Eratic",
 		"img": "6/63/Eratic_Avatar.png",
-		"file": "Eratic front",
+		"file": "9/91/Eratic_front.png",
 		"cost": "6",
 		"race": "Undead",
 		"rarity": "Rare",
@@ -6484,9 +6354,9 @@ const heros =
 	},
 	{
 		"name": "Goon",
-		"link": "/wiki/Goon",
+		"link": "Goon",
 		"img": "b/b0/Goon_Avatar.png",
-		"file": "Goon_Front",
+		"file": "1/13/Goon_Front.png",
 		"cost": "6",
 		"race": "Undead",
 		"rarity": "Rare",
@@ -6501,23 +6371,22 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Slapshot!",
-				"icon_title": "Special_Slapshot",
+				"icon_title": "a/a4/Special_Slapshot.png",
 				"description": "Can target an enemy if it's tile forms a straight line with your tile. Enemy unit is damaged as well as enemy units behind.",
 				"attack_range": "2",
 				"attack": "500",
 				"cooldown": "1",
 				"unlocking": "1",
 				"attack_type": "Line of Sight",
-				"effect_range": "Beam Attack",
-				"icon_url": "a/a4/Special_Slapshot.png"
+				"effect_range": "Beam Attack"
 			}
 		]
 	},
 	{
 		"name": "Tammy Tumbler",
-		"link": "/wiki/Tammy_Tumbler",
+		"link": "Tammy_Tumbler",
 		"img": "7/74/Tammy_Tumbler_Avatar.png",
-		"file": "Tammy Tumbler Front",
+		"file": "1/1d/Tammy_Tumbler_Front.png",
 		"cost": "6",
 		"race": "Undead",
 		"rarity": "Rare",
@@ -6531,7 +6400,7 @@ const heros =
 		"abilities": [
 			{
 				"type": "SpecialAbility",
-				"icon_title": "Special_Poison",
+				"icon_title": "5/56/Special_Poison.png",
 				"title": "Nighty Night",
 				"description": "Deals damage, poison, and disease to an enemy unit and adjacent enemy units which recieve 50% damage of initial damage. Disease, once applied, is permanent and can never be healed. Mechanicals can't be diseased or poisoned.",
 				"attack_type": "Line of Sight",
@@ -6541,16 +6410,15 @@ const heros =
 				"duration": "3",
 				"disease": "200",
 				"effect_range": "Targeted AOE Attack",
-				"cooldown": "1",
-				"icon_url": "5/56/Special_Poison.png"
+				"cooldown": "1"
 			}
 		]
 	},
 	{
 		"name": "Doloris",
-		"link": "/wiki/Doloris",
+		"link": "Doloris",
 		"img": "6/6d/Doloris_Avatar.png",
-		"file": "Doloris Front",
+		"file": "1/19/Doloris_Front.png",
 		"cost": "6",
 		"race": "Undead",
 		"rarity": "Rare",
@@ -6571,18 +6439,17 @@ const heros =
 			{
 				"type": "Passive",
 				"title": "Resurrect",
-				"icon_title": "Passive_Resurrect",
+				"icon_title": "0/00/Passive_Resurrect.png",
 				"description": "Resurrects from bones state if not stepped on, or over a pit or obstacle, at the end of the turn.",
-				"resurrect": "475",
-				"icon_url": "0/00/Passive_Resurrect.png"
+				"resurrect": "475"
 			}
 		]
 	},
 	{
 		"name": "Jeeves",
-		"link": "/wiki/Jeeves",
+		"link": "Jeeves",
 		"img": "f/fe/Jeeves_Avatar.png",
-		"file": "Jeeves front",
+		"file": "e/eb/Jeeves_front.png",
 		"cost": "6",
 		"race": "Undead",
 		"rarity": "Ultra Rare",
@@ -6597,22 +6464,21 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Frozen Stiff",
-				"icon_title": "Special_Trap_Ice",
+				"icon_title": "b/b8/Special_Trap_Ice.png",
 				"description": "Places a freeze trap. Can be set off by an enemy unit at the end of any turn, except the turn it's laid. Frozen units can't move or attack. Fire melts ice by 1 round.",
 				"attack_range": "2",
 				"effect_duration": "2",
 				"cooldown": "1",
 				"attack_type": "Line of Sight",
-				"effect_range": "Single Target Attack",
-				"icon_url": "b/b8/Special_Trap_Ice.png"
+				"effect_range": "Single Target Attack"
 			}
 		]
 	},
 	{
 		"name": "Cluck Norris",
-		"link": "/wiki/Cluck_Norris",
+		"link": "Cluck_Norris",
 		"img": "b/bc/Foulflexdown.png",
-		"file": "cluck_norris_foulflexdown_front",
+		"file": "a/af/Cluck_norris_foulflexdown_front.png",
 		"race": "Undead",
 		"rarity": "Ultra Rare",
 		"movement_range": "2",
@@ -6627,21 +6493,20 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Flexosterone",
-				"icon_title": "Special_AttackBuff",
+				"icon_title": "1/12/Special_AttackBuff.png",
 				"description": "Increases own damage for 2 turns.",
 				"buff": "500",
 				"duration": "3",
 				"cooldown": "3",
-				"unlocking": "1",
-				"icon_url": "1/12/Special_AttackBuff.png"
+				"unlocking": "1"
 			}
 		]
 	},
 	{
 		"name": "Fleshcrawler",
-		"link": "/wiki/Fleshcrawler",
+		"link": "Fleshcrawler",
 		"img": "9/9d/Fleshcrawler_Avatar.png",
-		"file": "Fleshcrawler_front",
+		"file": "9/99/Fleshcrawler_front.png",
 		"cost": "7",
 		"race": "Undead",
 		"rarity": "Uncommon",
@@ -6656,7 +6521,7 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Raising Hell!",
-				"icon_title": "Special_Fleshcrawler_Attack",
+				"icon_title": "a/a3/Special_Fleshcrawler_Attack.png",
 				"description": "Damages all enemy units directly adjacent to it. All enemy units 2 tiles away and within line of sight are dealt 50% damage.",
 				"attack_range": "2",
 				"attack": "600",
@@ -6664,16 +6529,15 @@ const heros =
 				"cooldown": "1",
 				"unlocking": "1",
 				"attack_type": "Self-Initiated AOE",
-				"effect_range": "Targeted AOE Attack",
-				"icon_url": "a/a3/Special_Fleshcrawler_Attack.png"
+				"effect_range": "Targeted AOE Attack"
 			}
 		]
 	},
 	{
 		"name": "Terrordactyl",
-		"link": "/wiki/Terrordactyl",
+		"link": "Terrordactyl",
 		"img": "2/2d/Terrordactyl_Avatar.png",
-		"file": "Terrordactyl_front",
+		"file": "3/37/Terrordactyl_front.png",
 		"cost": "7",
 		"rarity": "Uncommon",
 		"race": "Undead",
@@ -6688,18 +6552,17 @@ const heros =
 			{
 				"type": "Passive",
 				"title": "Resurrect",
-				"icon_title": "Passive_Resurrect",
+				"icon_title": "0/00/Passive_Resurrect.png",
 				"description": "Resurrects from bones state if not stepped on, or over a pit or obstacle, at the end of the turn.",
-				"resurrect": "400",
-				"icon_url": "0/00/Passive_Resurrect.png"
+				"resurrect": "400"
 			}
 		]
 	},
 	{
 		"name": "Fowl",
-		"link": "/wiki/Fowl",
+		"link": "Fowl",
 		"img": "3/3a/Fowl_Avatar.png",
-		"file": "Fowl_front",
+		"file": "8/85/Fowl_front.png",
 		"cost": "7",
 		"race": "Undead",
 		"rarity": "Rare",
@@ -6715,7 +6578,7 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Funky Chicken",
-				"icon_title": "Special_Disease",
+				"icon_title": "9/91/Special_Disease.png",
 				"description": "Deals damage and disease to an enemy unit. Disease, once applied, is permanent and can never be healed. Mechanicals can't be diseased.",
 				"attack_range": "2",
 				"attack": "200",
@@ -6723,16 +6586,15 @@ const heros =
 				"cooldown": "1",
 				"unlocking": "1",
 				"attack_type": "Line of Sight",
-				"effect_range": "Single Target Attack",
-				"icon_url": "9/91/Special_Disease.png"
+				"effect_range": "Single Target Attack"
 			}
 		]
 	},
 	{
 		"name": "Buzzkill",
-		"link": "/wiki/Buzzkill",
+		"link": "Buzzkill",
 		"img": "1/1a/Buzzkill_Avatar.png",
-		"file": "Buzzkill Front",
+		"file": "c/c9/Buzzkill_Front.png",
 		"cost": "7",
 		"race": "Undead",
 		"rarity": "Rare",
@@ -6747,25 +6609,24 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Terrorform Saw",
-				"icon_title": "Special_Terraform",
+				"icon_title": "c/cb/Special_Terraform.png",
 				"description": "Can be used to create or remove obstacles within range. Created obstacles have HP, are immovable and are targetable by both teams.",
 				"attack_range": "2",
 				"obstacle": "2000",
 				"unlocking": "1",
 				"cooldown": "2",
 				"attack_type": "Lob",
-				"effect_range": "Single Target Attack",
-				"icon_url": "c/cb/Special_Terraform.png"
+				"effect_range": "Single Target Attack"
 			}
 		]
 	},
 	{
 		"name": "Whuffalo WIll",
-		"link": "/wiki/Whuffalo_WIll",
+		"link": "Whuffalo_WIll",
 		"img": "f/ff/Whuffalo_WIll_Avatar.png",
 		"cost": "7",
 		"race": "Undead",
-		"file": "whuffalo_front",
+		"file": "1/1b/Whuffalo_front.png",
 		"rarity": "Ultra Rare",
 		"movement_range": "1",
 		"movement_type": "Walking",
@@ -6790,9 +6651,9 @@ const heros =
 	},
 	{
 		"name": "Hi-Five",
-		"link": "/wiki/Hi-Five",
+		"link": "Hi-Five",
 		"img": "c/c4/Hi_Five_Avatar.png",
-		"file": "hifive_front",
+		"file": "2/2a/Hifive_front.png",
 		"cost": "8",
 		"race": "Undead",
 		"rarity": "Uncommon",
@@ -6807,18 +6668,17 @@ const heros =
 			{
 				"type": "Passive",
 				"title": "Heart Attack",
-				"icon_title": "Passive_Heart_Attack",
+				"icon_title": "6/62/Passive_Heart_Attack.png",
 				"description": "Deals additional damage when attacking the enemy Heart.",
-				"buff": "400 (When attacking the Enemy Heart.)",
-				"icon_url": "6/62/Passive_Heart_Attack.png"
+				"buff": "400 (When attacking the Enemy Heart.)"
 			}
 		]
 	},
 	{
 		"name": "Mildred",
-		"link": "/wiki/Mildred",
+		"link": "Mildred",
 		"img": "a/a9/Mildred_Avatar.png",
-		"file": "mildred_front",
+		"file": "1/1c/Mildred_front.png",
 		"cost": "8",
 		"race": "Undead",
 		"health": "2000",
@@ -6829,7 +6689,7 @@ const heros =
 			{
 				"type": "SpecialAbility",
 				"title": "Kitty Littering",
-				"icon_title": "Special_Mildred_Attack",
+				"icon_title": "8/8d/Special_Mildred_Attack.png",
 				"description": "Deals damage to an enemy unit, 50% damage to all adjacent enemy units, and 25% damage to all enemy units 2 tiles away from the target.",
 				"attack_range": "2",
 				"attack": "940",
@@ -6837,16 +6697,15 @@ const heros =
 				"cooldown": "1",
 				"unlocking": "1",
 				"attack_type": "Lob",
-				"effect_range": "Splash AOE Attack",
-				"icon_url": "8/8d/Special_Mildred_Attack.png"
+				"effect_range": "Splash AOE Attack"
 			}
 		]
 	},
 	{
 		"name": "Mummy",
-		"link": "/wiki/Mummy",
+		"link": "Mummy",
 		"img": "d/d2/Mummy_Avatar.png",
-		"file": "Mummy_Front",
+		"file": "e/e2/Mummy_Front.png",
 		"cost": "8",
 		"race": "Undead",
 		"rarity": "Ultra Rare",
@@ -6867,9 +6726,9 @@ const heros =
 	},
 	{
 		"name": "Chuck",
-		"link": "/wiki/Chuck",
+		"link": "Chuck",
 		"img": "f/fe/Chuck_Avatar.png",
-		"file": "chuck_front",
+		"file": "4/4c/Chuck_front.png",
 		"cost": "9",
 		"race": "Undead",
 		"rarity": "Ultra Rare",
@@ -6885,9 +6744,9 @@ const heros =
 	},
 	{
 		"name": "Anubis",
-		"link": "/wiki/Anubis",
+		"link": "Anubis",
 		"img": "2/26/Anubis.png",
-		"file": "Anubis_front",
+		"file": "2/24/Anubis_front.png",
 		"cost": "9",
 		"race": "Undead",
 		"rarity": "Ultra Rare",
@@ -6903,10 +6762,9 @@ const heros =
 			{
 				"type": "Passive",
 				"title": "Walk with Me",
-				"icon_title": "Passive UndeadStrength",
+				"icon_title": "8/8a/Passive_UndeadStrength.png",
 				"description": "Telepathically connected to friendly Undead increasing attack damage for each active friendly Undead, excludes self.",
-				"buff": "100",
-				"icon_url": "8/8a/Passive_UndeadStrength.png"
+				"buff": "100"
 			}
 		]
 	}
@@ -6920,7 +6778,7 @@ const heros =
 
 		const IMG_PATH = 'https://static.wikia.nocookie.net/phobies/images/';
 		const DEFAULT_ICON = 'e/e8/Lippy.png';
-		const WIKISITE = 'https://phobies.fandom.com/';
+		const WIKISITE = 'https://phobies.fandom.com/wiki/';
 		// const WIKISITE = 'https://phobies.antifandom.com/';
 		// const WIKISITE = 'https://breezewiki.com/phobies/';
 
@@ -7325,7 +7183,7 @@ const heros =
 			const skills = fn_gen_hero_skills(hero.abilities);
 
 			return `<table>` +
-				`<tr><td colspan="2" align="center"><a href="${WIKISITE}${hero.link}" target="_blank" rel="noopener"><img src="${IMG_PATH}${hero.img}" width="90" height="90" loading="lazy"></a></td></tr>` +
+				`<tr><td colspan="2" align="center"><a href="${WIKISITE}${hero.link}" target="_blank" rel="noopener"><img src="${IMG_PATH}${hero.img}" width="90" height="90"><img src="${IMG_PATH}${hero.file}/revision/latest/scale-to-width-down/170" width="170" height="170"></a></td></tr>` +
 				props.map(prop => {
 					if (prop === 'abilities') {
 						return '';
