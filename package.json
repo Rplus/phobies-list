@@ -1,5 +1,6 @@
 {
-  "dependencies": {
-    "linkedom": "^0.18.13"
+  "devDependencies": {
+    "linkedom": "^0.18.13",
+    "wtf_wikipedia": "^10.4.2"
   }
 }

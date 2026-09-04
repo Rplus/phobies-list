@@ -1,5 +1,3 @@
-// import { readFile, writeFile } from 'node:fs/promises';
-
 const DATA_DIR = Bun.env.DATA_DIR;
 const api_url = 'https://phobies.fandom.com/api.php';
 
@@ -9,7 +7,8 @@ const images = await Bun.file(`${DATA_DIR}/allimages_lookup.json`).json();
 for (const phobie of phobies) {
 	delete phobie.wikitext;
 	if (phobie.file) {
-		const fn = `${phobie.file.replace('{{PAGENAME}}', phobie.name)}`.toLowerCase().replaceAll(' ', '_');
+		const title = phobie.file === 'front' ? phobie.name + ' front' : phobie.file;
+		const fn = `${title}`.toLowerCase().replaceAll(' ', '_');
 		const img = images[fn];
 		if (img) {
 			phobie.file = fn_shorten_url(img.url);
@@ -19,13 +18,13 @@ for (const phobie of phobies) {
 	}
 
 	for (const ability of phobie.abilities ?? []) {
-		const icon_name = ability.icon_title;
+		const icon_name = ability['icon-title'];
 
 		if (icon_name) {
 			const fn = `${icon_name}`.toLowerCase().replaceAll(' ', '_');
 			const img = images[fn];
 			if (img) {
-				ability.icon_title = fn_shorten_url(img.url);
+				ability['icon-title'] = fn_shorten_url(img.url);
 			} else {
 				console.error(406, ability.title, ability.icon_title);
 			}

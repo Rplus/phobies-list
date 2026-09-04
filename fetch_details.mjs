@@ -1,6 +1,7 @@
-import { readFile, writeFile } from 'node:fs/promises';
+import wtf from 'wtf_wikipedia';
+const target_templates = ['phobie', 'passive', 'specialability'];
 
-const data_dir = process.env.DATA_DIR;
+const DATA_DIR = Bun.env.DATA_DIR;
 const api_url = 'https://phobies.fandom.com/api.php';
 
 function parse_templates(wikitext, template_names) {
@@ -103,9 +104,22 @@ function normalize_property_value(key, value) {
 	return rule[value.toLowerCase()] ?? value;
 }
 
-const phobies = JSON.parse(
-	await readFile(`${data_dir}/list.json`, 'utf8')
-);
+function fn_parse_wikitext(wikitext = '') {
+	const doc = wtf(wikitext);
+	const all_data = doc.templates().map(tmpl => tmpl.json());
+	const grouped = Object.groupBy(all_data, ({ template }) => template);
+	const op = {
+		...(grouped['phobie'] || [])[0],
+		abilities: [
+			...(grouped['passive'] || []),
+			...(grouped['specialability'] || [])
+		]
+	};
+	delete op.name;
+	return op;
+}
+
+const phobies = await Bun.file(`${DATA_DIR}/list.json`).json();
 
 for (let i = 0; i < phobies.length; i += 50) {
 	const batch = phobies.slice(i, i + 50);
@@ -146,40 +160,17 @@ for (let i = 0; i < phobies.length; i += 50) {
 		const wikitext =
 			page.revisions?.[0]?.slots?.main?.content ?? '';
 
-		const phobie_template = parse_templates(
-			wikitext,
-			['Phobie']
-		)[0];
-
-		const ability_templates = parse_templates(
-			wikitext,
-			['Passive', 'SpecialAbility']
-		);
-
-		const phobie_properties = {
-			...phobie_template?.properties
-		};
-
-		delete phobie_properties.name;
-
 		Object.assign(
 			phobie,
-			phobie_properties
-		);
-
-		phobie.abilities = ability_templates.map(
-			ability => ({
-				type: ability.template_name,
-				...ability.properties
-			})
+			fn_parse_wikitext(wikitext),
 		);
 
 		phobie.wikitext = wikitext;
 	}
 }
 
-await writeFile(
-	`${data_dir}/details.json`,
+await Bun.write(
+	`${DATA_DIR}/details.json`,
 	JSON.stringify(phobies, null, '\t') + '\n'
 );
 
