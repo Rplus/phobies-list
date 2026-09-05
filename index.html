@@ -7268,7 +7268,7 @@ const heros =
 					let _skills = hero[p];
 					if (_skills) {
 						ctx = _skills.map((s, si) => {
-							let _url = IMG_PATH + (s['icon-title'] || DEFAULT_ICON);
+							let _url = WIKI_PATH + (s['icon-title'] || DEFAULT_ICON);
 							return `<img src="${_url}" width="36" height="36" onclick="fn_toggle_dialog(true, '${hero.name}', ${si})" referrerpolicy="no-referrer"> `;
 						}).join('')
 					} else {
