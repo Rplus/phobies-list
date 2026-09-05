@@ -28,6 +28,9 @@ fetch_img_index:
 parse-phobies:
 	DATA_DIR='$(DATA_DIR)' bun ./parse-phobies.mjs
 
+download-phobies-images:
+	DATA_DIR='$(DATA_DIR)' bun ./download-imgs.mjs
+
 inline:
 	@echo "正在更新內嵌 JS..."
 	@awk -v js_file="$(COMBINED_JSON)" ' \
@@ -52,6 +55,6 @@ inline:
 	mv "$(INDEX_HTML).tmp" "$(INDEX_HTML)"
 
 # 如果真的有需要手動完整清空時才使用的指令
-clean:
-	rm -rf $(DATA_DIR)
-	@echo "已清理下載的資料。"
+# clean:
+# 	rm -rf $(DATA_DIR)
+# 	@echo "已清理下載的資料。"
