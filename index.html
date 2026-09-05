@@ -7010,9 +7010,13 @@ const heros =
 		// init
 		// init
 
-		const IMG_PATH = 'https://static.wikia.nocookie.net/phobies/images/';
-		const DEFAULT_ICON = 'e/e8/Lippy.png';
+		const is_dev = location.protocol !== 'https:';
+		// const is_dev = false;
+
 		const WIKISITE = 'https://phobies.fandom.com/wiki/';
+		const WIKI_PATH = 'https://static.wikia.nocookie.net/phobies/images/';
+		const IMG_PATH = is_dev ? './images/' : WIKI_OATH;
+		const DEFAULT_ICON = 'e/e8/Lippy.png';
 		// const WIKISITE = 'https://phobies.antifandom.com/';
 		// const WIKISITE = 'https://breezewiki.com/phobies/';
 
@@ -7220,7 +7224,7 @@ const heros =
 				let _props = fn_gen_hero_props(hero);
 				return `
 					<div class="grouped-hero item" ${_props}>
-						<img src="${IMG_PATH}${hero.img}" width="60" height="60" loading="lazy">
+						<img src="${IMG_PATH}${hero.img}" width="60" height="60" loading="lazy" referrerpolicy="no-referrer">
 						<button class="grouped-hero__details-btn" onclick="fn_toggle_dialog(true, '${hero.name}')"></button>
 						<div class="grouped-hero__name">
 							<a href="${WIKISITE}${hero.link}" target="_blank" rel="noopener">${hero.name}</a>
@@ -7259,13 +7263,13 @@ const heros =
 				let ctx = hero[p];
 
 				if (p === 'name') {
-					ctx = `<a href="${WIKISITE}${hero.link}" target="_blank" rel="noopener"><img src="${IMG_PATH}${hero.img}" width="60" height="60" loading="lazy"><br/></a>${hero[p]}`;
+					ctx = `<a href="${WIKISITE}${hero.link}" target="_blank" rel="noopener"><img src="${IMG_PATH}${hero.img}" width="60" height="60" loading="lazy" referrerpolicy="no-referrer"><br/></a>${hero[p]}`;
 				} else if (p === 'abilities') {
 					let _skills = hero[p];
 					if (_skills) {
 						ctx = _skills.map((s, si) => {
 							let _url = IMG_PATH + (s['icon-title'] || DEFAULT_ICON);
-							return `<img src="${_url}" width="36" height="36" onclick="fn_toggle_dialog(true, '${hero.name}', ${si})"> `;
+							return `<img src="${_url}" width="36" height="36" onclick="fn_toggle_dialog(true, '${hero.name}', ${si})" referrerpolicy="no-referrer"> `;
 						}).join('')
 					} else {
 						ctx = '';
@@ -7416,9 +7420,11 @@ const heros =
 		function fn_gen_hero_detail(hero) {
 
 			const skills = fn_gen_hero_skills(hero.abilities);
+			const front_img = IMG_PATH + hero.file + (is_dev ? '' : '/revision/latest/scale-to-width-down/170');
+			// const front_img = `${IMG_PATH}${hero.file}/revision/latest/scale-to-width-down/170`;
 
 			return `<table>` +
-				`<tr><td colspan="2" align="center"><a href="${WIKISITE}${hero.link}" target="_blank" rel="noopener"><img src="${IMG_PATH}${hero.img}" width="90" height="90"><img src="${IMG_PATH}${hero.file}/revision/latest/scale-to-width-down/170" width="170" height="170"></a></td></tr>` +
+				`<tr><td colspan="2" align="center"><a href="${WIKISITE}${hero.link}" target="_blank" rel="noopener"><img src="${IMG_PATH}${hero.img}" width="90" height="90" referrerpolicy="no-referrer"><img src="${front_img}" width="170" height="170" referrerpolicy="no-referrer"></a></td></tr>` +
 				props.map(prop => {
 					if (prop === 'abilities') {
 						return '';
@@ -7454,13 +7460,13 @@ const heros =
 
 				// 	skill_props_html += `<tr><td>${_prop}</td><td data-${_prop}="${skill[_prop]}"><div class="td-value">${skill[_prop]}</div></td></tr>`;
 				// }
-				let _url = IMG_PATH + (skill['icon-title'] || DEFAULT_ICON);
+				let _url = WIKI_PATH + (skill['icon-title'] || DEFAULT_ICON);
 				return `
 					<hr>
 					<hr>
 					<details open>
 						<summary>
-							<img src="${_url}" width=36 height=36 align=center>
+							<img src="${_url}" width=36 height=36 align=center referrerpolicy="no-referrer">
 							${skill.template} Ability: ${skill.title}
 						</summary>
 						<div class="skill-box">
