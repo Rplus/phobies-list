@@ -558,6 +558,12 @@
 			&[data-damage-range="undefined"] {
 				display: none;
 			}
+
+			.key-value {
+				display: inline-flex;
+				transform: unset;
+				font-size: smaller;
+			}
 		}
 
 		.race {
@@ -7181,6 +7187,15 @@ const heros =
 			// },
 		];
 
+		const baned_props = [
+			'link',
+			'img',
+			'file',
+			'template',
+			'abilities',
+			'order',
+		];
+
 		const skill_baned_props = [
 			'type',
 			'title',
@@ -7527,15 +7542,18 @@ const heros =
 			const skills = fn_gen_hero_skills(hero.abilities);
 			const avatar = `<a href="${WIKISITE}${hero.link}" target="_blank" rel="noopener"><img src="${IMG_PATH}${hero.img}" width="90" height="90" referrerpolicy="no-referrer"></a>`;
 			const card = fn_gen_cardview(hero);
+			let props_html = Object.keys(hero)
+				.filter(p => !baned_props.includes(p))
+				.sort((a, b) => {
+					return (a.indexOf(props) - b.indexOf(props)) || 9999;
+				})
+				.map(prop => {
+					return `<tr><td>${prop}</td><td data-${prop}="${hero[prop]}"><div class="td-value">${hero[prop]}</div></td></tr>`;
+				}).join('');
 
 			return `<table>` +
 				`<tr><td colspan="2" align="center">${avatar}${card}</td></tr>` +
-				props.map(prop => {
-					if (prop === 'abilities') {
-						return '';
-					}
-					return `<tr><td>${prop}</td><td data-${prop}="${hero[prop]}"><div class="td-value">${hero[prop]}</div></td></tr>`;
-				}).join('') +
+				props_html +
 				`</table>` + skills;
 		}
 
@@ -7544,6 +7562,27 @@ const heros =
 		function fn_gen_cardview(hero) {
 			// const front_img = `${IMG_PATH}${hero.file}/revision/latest/scale-to-width-down/170`;
 			const front_img = IMG_PATH + hero.file + (is_dev ? '' : '/revision/latest/scale-to-width-down/170');
+
+			let additional = '';
+			let effect_type = '';
+			if (hero.poison) { effect_type = 'poison' }
+			else if (hero.electric) { effect_type = 'electric' }
+				console.log(111, {effect_type});
+			if (effect_type) {
+				let duration = '';
+				if (hero.duration) {
+					duration = `
+						<div class="key-value" data-duration="${hero.duration}">
+							${hero.duration}
+						</div>`;
+				}
+				additional = `
+					<div class="key-value" data-${effect_type}>
+						${hero[effect_type]}
+						${duration}
+					</div>`
+			}
+
 			return `
 				<div class="cardview" style="--bgi: url(${front_img});">
 					<img class="img" src="${front_img}" width=150 referrerpolicy="no-referrer">
@@ -7553,6 +7592,7 @@ const heros =
 						<div class="movement key-value" data-movement-type="${hero['movement-type']}">${hero['movement-range']}</div>
 						<div class="attack-type key-value" data-attack-type="${hero['attack-type']}">${hero['attack-range']}</div>
 						<div class="attack key-value" data-damage-range="${hero['damage-range']}">${hero['attack']}</div>
+						${additional}
 					</div>
 					<div class="race" data-race="${hero.race}"></div>
 				</div>`;
