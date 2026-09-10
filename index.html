@@ -1538,7 +1538,7 @@ const heros =
 		"race": "Monster",
 		"movement-type": "Walking",
 		"effect-range": "Singe Target Attack",
-		"attack-type": "Line of sight",
+		"attack-type": "Line of Sight",
 		"attack-range": "1",
 		"movement-range": "2",
 		"template": "phobie",
@@ -1571,7 +1571,7 @@ const heros =
 		"attack-range": "2",
 		"health": "2000",
 		"attack": "300",
-		"attack-type": "Line of sight",
+		"attack-type": "Line of Sight",
 		"damage-range": "Single Target Attack",
 		"template": "phobie",
 		"abilities": [
@@ -1627,7 +1627,7 @@ const heros =
 		"movement-type": "Walking",
 		"movement-range": "2",
 		"attack": "440",
-		"attack-type": "Line of sight",
+		"attack-type": "Line of Sight",
 		"attack-range": "1",
 		"damage-range": "Single Target Attack",
 		"template": "phobie",
@@ -1691,8 +1691,8 @@ const heros =
 		"attack-range": "1",
 		"health": "950 / 2850",
 		"attack": "280 / 560",
-		"attack-type": "Line of sight",
-		"damage-range": "Single target attack",
+		"attack-type": "Line of Sight",
+		"damage-range": "Single Target Attack",
 		"template": "phobie",
 		"abilities": [
 			{
@@ -1906,7 +1906,7 @@ const heros =
 		"attack": "600",
 		"movement-type": "Walking",
 		"attack-type": "Line of Sight",
-		"damage-range": "Single target attack",
+		"damage-range": "Single Target Attack",
 		"health": "1000",
 		"movement-range": "2",
 		"attack-range": "1",
@@ -2497,7 +2497,7 @@ const heros =
 		"attack-range": "2",
 		"health": "1800",
 		"attack": "400",
-		"attack-type": "Line of sight",
+		"attack-type": "Line of Sight",
 		"damage-range": "Single Target Attack",
 		"template": "phobie",
 		"abilities": [
@@ -2617,7 +2617,7 @@ const heros =
 		"attack-range": "1",
 		"health": "2100",
 		"attack": "550",
-		"attack-type": "Line of sight",
+		"attack-type": "Line of Sight",
 		"damage-range": "Single Target Attack",
 		"template": "phobie",
 		"abilities": [
@@ -2892,7 +2892,7 @@ const heros =
 		"health": "750",
 		"attack": "350",
 		"attack-type": "Line of Sight",
-		"damage-range": "Single Targeted Attack",
+		"damage-range": "Single Target Attack",
 		"template": "phobie",
 		"abilities": [
 			{
@@ -3495,7 +3495,7 @@ const heros =
 		"health": "2100",
 		"attack": "450",
 		"attack-type": "Line of Sight",
-		"damage-range": "Single target Attack",
+		"damage-range": "Single Target Attack",
 		"template": "phobie",
 		"abilities": [
 			{
@@ -4498,7 +4498,7 @@ const heros =
 		"health": "650",
 		"attack": "300",
 		"attack-type": "Line of Sight",
-		"damage-range": "Single target Attack",
+		"damage-range": "Single Target Attack",
 		"stress level": "110",
 		"template": "phobie",
 		"abilities": [
@@ -5459,7 +5459,7 @@ const heros =
 		"attack": "400",
 		"movement-type": "Walking",
 		"attack-type": "Line of Sight",
-		"damage-range": "Single target attack",
+		"damage-range": "Single Target Attack",
 		"health": "1500",
 		"movement-range": "2",
 		"attack-range": "1",
@@ -6060,7 +6060,7 @@ const heros =
 		"health": "1050",
 		"attack": "325",
 		"attack-type": "Line of Sight",
-		"damage-range": "Single Targeted Attack",
+		"damage-range": "Single Target Attack",
 		"template": "phobie",
 		"abilities": []
 	},
@@ -6312,8 +6312,8 @@ const heros =
 		"movement-range": "2",
 		"attack": "450",
 		"attack-range": "1",
-		"attack-type": "Line Of Sight",
-		"damage-range": "Single Targeted Attack",
+		"attack-type": "Line of Sight",
+		"damage-range": "Single Target Attack",
 		"template": "phobie",
 		"abilities": []
 	},
@@ -6425,7 +6425,7 @@ const heros =
 		"health": "1300",
 		"attack": "350",
 		"attack-type": "Line of Sight",
-		"damage-range": "Single target Attack",
+		"damage-range": "Single Target Attack",
 		"template": "phobie",
 		"abilities": [
 			{
@@ -6505,7 +6505,7 @@ const heros =
 		"health": "1550",
 		"attack": "400",
 		"attack-type": "Line of Sight",
-		"damage-range": "Single target Attack",
+		"damage-range": "Single Target Attack",
 		"template": "phobie",
 		"abilities": [
 			{
@@ -6657,7 +6657,7 @@ const heros =
 		"health": "3000",
 		"attack": "1000",
 		"attack-type": "Line of Sight",
-		"damage-range": "Single Targeted Attack",
+		"damage-range": "Single Target Attack",
 		"template": "phobie",
 		"abilities": []
 	},
@@ -6760,7 +6760,7 @@ const heros =
 		"health": "1900",
 		"attack": "450",
 		"attack-type": "Line of Sight",
-		"damage-range": "Single target Attack",
+		"damage-range": "Single Target Attack",
 		"template": "phobie",
 		"abilities": [
 			{
@@ -7567,6 +7567,7 @@ const heros =
 			let effect_type = '';
 			if (hero.poison) { effect_type = 'poison' }
 			else if (hero.electric) { effect_type = 'electric' }
+			else if (hero.fire) { effect_type = 'fire' }
 				console.log(111, {effect_type});
 			if (effect_type) {
 				let duration = '';
