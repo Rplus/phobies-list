@@ -98,6 +98,7 @@
 	display: grid;
 	width: 100%;
 	max-width: 1400px;
+	min-height: 80vh;
 	margin-left: auto;
 	margin-right: auto;
 	grid-template-columns: repeat(12, 1fr);
@@ -717,4 +718,10 @@ table {
 dialog details {
 	margin-top: 1em;
 	margin-bottom: 1em;
+}
+
+footer {
+	text-align: center;
+	font-family: monospace;
+	padding-bottom: 1em;
 }

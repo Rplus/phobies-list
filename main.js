@@ -228,7 +228,7 @@ function fn_gen_groupby(_cate) {
 				<img src="${IMG_PATH}${hero.img}" width="60" height="60" loading="lazy" referrerpolicy="no-referrer">
 				<button class="grouped-hero__details-btn" onclick="fn_toggle_dialog(true, '${hero.name}')"></button>
 				<div class="grouped-hero__name">
-					<a href="${WIKISITE}${hero.link}" target="_blank" rel="noopener">${hero.name}</a>
+					<a href="${WIKISITE}${hero.link}" target="_blank" rel="noopener noreferrer">${hero.name}</a>
 				</div>
 			</div>
 		`
@@ -264,7 +264,7 @@ function fn_gen_list() {
 		let ctx = hero[p];
 
 		if (p === 'name') {
-			ctx = `<img src="${IMG_PATH}${hero.img}" width="60" height="60" loading="lazy" referrerpolicy="no-referrer" onclick="fn_toggle_dialog(true, '${hero.name}')"><br/><a href="${WIKISITE}${hero.link}" target="_blank" rel="noopener">${hero[p]}</a>`;
+			ctx = `<img src="${IMG_PATH}${hero.img}" width="60" height="60" loading="lazy" referrerpolicy="no-referrer" onclick="fn_toggle_dialog(true, '${hero.name}')"><br/><a href="${WIKISITE}${hero.link}" target="_blank" rel="noopener noreferrer">${hero[p]}</a>`;
 		} else if (p === 'abilities') {
 			let _skills = hero[p];
 			if (_skills) {
@@ -421,7 +421,7 @@ function fn_toggle_dialog(is_open = true, heroname = '', skill_index = 0) {
 function fn_gen_hero_detail(hero) {
 
 	const skills = fn_gen_hero_skills(hero.abilities);
-	const avatar = `<a href="${WIKISITE}${hero.link}" target="_blank" rel="noopener"><img src="${IMG_PATH}${hero.img}" width="90" height="90" referrerpolicy="no-referrer"></a>`;
+	const avatar = `<a href="${WIKISITE}${hero.link}" target="_blank" rel="noopener noreferrer"><img src="${IMG_PATH}${hero.img}" width="90" height="90" referrerpolicy="no-referrer"></a>`;
 	const card = fn_gen_cardview(hero);
 	let props_html = Object.keys(hero)
 		.filter(p => !baned_props.includes(p))
