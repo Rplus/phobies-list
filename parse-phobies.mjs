@@ -122,4 +122,4 @@ await writeFile(
 	JSON.stringify(parsed_data, null, '\t') + '\n'
 );
 
-console.log(`Parsed ${parsed_data.length} Phobies.`);
+console.log(` ## Parsed ${parsed_data.length} Phobies.`);

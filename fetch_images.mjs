@@ -38,7 +38,7 @@ async function fetch_all_images() {
 		all_images.push(...images);
 
 		console.log(
-			`Fetched ${images.length}, total=${all_images.length}`
+			` # Fetched ${images.length}, total=${all_images.length}`
 		);
 
 		if (!data?.continue?.aicontinue) {
@@ -48,7 +48,7 @@ async function fetch_all_images() {
 		aicontinue = data.continue.aicontinue;
 
 		console.log(
-			`Continue from: ${aicontinue}`
+			` ..Continue from: ${aicontinue}`
 		);
 	}
 
@@ -87,5 +87,5 @@ await Bun.write(
 );
 
 console.log(
-	`Done. Total images: ${images.length}`
+	` ## Done. Total images: ${images.length}`
 );

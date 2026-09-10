@@ -47,5 +47,5 @@ await Bun.write(
 	const outputJsPath = `./data_with_icon.js`;
 	const jsContent = `const heros = ${JSON.stringify(phobies, null, 0)};\n`;
 	await Bun.write(outputJsPath, jsContent);
-	console.log(`✅ 成功生成 JS 檔案：${outputJsPath}`);
+	console.log(` ## 成功生成 JS 檔案：${outputJsPath}`);
 }

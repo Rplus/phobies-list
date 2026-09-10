@@ -48,4 +48,4 @@ await Bun.write(
 	JSON.stringify(phobies, null, '\t') + '\n'
 );
 
-console.log(`Fetched ${phobies.length} Phobies.`);
+console.log(` ## Fetched ${phobies.length} Phobies.`);

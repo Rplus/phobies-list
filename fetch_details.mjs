@@ -132,7 +132,7 @@ for (let i = 0; i < phobies.length; i += 50) {
 	const batch = phobies.slice(i, i + 50);
 
 	console.log(
-		`Fetching details ${i + 1}-${i + batch.length} / ${phobies.length}...`
+		` ..Fetching details ${i + 1}-${i + batch.length} / ${phobies.length}...`
 	);
 
 	const url = new URL(api_url);
@@ -181,4 +181,4 @@ await Bun.write(
 	JSON.stringify(phobies, null, '\t') + '\n'
 );
 
-console.log(`Fetched ${phobies.length} Phobies.`);
+console.log(` ## Fetched ${phobies.length} Phobies.`);
