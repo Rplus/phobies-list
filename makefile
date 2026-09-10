@@ -13,6 +13,8 @@ all: fetch-wiki parse-phobies inline
 $(DATA_DIR):
 	mkdir -p $(DATA_DIR)
 
+parsing-date:
+
 fetch-wiki: fetch_img_index
 	mkdir -p $(DATA_DIR)
 	DATA_DIR='$(DATA_DIR)' bun ./fetch_list.mjs
@@ -31,28 +33,28 @@ parse-phobies:
 download-phobies-images:
 	DATA_DIR='$(DATA_DIR)' bun ./download-imgs.mjs
 
-inline:
-	@echo "正在更新內嵌 JS..."
-	@awk -v js_file="$(COMBINED_JSON)" ' \
-		/<!-- JS_INLINE_START -->/ { \
-			print $$0; \
-			print "<script>"; \
-			print "const heros ="; \
-			while ((getline line < js_file) > 0) { print line } \
-			close(js_file); \
-			print ";</script>"; \
-			skip = 1; \
-			next \
-		} \
-		/<!-- JS_INLINE_END -->/ { \
-			skip = 0; \
-			print $$0; \
-			next \
-		} \
-		skip == 1 { next } \
-		{ print } \
-	' "$(INDEX_HTML)" > "$(INDEX_HTML).tmp" && \
-	mv "$(INDEX_HTML).tmp" "$(INDEX_HTML)"
+# inline:
+# 	@echo "正在更新內嵌 JS..."
+# 	@awk -v js_file="$(COMBINED_JSON)" ' \
+# 		/<!-- JS_INLINE_START -->/ { \
+# 			print $$0; \
+# 			print "<script>"; \
+# 			print "const heros ="; \
+# 			while ((getline line < js_file) > 0) { print line } \
+# 			close(js_file); \
+# 			print ";</script>"; \
+# 			skip = 1; \
+# 			next \
+# 		} \
+# 		/<!-- JS_INLINE_END -->/ { \
+# 			skip = 0; \
+# 			print $$0; \
+# 			next \
+# 		} \
+# 		skip == 1 { next } \
+# 		{ print } \
+# 	' "$(INDEX_HTML)" > "$(INDEX_HTML).tmp" && \
+# 	mv "$(INDEX_HTML).tmp" "$(INDEX_HTML)"
 
 # 如果真的有需要手動完整清空時才使用的指令
 # clean:

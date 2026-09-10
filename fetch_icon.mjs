@@ -45,7 +45,7 @@ await Bun.write(
 
 { // genarate js directly
 	const outputJsPath = `./data_with_icon.js`;
-	const jsContent = `const heros = ${JSON.stringify(phobies, null, 0)};\n`;
+	const jsContent = `const heros = ${JSON.stringify(phobies, null, 0)};\n` + `const parsing_time = new Date().toISOString();`;
 	await Bun.write(outputJsPath, jsContent);
 	console.log(` ## 成功生成 JS 檔案：${outputJsPath}`);
 }

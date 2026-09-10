@@ -524,3 +524,7 @@ function fn_gen_hero_skills(skills = []) {
 dialog.addEventListener('click', (e) => {
 	if (e.target === dialog) dialog.close();
 });
+
+
+elm_parsing_time.datatime = parsing_time;
+elm_parsing_time.textContent = parsing_time;
