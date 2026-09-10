@@ -438,8 +438,6 @@ function fn_gen_hero_detail(hero) {
 		`</table>` + skills;
 }
 
-test.innerHTML = fn_gen_cardview(heros[0]);
-
 function fn_gen_cardview(hero) {
 	// const front_img = `${IMG_PATH}${hero.file}/revision/latest/scale-to-width-down/170`;
 	const front_img = IMG_PATH + hero.file + (is_dev ? '' : '/revision/latest/scale-to-width-down/170');
