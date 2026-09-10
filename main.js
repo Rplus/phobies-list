@@ -7,7 +7,7 @@ const is_dev = location.protocol !== 'https:';
 
 const WIKISITE = 'https://phobies.fandom.com/wiki/';
 const WIKI_PATH = 'https://static.wikia.nocookie.net/phobies/images/';
-const IMG_PATH = is_dev ? './images/' : WIKI_OATH;
+const IMG_PATH = is_dev ? './images/' : WIKI_PATH;
 const DEFAULT_ICON = 'e/e8/Lippy.png';
 // const WIKISITE = 'https://phobies.antifandom.com/';
 // const WIKISITE = 'https://breezewiki.com/phobies/';
