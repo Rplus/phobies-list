@@ -4,6 +4,7 @@ const target_templates = ['phobie', 'passive', 'specialability'];
 const DATA_DIR = Bun.env.DATA_DIR;
 const api_url = 'https://phobies.fandom.com/api.php';
 
+/*
 function parse_templates(wikitext, template_names) {
 	const templates = [];
 
@@ -83,13 +84,15 @@ function parse_templates(wikitext, template_names) {
 
 	return templates;
 }
+ */
 
 function normalize_property_value(key, value) {
+	// console.log(key, value);
 	const replacements = {
-		attack_type: {
+		'attack-type': {
 			'line of sight': 'Line of Sight',
 		},
-		damage_range: {
+		'damage-range': {
 			'single targeted attack': 'Single Target Attack',
 			'single target attack': 'Single Target Attack',
 		}
@@ -116,6 +119,10 @@ function fn_parse_wikitext(wikitext = '') {
 		]
 	};
 	delete op.name;
+
+	for (let prop in op) {
+		op[prop] = normalize_property_value(prop, op[prop]);
+	}
 	return op;
 }
 
