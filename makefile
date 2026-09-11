@@ -4,9 +4,9 @@ COMBINED_JSON = $(DATA_DIR)/data_with_icon.json
 INDEX_HTML = index.html
 
 # 關鍵設定：將 all、下載規則都宣告為 .PHONY，確保每次執行 make 都一定會跑 curl 覆蓋舊檔
-.PHONY: all clean fetch-phobies parse-phobies inline
+.PHONY: all clean inline
 
-all: fetch-wiki parse-phobies inline
+all: fetch-wiki inline
 	@echo "所有 JSON 檔案已嘗試更新並覆蓋！"
 
 # 建立資料夾（這個保留非 .PHONY，有資料夾就不重複建立）

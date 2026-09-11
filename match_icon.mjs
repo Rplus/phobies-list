@@ -1,5 +1,4 @@
-const DATA_DIR = Bun.env.DATA_DIR;
-const api_url = 'https://phobies.fandom.com/api.php';
+import { API_URL, DATA_DIR, custom_fetch } from './u.mjs';
 
 const phobies = await Bun.file(`${DATA_DIR}/details.json`).json();
 const images = await Bun.file(`${DATA_DIR}/allimages_lookup.json`).json();

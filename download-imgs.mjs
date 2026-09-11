@@ -1,9 +1,7 @@
 import path from "node:path";
-
-const DATA_DIR = Bun.env.DATA_DIR;
+import { API_URL, DATA_DIR, random_header } from './u.mjs';
 
 const phobies = await Bun.file(`${DATA_DIR}/data_with_icon.json`).json();
-
 
 // 實用的休眠工具函式
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
@@ -12,23 +10,15 @@ const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
  * 隨機產生一組瀏覽器的 Headers 偽裝身分
  */
 function getRandomHeaders(url) {
-	const userAgents = [
-		'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
-		'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
-		'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:123.0) Gecko/20100101 Firefox/123.0',
-		'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.3 Safari/605.1.15'
-	];
+	let header = random_header();
 
-	const randomUserAgent = userAgents[Math.floor(Math.random() * userAgents.length)];
 	const urlObj = new URL(url);
 	const referer = `${urlObj.protocol}//${urlObj.host}/`;
 
 	return {
-		'User-Agent': randomUserAgent,
+		...header,
 		'Accept': 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8',
-		'Accept-Language': 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7',
-		'Referer': 'https://phobies.fandom.com/',
-		'Connection': 'keep-alive'
+		'Referer': referer,
 	};
 }
 

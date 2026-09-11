@@ -1,8 +1,4 @@
-const DATA_DIR = Bun.env.DATA_DIR;
-
-// download_allimages.js
-
-const API_URL = 'https://phobies.fandom.com/api.php';
+import { API_URL, DATA_DIR, custom_fetch } from './u.mjs';
 
 async function fetch_all_images() {
 	let aicontinue = null;
@@ -22,17 +18,13 @@ async function fetch_all_images() {
 			params.set('aicontinue', aicontinue);
 		}
 
-		const response = await fetch(
-			`${API_URL}?${params.toString()}`
-		);
+		const url = `${API_URL}?${params.toString()}`;
 
-		if (!response.ok) {
-			throw new Error(
-				`HTTP ${response.status}`
-			);
+		const data = await custom_fetch({ url, });
+		if (!data) {
+			console.error(404, ` !!! Fetch fails: ${url}`);
+			continue;
 		}
-
-		const data = await response.json();
 		const images = data?.query?.allimages ?? [];
 
 		all_images.push(...images);

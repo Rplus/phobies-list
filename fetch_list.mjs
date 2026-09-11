@@ -1,9 +1,7 @@
 import { DOMParser } from 'linkedom';
+import { API_URL, DATA_DIR, custom_fetch } from './u.mjs';
 
-const data_dir = process.env.DATA_DIR;
-const api_url = 'https://phobies.fandom.com/api.php';
-
-const url = new URL(api_url);
+const url = new URL(API_URL);
 
 url.search = new URLSearchParams({
 	action: 'parse',
@@ -12,13 +10,7 @@ url.search = new URLSearchParams({
 	format: 'json'
 });
 
-const response = await fetch(url);
-
-if (!response.ok) {
-	throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-}
-
-const data = await response.json();
+const data = await custom_fetch({ url });
 const html = data.parse?.text?.['*'];
 
 if (!html) {
@@ -44,7 +36,7 @@ const phobies = links.map(link => {
 });
 
 await Bun.write(
-	`${data_dir}/list.json`,
+	`${DATA_DIR}/list.json`,
 	JSON.stringify(phobies, null, '\t') + '\n'
 );
 
