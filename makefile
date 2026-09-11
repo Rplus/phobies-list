@@ -19,10 +19,7 @@ fetch-wiki: fetch_img_index
 	mkdir -p $(DATA_DIR)
 	DATA_DIR='$(DATA_DIR)' bun ./fetch_list.mjs
 	DATA_DIR='$(DATA_DIR)' bun ./fetch_details.mjs
-	DATA_DIR='$(DATA_DIR)' bun ./fetch_icon.mjs
-
-fetch-icon:
-	DATA_DIR='$(DATA_DIR)' bun ./fetch_icon.mjs
+	DATA_DIR='$(DATA_DIR)' bun ./match_icon.mjs
 
 fetch_img_index:
 	DATA_DIR='$(DATA_DIR)' bun ./fetch_images.mjs
