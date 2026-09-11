@@ -22,11 +22,9 @@ fetch-wiki: fetch_img_index
 	DATA_DIR='$(DATA_DIR)' bun ./match_icon.mjs
 
 fetch_img_index:
-	DATA_DIR='$(DATA_DIR)' bun ./fetch_images.mjs
+	DATA_DIR='$(DATA_DIR)' bun ./fetch_image_index.mjs
 
-parse-phobies:
-	DATA_DIR='$(DATA_DIR)' bun ./parse-phobies.mjs
-
+# local image cahce for dev-only
 download-phobies-images:
 	DATA_DIR='$(DATA_DIR)' bun ./download-imgs.mjs
 
