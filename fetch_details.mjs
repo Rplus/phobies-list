@@ -64,13 +64,7 @@ for (let i = 0; i < phobies.length; i += 50) {
 		format: 'json'
 	});
 
-	const response = await custom_fetch(url);
-
-	if (!response.ok) {
-		throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-	}
-
-	const data = await response.json();
+	const data = await custom_fetch({url});
 
 	for (const page of data.query?.pages ?? []) {
 		const phobie = phobies.find(
