@@ -447,7 +447,8 @@ function fn_gen_cardview(hero) {
 	if (hero.poison) { effect_type = 'poison' }
 	else if (hero.electric) { effect_type = 'electric' }
 	else if (hero.fire) { effect_type = 'fire' }
-		console.log(111, {effect_type});
+	// else if (hero.fire) { effect_type = 'fire' }
+		console.log(111, hero);
 	if (effect_type) {
 		let duration = '';
 		if (hero.duration) {
@@ -463,19 +464,77 @@ function fn_gen_cardview(hero) {
 			</div>`
 	}
 
+	let abilities = '';
+	if (hero.abilities.length) {
+		abilities = fn_gen_abilities(hero.abilities);
+	}
+
 	return `
 		<div class="cardview" style="--bgi: url(${front_img});">
+			<div class="name skew-rotate">${hero.name}</div>
 			<img class="img" src="${front_img}" width=150 referrerpolicy="no-referrer">
 			<div class="key" data-cost="${hero.cost}"></div>
 			<div class="values">
-				<div class="hp key-value" data-health="">${hero.health}</div>
-				<div class="movement key-value" data-movement-type="${hero['movement-type']}">${hero['movement-range']}</div>
-				<div class="attack-type key-value" data-attack-type="${hero['attack-type']}">${hero['attack-range']}</div>
-				<div class="attack key-value" data-damage-range="${hero['damage-range']}">${hero['attack']}</div>
+				<div class="hp key-value skew-rotate" data-health="">${hero.health}</div>
+				<div class="movement key-value skew-rotate" data-movement-type="${hero['movement-type']}">${hero['movement-range']}</div>
+				<div class="attack-type key-value skew-rotate" data-attack-type="${hero['attack-type']}">${hero['attack-range']}</div>
+				<div class="attack key-value skew-rotate" data-damage-range="${hero['damage-range']}">${hero['attack']}</div>
 				${additional}
+			</div>
+			<div class="abilities-box">
+				${abilities}
 			</div>
 			<div class="race" data-race="${hero.race}"></div>
 		</div>`;
+}
+
+function fn_gen_abilities(skills = []) {
+	let specialability = skills.filter(s => s.template === 'specialability');
+	if (specialability.length) {
+		skills = specialability;
+	}
+
+	return skills.map(skill => {
+		return `<div class="skill-canvas skew-rotate" data-len="${skills.length}">
+			${fn_gen_ability_icon(skill)}
+			<div class="skill-name">
+				${skill.title}
+			</div>
+			<div class="values">
+				<div class="key-value" data-attack-type="${skill['attack-type']}">${skill['attack-range']}</div>
+			</div>
+		</div>`;
+	}).join('');
+}
+
+function fn_gen_ability_icon(skill) {
+	let img_src = WIKI_PATH + (skill['icon-title'] || DEFAULT_ICON);
+	let cooldown = ``;
+	// if (skill.cooldown) {
+	// 	cooldown = skill.cooldown;
+	// }
+	let unlocking = ``;
+	// if (skill.unlocking) {
+	// 	unlocking = skill.unlocking;
+	// }
+
+	return `
+		<div class="skill-imgbox">
+			<img src="${img_src}" width="32">
+			${cooldown}
+			${unlocking}
+		</div>
+	`
+}
+
+{ // WIP: for dev
+	document.body.innerHTML = `<center id="test" style="
+			background-image: url('./screenshot_20260923_182450.webp'), url('./screenshot_20260923_182507.webp');
+			background-repeat: no-repeat;
+			background-size: contain;
+			background-position: 0% 50%, 100% 50%;
+		"></center>` + document.body.innerHTML;
+	test.innerHTML = fn_gen_cardview(heros[9])
 }
 
 function fn_sort_skill_prop(a, b) {
