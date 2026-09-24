@@ -527,13 +527,13 @@ function fn_gen_ability_icon(skill) {
 	`
 }
 
-{ // WIP: for dev
-	document.body.innerHTML = `<center id="test" style="
+if (is_dev && location.hash === '#dev') { // WIP: for dev
+	document.body.insertAdjacentHTML('afterbegin', `<center id="test" style="
 			background-image: url('./screenshot_20260923_182450.webp'), url('./screenshot_20260923_182507.webp');
 			background-repeat: no-repeat;
 			background-size: contain;
 			background-position: 0% 50%, 100% 50%;
-		"></center>` + document.body.innerHTML;
+		"></center>`);
 	test.innerHTML = fn_gen_cardview(heros[9])
 }
 
