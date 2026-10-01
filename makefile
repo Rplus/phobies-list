@@ -1,32 +1,33 @@
 # 定義目標資料夾與檔案名稱
 DATA_DIR = data
+TASK_DIR = task
 COMBINED_JSON = $(DATA_DIR)/data_with_icon.json
 INDEX_HTML = index.html
 
-# 關鍵設定：將 all、下載規則都宣告為 .PHONY，確保每次執行 make 都一定會跑 curl 覆蓋舊檔
-.PHONY: all clean inline
+# # 關鍵設定：將 all、下載規則都宣告為 .PHONY，確保每次執行 make 都一定會跑 curl 覆蓋舊檔
+# .PHONY: all clean
 
-all: fetch-wiki inline
+all: fetch-wiki
 	@echo "所有 JSON 檔案已嘗試更新並覆蓋！"
 
 # 建立資料夾（這個保留非 .PHONY，有資料夾就不重複建立）
 $(DATA_DIR):
 	mkdir -p $(DATA_DIR)
 
-parsing-date:
+# parsing-date:
 
 fetch-wiki: fetch_img_index
 	mkdir -p $(DATA_DIR)
-	DATA_DIR='$(DATA_DIR)' bun ./fetch_list.mjs
-	DATA_DIR='$(DATA_DIR)' bun ./fetch_details.mjs
-	DATA_DIR='$(DATA_DIR)' bun ./match_icon.mjs
+	DATA_DIR='$(DATA_DIR)' bun ${TASK_DIR}/fetch_list.mjs
+	DATA_DIR='$(DATA_DIR)' bun ${TASK_DIR}/fetch_details.mjs
+	DATA_DIR='$(DATA_DIR)' bun ${TASK_DIR}/match_icon.mjs
 
 fetch_img_index:
-	DATA_DIR='$(DATA_DIR)' bun ./fetch_image_index.mjs
+	DATA_DIR='$(DATA_DIR)' bun ${TASK_DIR}/fetch_image_index.mjs
 
 # local image cahce for dev-only
 download-phobies-images:
-	DATA_DIR='$(DATA_DIR)' bun ./download-imgs.mjs
+	DATA_DIR='$(DATA_DIR)' bun ${TASK_DIR}/download-imgs.mjs
 
 # inline:
 # 	@echo "正在更新內嵌 JS..."
