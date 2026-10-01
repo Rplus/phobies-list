@@ -28,8 +28,7 @@ function getRandomHeaders(url) {
 async function downloadImageWithTimeout(url, outputPath, timeout = 5000, retries = 3) {
 	// 【核心改進】使用 Bun 原生的高效方法檢查檔案是否存在
 	const fileExists = await Bun.file(outputPath).exists();
-	if (fileExists) {
-		// console.log(`[略過] 檔案已存在，不重複下載: ${path.basename(outputPath)}`);
+	if (fileExists || outputPath === 'images/undefined') {
 		return;
 	}
 
@@ -50,6 +49,7 @@ async function downloadImageWithTimeout(url, outputPath, timeout = 5000, retries
 			return;
 		} catch (error) {
 			const isTimeout = error.name === 'TimeoutError' || error.name === 'AbortError';
+			console.log(outputPath, typeof outputPath);
 			console.warn(`[重試] ${path.basename(outputPath)} (第 ${i + 1} 次) - 原因: ${isTimeout ? '超時' : error.message}`);
 
 			if (i === retries - 1) {
@@ -90,7 +90,7 @@ async function batchDownload(urls, limit = 1) {
 		// 3. 在排入隊列前，先檢查檔案是否已存在
 		const fileExists = await Bun.file(outputPath).exists();
 		if (fileExists) {
-			console.log(`[略過] 檔案已存在: ${cleanPath}`);
+			// console.log(`[略過] 檔案已存在: ${cleanPath}`);
 			continue;
 		}
 
