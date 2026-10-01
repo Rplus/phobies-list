@@ -485,6 +485,45 @@
 [data-reflect] { --bgi: url('./icons/Passive_CounterAttack.webp'); }
 [data-cost] { --bgi: url('./icons/Icon_KeyCost.webp'); }
 
+.card {
+	position: relative;
+	width: 15em;
+	height: 20em;
+	font-size: 20px;
+
+	&::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background-color: #e1d1b7;
+		background-color: #c2341e;
+		background-color: #6aa9d6;
+		background-color: #ec9a00;
+		border-radius: .5em;
+		clip-path: polygon(
+			0% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 0%,
+			27% 2%,
+			5% 15%, 4% 62%,
+			8% 66%, 10% 95%,
+			70% 97%, 85% 95%, 96% 92.5%, 97% 91%,
+			99% 4%, 97% 2%, 92% 1%,
+			27% 2%
+		);
+		background-image:
+			linear-gradient(-150deg,
+				#fff9,
+				#fffe 2%,
+				#fff6 10%,
+				#fffc 30%,
+				#fff6 35%,
+				#fff9 65%,
+				#fff3 80%,
+				#fff9 90%,
+				#fffc);
+	}
+}
+
+
 .cardview {
 	position: relative;
 	display: inline-flex;
