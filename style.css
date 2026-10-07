@@ -231,6 +231,10 @@
 		line-height: 1.1;
 		white-space: nowrap;
 
+		&.is_narrow {
+			letter-spacing: -.6px;
+		}
+
 		& a {
 			color: inherit;
 

@@ -223,11 +223,12 @@ function fn_gen_groupby(_cate) {
 
 	function fn_gen_grouped_hero(hero, index) {
 		let _props = fn_gen_hero_props(hero);
+		let is_narrow = hero.name.length > 10;
 		return `
 			<div class="grouped-hero item" ${_props}>
 				<img src="${IMG_PATH}${hero.img}" width="60" height="60" loading="lazy" referrerpolicy="no-referrer">
 				<button class="grouped-hero__details-btn" onclick="fn_toggle_dialog(true, '${hero.name}')"></button>
-				<div class="grouped-hero__name">
+				<div class="grouped-hero__name ${is_narrow ? 'is_narrow' : ''}">
 					<a href="${WIKISITE}${hero.link}" target="_blank" rel="noopener noreferrer">${hero.name}</a>
 				</div>
 			</div>
