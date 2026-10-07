@@ -530,7 +530,7 @@ function fn_gen_ability_icon(skill) {
 
 if (is_dev && location.hash === '#dev') { // WIP: for dev
 	document.body.insertAdjacentHTML('afterbegin', `<center id="test" style="
-			background-image: url('./screenshot_20260923_182450.webp'), url('./screenshot_20260923_182507.webp');
+			background-image: url('./data/screenshot_20260923_182450.webp'), url('./data/screenshot_20260923_182507.webp');
 			background-repeat: no-repeat;
 			background-size: contain;
 			background-position: 0% 50%, 100% 50%;
