@@ -11,9 +11,14 @@
 
 	<!-- <a id="goback" href="./">./</a> -->
 
-	<h1>Phobies list</h1>
+	<h1>
+		Phobies list
+	</h1>
 
-	<select id="el_switcher"></select>
+	<div class="flex jc-c" style="gap: 1em;">
+		<select id="el_switcher"></select>
+		<button id="el_larger_switcher" hidden data-large="0">Larger</button>
+	</div>
 
 	<div id="app">
 
@@ -30,7 +35,7 @@
 			<style id="el_filter_style"></style>
 		</form>
 
-		<ul id="el_list"></ul>
+		<ul id="el_list" class="el_list is-listed"></ul>
 		<dialog id="dialog">
 			<div id="dialog_ctx"></div>
 			<button onclick="fn_toggle_dialog(false)">✖</button>

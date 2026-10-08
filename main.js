@@ -144,8 +144,22 @@ function fn_get_us_cate(url_obj = location) {
 
 function init_grouped_hero(_cate = switcher_props[0]) {
 	el_list.classList.add('is-grouped');
+	el_list.classList.remove('is-listed');
 	el_switcher.value = _cate;
 	el_list.innerHTML = fn_gen_groupby(_cate);
+
+	el_larger_switcher.hidden = false;
+	el_larger_switcher.addEventListener('click', (e) => {
+		fn_toggle_card_size(_cate);
+	});
+}
+
+function fn_toggle_card_size(_cate) {
+	let is_current_large = (el_larger_switcher.dataset.large === '1');
+	el_larger_switcher.textContent = (is_current_large ? 'Larger' : 'Smaller');
+	el_larger_switcher.dataset.large = (is_current_large ? '0' : '1');
+	el_list.innerHTML = fn_gen_groupby(_cate, !is_current_large);
+	console.log('done')
 }
 
 fn_gen_switcher();
@@ -181,7 +195,7 @@ function fn_gen_switcher() {
 	}
 }
 
-function fn_gen_groupby(_cate) {
+function fn_gen_groupby(_cate, is_large = false) {
 	console.log(22, 'fn_gen_groupby');
 	let prop_2nd = 'race';
 
@@ -202,7 +216,7 @@ function fn_gen_groupby(_cate) {
 		for (let _class of s_class) {
 		// for (let _class in heros_grouped[cate]) {
 			let _class_html = heros_grouped[cate][_class]?.map((hero) => {
-				return fn_gen_grouped_hero(hero);
+				return fn_gen_grouped_hero(hero, is_large);
 			}).join('') || '';
 			_hero_html += `<div class="grouped-heros-classbox">${_class_html}</div>`;
 		}
@@ -221,19 +235,29 @@ function fn_gen_groupby(_cate) {
 		return array.reduce((all, cur) => all + cur, 0);
 	}
 
-	function fn_gen_grouped_hero(hero, index) {
+	function fn_gen_grouped_hero(hero, is_large) {
 		let _props = fn_gen_hero_props(hero);
-		let is_narrow = hero.name.length > 10;
 		return `
-			<div class="grouped-hero item" ${_props}>
+			<button class="grouped-hero item" ${_props} onclick="fn_toggle_dialog(true, '${hero.name}')">
+				${fn_gen_grouped_hero_ctx(hero, is_large)}
+			</button>
+		`
+	}
+
+	function fn_gen_grouped_hero_ctx(hero, is_large = false) {
+		if (is_large) {
+			return fn_gen_cardview(hero);
+		} else {
+			let is_narrow = hero.name.length > 10;
+			return `
 				<img src="${IMG_PATH}${hero.img}" width="60" height="60" loading="lazy" referrerpolicy="no-referrer">
-				<button class="grouped-hero__details-btn" onclick="fn_toggle_dialog(true, '${hero.name}')"></button>
 				<div class="grouped-hero__name ${is_narrow ? 'is_narrow' : ''}">
 					<a href="${WIKISITE}${hero.link}" target="_blank" rel="noopener noreferrer">${hero.name}</a>
 				</div>
-			</div>
-		`
+			`
+		}
 	}
+
 }
 
 function fn_gen_hero_props(hero) {
@@ -449,18 +473,18 @@ function fn_gen_cardview(hero) {
 	else if (hero.electric) { effect_type = 'electric' }
 	else if (hero.fire) { effect_type = 'fire' }
 	// else if (hero.fire) { effect_type = 'fire' }
-		console.log(111, hero);
+	// console.log(111, hero);
 	if (effect_type) {
 		let duration = '';
 		if (hero.duration) {
 			duration = `
 				<div class="key-value" data-duration="${hero.duration}">
-					${hero.duration}
+					<div data-stroke="${hero.duration}"></div>
 				</div>`;
 		}
 		additional = `
-			<div class="key-value" data-${effect_type}>
-				${hero[effect_type]}
+			<div class="key-value skew-rotate" data-${effect_type}>
+				<span data-stroke="${hero[effect_type]}"></span>
 				${duration}
 			</div>`
 	}
@@ -471,21 +495,30 @@ function fn_gen_cardview(hero) {
 	}
 
 	return `
-		<div class="cardview" style="--bgi: url(${front_img});">
-			<div class="name skew-rotate">${hero.name}</div>
+		<div class="card card--${hero.rarity.replace(/\s+/, '_')}" style="--bgi: url(${front_img});">
 			<img class="img" src="${front_img}" width=150 referrerpolicy="no-referrer">
+			<div class="name skew-rotate">${hero.name}</div>
 			<div class="key" data-cost="${hero.cost}"></div>
 			<div class="values">
-				<div class="hp key-value skew-rotate" data-health="">${hero.health}</div>
-				<div class="movement key-value skew-rotate" data-movement-type="${hero['movement-type']}">${hero['movement-range']}</div>
-				<div class="attack-type key-value skew-rotate" data-attack-type="${hero['attack-type']}">${hero['attack-range']}</div>
-				<div class="attack key-value skew-rotate" data-damage-range="${hero['damage-range']}">${hero['attack']}</div>
+				<div class="hp key-value skew-rotate" data-health="">
+					<div data-stroke="${hero.health}"></div>
+				</div>
+				<div class="movement key-value skew-rotate" data-movement-type="${hero['movement-type']}">
+					<div data-stroke="${hero['movement-range']}"></div>
+				</div>
+				<div class="attack-type key-value skew-rotate" data-attack-type="${hero['attack-type']}">
+					<div data-stroke="${hero['attack-range']}"></div>
+				</div>
+				<div class="attack key-value skew-rotate" data-damage-range="${hero['damage-range']}">
+					<div data-stroke="${hero['attack']}"></div>
+				</div>
 				${additional}
 			</div>
 			<div class="abilities-box">
 				${abilities}
 			</div>
 			<div class="race" data-race="${hero.race}"></div>
+			<div class="rarity" data-stroke="${hero.rarity}"></div>
 		</div>`;
 }
 
@@ -530,12 +563,24 @@ function fn_gen_ability_icon(skill) {
 
 if (is_dev && location.hash === '#dev') { // WIP: for dev
 	document.body.insertAdjacentHTML('afterbegin', `<center id="test" style="
-			background-image: url('./data/screenshot_20260923_182450.webp'), url('./data/screenshot_20260923_182507.webp');
 			background-repeat: no-repeat;
 			background-size: contain;
 			background-position: 0% 50%, 100% 50%;
-		"></center>`);
-	test.innerHTML = fn_gen_cardview(heros[9])
+			margin: 1em auto;
+			font-size: 1rem;
+			max-width: 55em;
+		"></center><hr>`);
+	test.innerHTML = fn_gen_cardview(heros[9]);
+	const originalDiv = document.querySelector('#test');
+	const clonedDivH = originalDiv.cloneNode(true);
+	const clonedDivS = originalDiv.cloneNode(true);
+	originalDiv.after(clonedDivH);
+	originalDiv.after(clonedDivS);
+	originalDiv.style.backgroundImage = `url('./data/screenshot_20260923_182450.webp'), url('./data/screenshot_20260923_182507.webp')`;
+	clonedDivS.style.fontSize = '.5rem';
+	clonedDivH.style.fontSize = '12px';
+	clonedDivH.querySelector('.card').parentNode.classList.add('grouped-hero');
+	// clonedDivS.querySelector('.card').style.fontSize = '1em';
 }
 
 function fn_sort_skill_prop(a, b) {
