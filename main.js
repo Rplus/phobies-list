@@ -123,6 +123,7 @@ heros.forEach(hero => {
 });
 
 let us_cate = fn_get_us_cate(location);
+let us_large = new URLSearchParams(location.search).has('large');
 el_filters.innerHTML = fn_gen_filterdom();
 
 if (!us_cate) {
@@ -149,6 +150,8 @@ function init_grouped_hero(_cate = switcher_props[0]) {
 	el_list.innerHTML = fn_gen_groupby(_cate);
 
 	el_larger_switcher.hidden = false;
+	el_larger_switcher.textContent = (us_large ? 'Smaller / [ Larger ]' : '[ Smaller ] / Larger');
+	el_larger_switcher.dataset.large = us_large ? '1' : '0';
 	el_larger_switcher.addEventListener('click', (e) => {
 		fn_toggle_card_size(_cate);
 	});
@@ -156,13 +159,30 @@ function init_grouped_hero(_cate = switcher_props[0]) {
 
 function fn_toggle_card_size(_cate) {
 	let is_current_large = (el_larger_switcher.dataset.large === '1');
-	el_larger_switcher.textContent = (is_current_large ? 'Larger' : 'Smaller');
-	el_larger_switcher.dataset.large = (is_current_large ? '0' : '1');
+	let next_stat = is_current_large ? '0' : '1';
+	el_larger_switcher.textContent = (is_current_large ? '[ Smaller ] / Larger' : 'Smaller / [ Larger ]');
+	el_larger_switcher.dataset.large = next_stat;
 	el_list.innerHTML = fn_gen_groupby(_cate, !is_current_large);
-	console.log('done')
+
+	if (next_stat === '0') {
+		fn_update_us_param('large', null);
+	} else {
+		fn_update_us_param('large', '');
+	}
 }
 
 fn_gen_switcher();
+
+function fn_update_us_param(prop = '', value = '') {
+	console.log(1111, 'fn_update_us_param', {prop, value})
+	const url = new URL(window.location.href);
+	if (value === null) {
+		url.searchParams.delete(prop);
+	} else {
+		url.searchParams.set(prop, value);
+	}
+	window.history.pushState({}, '', url);
+}
 
 function fn_gen_switcher() {
 	el_switcher.innerHTML = `<option value="">= list view =</option>` + switcher_props.map(prop => {
@@ -174,28 +194,46 @@ function fn_gen_switcher() {
 		console.log(e.target.value);
 		if (_cate) {
 			// location.href = `?cate=${_cate}`;
-			window.history.pushState(null, '', `?cate=${_cate}`);
+			fn_update_us_param('cate', _cate);
+			location.reload();
+			// window.history.pushState(null, '', `?cate=${_cate}`);
 		} else {
 			location.href = './index.html';
 		}
 	});
 
-	if (window.navigation) {
-		navigation.addEventListener('navigate', (event) => {
-			if (!event.destination.sameDocument) {
-				return;
-			}
-			let _us_cate = fn_get_us_cate(new URL(event.destination.url));
-			if (_us_cate) {
-				init_grouped_hero(_us_cate);
-			} else {
-				location.href = './index.html';
-			}
-		});
-	}
+	// if (window.navigation) {
+	// 	navigation.addEventListener('navigate', (event) => {
+	// 		if (!event.destination.sameDocument) {
+	// 			return;
+	// 		}
+	// 		const currentUrl = new URL(navigation.currentEntry.url);
+	// 		const destinationUrl = new URL(event.destination.url);
+	// 		const currentCate = fn_get_us_cate(currentUrl);
+	// 		const nextCate = fn_get_us_cate(destinationUrl);
+	// 		if (nextCate) {
+	// 			if (currentCate !== nextCate) {
+	// 				init_grouped_hero(nextCate);
+	// 			} else {
+	// 				console.log('CATE 沒有變化，跳過重繪以優化效能');
+	// 			}
+	// 		} else {
+	// 			if (destinationUrl.pathname.endsWith('index.html') || destinationUrl.pathname === '/') {
+	// 				return;
+	// 			}
+	// 			location.href = './index.html';
+	// 		}
+	// 		// let _us_cate = fn_get_us_cate(new URL(event.destination.url));
+	// 		// if (_us_cate) {
+	// 		// 	init_grouped_hero(_us_cate);
+	// 		// } else {
+	// 		// 	location.href = './index.html';
+	// 		// }
+	// 	});
+	// }
 }
 
-function fn_gen_groupby(_cate, is_large = false) {
+function fn_gen_groupby(_cate, is_large = us_large) {
 	console.log(22, 'fn_gen_groupby');
 	let prop_2nd = 'race';
 

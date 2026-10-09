@@ -6,10 +6,11 @@
 	right: 0;
 	top: 0;
 	bottom: 0;
-	z-index: 2;
+	z-index: 20;
 	background-color: #0009;
 	backdrop-filter: blur(3px);
 	padding-left: 0.5em;
+	transition: opacity .3s;
 
 	.filter-toggle {
 		text-align: right;
@@ -21,6 +22,10 @@
 	&:not(:has(#el_form_details[open])) {
 		opacity: 0.75;
 		bottom: unset;
+	}
+
+	body:has(#el_larger_switcher[data-large="1"]) &:not(:hover) {
+		opacity: 0.1;
 	}
 }
 
