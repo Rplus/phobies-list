@@ -52,12 +52,12 @@ let filter_props = [
 let filter_rendering_grounp = [
 	'race',
 	'cost',
-	'rarity',
 	'movement-range',
 	'movement-type',
 	'attack-range',
 	'attack-type',
 	'damage-range',
+	'rarity',
 	// {
 	// 	title: 'type',
 	// 	items: [
@@ -134,7 +134,7 @@ if (!us_cate) {
 
 const mediaQuery = window.matchMedia('(min-width: 1300px)');
 if (mediaQuery.matches) {
-	el_form_details.open = true;
+	// el_form_details.open = true;
 }
 
 function fn_get_us_cate(url_obj = location) {
@@ -322,31 +322,31 @@ function fn_gen_list() {
 			+ '</li>'
 		);
 	}).join('');
+}
 
-	function fn_gen_td(hero, p) {
-		let ctx = hero[p];
+function fn_gen_td(hero, p) {
+	let ctx = hero[p];
 
-		if (p === 'name') {
-			ctx = `<img src="${IMG_PATH}${hero.img}" width="60" height="60" loading="lazy" referrerpolicy="no-referrer" onclick="fn_toggle_dialog(true, '${hero.name}')"><br/><a href="${WIKISITE}${hero.link}" target="_blank" rel="noopener noreferrer">${hero[p]}</a>`;
-		} else if (p === 'abilities') {
-			let _skills = hero[p];
-			if (_skills) {
-				ctx = _skills.map((s, si) => {
-					let _url = WIKI_PATH + (s['icon-title'] || DEFAULT_ICON);
-					return `<img src="${_url}" width="36" height="36" onclick="fn_toggle_dialog(true, '${hero.name}', ${si})" referrerpolicy="no-referrer"> `;
-				}).join('')
-			} else {
-				ctx = '';
-			}
+	if (p === 'name') {
+		ctx = `<img src="${IMG_PATH}${hero.img}" width="60" height="60" loading="lazy" referrerpolicy="no-referrer" onclick="fn_toggle_dialog(true, '${hero.name}')"><br/><a href="${WIKISITE}${hero.link}" target="_blank" rel="noopener noreferrer">${hero[p]}</a>`;
+	} else if (p === 'abilities') {
+		let _skills = hero[p];
+		if (_skills) {
+			ctx = _skills.map((s, si) => {
+				let _url = WIKI_PATH + (s['icon-title'] || DEFAULT_ICON);
+				return `<img src="${_url}" width="36" height="36" onclick="fn_toggle_dialog(true, '${hero.name}', ${si})" referrerpolicy="no-referrer"> `;
+			}).join('')
+		} else {
+			ctx = '';
 		}
-
-		return (
-			`<div data-${p}="${hero[p]}">
-					<div class="label">${p}:</div>
-					<div class="value" data-value="${hero[p]}">${ctx}</div>
-				</div>`
-		);
 	}
+
+	return (
+		`<div data-${p}="${hero[p]}">
+				<div class="label">${p}:</div>
+				<div class="value" data-value="${hero[p]}">${ctx}</div>
+			</div>`
+	);
 }
 
 function fn_gen_filterdom(argument) {
@@ -567,13 +567,49 @@ function fn_gen_abilities(skills = []) {
 	}
 
 	return skills.map(skill => {
-		return `<div class="skill-canvas skew-rotate" data-len="${skills.length}">
+		let attack = '';
+		if (skill.attack) {
+			attack = `
+				<div class="attack key-value" data-damage-range="${skill['effect-range']}">
+					<div data-stroke="${skill['attack']}"></div>
+				</div>
+			`;
+		}
+		let additional = '';
+		let effect_type = '';
+		if (skill.poison) { effect_type = 'poison' }
+		else if (skill.electric) { effect_type = 'electric' }
+		else if (skill.fire) { effect_type = 'fire' }
+		else if (skill.lifesteal) { effect_type = 'lifesteal' }
+		else if (skill.debuff) { effect_type = 'debuff' }
+		if (effect_type) {
+
+			let duration = '';
+			if (skill['effect-duration']) {
+				duration = `
+					<div class="key-value" data-duration="${skill['effect-duration']}">
+						<div data-stroke="${skill['effect-duration']}"></div>
+					</div>`;
+			}
+
+			additional = `
+				<div class="attack key-value" data-${effect_type}>
+					<span data-stroke="${skill[effect_type]}"></span>
+					${duration}
+				</div>
+			`;
+		}
+		return `<div class="skill-canvas skew-rotate" data-len="${specialability.length}">
 			${fn_gen_ability_icon(skill)}
 			<div class="skill-name">
 				${skill.title}
 			</div>
 			<div class="values">
-				<div class="key-value" data-attack-type="${skill['attack-type']}">${skill['attack-range']}</div>
+				<div class="key-value" data-attack-type="${skill['attack-type']}">
+					<div data-stroke="${skill['attack-range']}"></div>
+				</div>
+				${attack}
+				${additional}
 			</div>
 		</div>`;
 	}).join('');
@@ -609,6 +645,7 @@ if (is_dev && location.hash === '#dev') { // WIP: for dev
 			max-width: 55em;
 		"></center><hr>`);
 	test.innerHTML = fn_gen_cardview(heros[9]);
+	// test.innerHTML = fn_gen_cardview(heros[6]);
 	const originalDiv = document.querySelector('#test');
 	const clonedDivH = originalDiv.cloneNode(true);
 	const clonedDivS = originalDiv.cloneNode(true);
