@@ -40,6 +40,15 @@ function fn_parse_wikitext(wikitext = '') {
 	for (let prop in op) {
 		op[prop] = normalize_property_value(prop, op[prop]);
 	}
+
+	if (op.abilities) {
+
+		op.abilities.forEach((ability, index) => {
+			for (let a_prop in ability) {
+				op.abilities[index][a_prop] = normalize_property_value(a_prop, ability[a_prop]);
+			}
+		})
+	}
 	return op;
 }
 
