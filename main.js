@@ -85,6 +85,18 @@ const skill_baned_props = [
 	'template',
 ];
 
+const skill_addition_props = [
+	'poison',
+	'electric',
+	'fire',
+	'lifesteal',
+	'heal',
+	'buff',
+	'debuff',
+	'trap',
+	'disease',
+];
+
 String.prototype.sanitize = function() {
 	return this.replace(/[,\s\']/g, '_');
 };
@@ -475,6 +487,8 @@ function fn_toggle_dialog(is_open = true, heroname = '', skill_index = 0) {
 	}
 
 	let hero = heros.find(i => i.name === heroname);
+	// let heroIndex = heros.findIndex(i => i.name === heroname);
+	// console.log(111, heroIndex)
 	if (!hero) { return; }
 
 	dialog_ctx.innerHTML = fn_gen_hero_detail(hero);
@@ -535,7 +549,7 @@ function fn_gen_cardview(hero) {
 	return `
 		<div class="card card--${hero.rarity.replace(/\s+/, '_')}" style="--bgi: url(${front_img});">
 			<img class="img" src="${front_img}" width=150 referrerpolicy="no-referrer">
-			<div class="name skew-rotate">${hero.name}</div>
+			<div class="name skew-rotate" data-long=${hero.name.length >= 10}>${hero.name}</div>
 			<div class="key" data-cost="${hero.cost}"></div>
 			<div class="values">
 				<div class="hp key-value skew-rotate" data-health="">
@@ -576,19 +590,15 @@ function fn_gen_abilities(skills = []) {
 			`;
 		}
 		let additional = '';
-		let effect_type = '';
-		if (skill.poison) { effect_type = 'poison' }
-		else if (skill.electric) { effect_type = 'electric' }
-		else if (skill.fire) { effect_type = 'fire' }
-		else if (skill.lifesteal) { effect_type = 'lifesteal' }
-		else if (skill.debuff) { effect_type = 'debuff' }
-		if (effect_type) {
+		let effect_type = skill_addition_props.find(p => p in skill);
 
+		if (effect_type) {
 			let duration = '';
-			if (skill['effect-duration']) {
+			if (skill['effect-duration'] || skill['duration']) {
+				let _d = skill['effect-duration'] || skill['duration'];
 				duration = `
-					<div class="key-value" data-duration="${skill['effect-duration']}">
-						<div data-stroke="${skill['effect-duration']}"></div>
+					<div class="key-value" data-duration="${_d}">
+						<div data-stroke="${_d}"></div>
 					</div>`;
 			}
 
@@ -599,12 +609,12 @@ function fn_gen_abilities(skills = []) {
 				</div>
 			`;
 		}
-		return `<div class="skill-canvas skew-rotate" data-len="${specialability.length}">
+		return `<div class="skill-canvas" data-len="${specialability.length}">
 			${fn_gen_ability_icon(skill)}
-			<div class="skill-name">
+			<div class="skill-name skew-rotate">
 				${skill.title}
 			</div>
-			<div class="values">
+			<div class="values skew-rotate">
 				<div class="key-value" data-attack-type="${skill['attack-type']}">
 					<div data-stroke="${skill['attack-range']}"></div>
 				</div>
@@ -618,13 +628,21 @@ function fn_gen_abilities(skills = []) {
 function fn_gen_ability_icon(skill) {
 	let img_src = WIKI_PATH + (skill['icon-title'] || DEFAULT_ICON);
 	let cooldown = ``;
-	// if (skill.cooldown) {
-	// 	cooldown = skill.cooldown;
-	// }
+	if (skill.cooldown) {
+		cooldown = `
+			<div class="cooldown" data-cooldown>
+				<div class="skew-rotate" data-stroke="${skill.cooldown}"></div>
+			</div>
+		`;
+	}
 	let unlocking = ``;
-	// if (skill.unlocking) {
-	// 	unlocking = skill.unlocking;
-	// }
+	if (skill.unlocking) {
+		unlocking = `
+			<div class="unlocking" data-unlocking>
+				<div class="skew-rotate" data-stroke="${skill.unlocking}"></div>
+			</div>
+		`;
+	}
 
 	return `
 		<div class="skill-imgbox">
@@ -644,8 +662,10 @@ if (is_dev && location.hash === '#dev') { // WIP: for dev
 			font-size: 1rem;
 			max-width: 55em;
 		"></center><hr>`);
-	test.innerHTML = fn_gen_cardview(heros[9]);
+	// test.innerHTML = fn_gen_cardview(heros[9]);
+	test.innerHTML = fn_gen_cardview(heros[25]);
 	// test.innerHTML = fn_gen_cardview(heros[6]);
+	// test.innerHTML = fn_gen_cardview(heros[17]);
 	const originalDiv = document.querySelector('#test');
 	const clonedDivH = originalDiv.cloneNode(true);
 	const clonedDivS = originalDiv.cloneNode(true);
@@ -688,15 +708,15 @@ function fn_gen_hero_skills(skills = []) {
 		return `
 			<hr>
 			<hr>
-			<details open>
-				<summary>
+			<div>
+				<h3>
 					<img src="${_url}" width=36 height=36 align=center referrerpolicy="no-referrer">
 					${skill.template} Ability: ${skill.title}
-				</summary>
+				</h3>
 				<div class="skill-box">
 					<table>${skill_props_html}</table>
 				</div>
-			</details>
+			</div>
 		`;
 	}).join('');
 }

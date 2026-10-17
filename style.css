@@ -553,6 +553,7 @@ body:has(#el_larger_switcher[data-large="1"]) #el_list.is-grouped {
 	font-size: 2em;
 	width: 9em;
 	height: 12em;
+	text-align: left;
 
 	.grouped-hero & {
 		font-size: 1em;
@@ -575,16 +576,24 @@ body:has(#el_larger_switcher[data-large="1"]) #el_list.is-grouped {
 	.name {
 		text-align: center;
 		position: absolute;
-		top: .25em;
-		left: 3.5em;
+		top: .5em;
+		left: 1.5em;
 		right: 1.5em;
 		z-index: 50;
-		text-indent: -1.5em;
+		margin-left: auto;
+		margin-right: auto;
+		width: max-content;
+		max-width: 6em;
+		text-align: left;
+		line-height: 1;
 		font-weight: 900;
-		/* text-shadow: 1px 1px #000, 1px -1px #000, -1px 1px #000, -1px -1px #000; */
 		filter: drop-shadow(0.15em 0.15em .05em #000);
 		-webkit-text-stroke: 0.5px;
 		color: #e9e1bb;
+
+		&[data-long="true"] {
+			text-align-last: right;
+		}
 	}
 	.img {
 		/* width: 110px; */
@@ -706,12 +715,15 @@ body:has(#el_larger_switcher[data-large="1"]) #el_list.is-grouped {
 	.abilities-box {
 		position: absolute;
 		top: 57.5%;
-		left: 2.5%;
+		/* left: 2.5%; */
+		left: 10%;
 		z-index: 5;
+		text-align: left;
 	}
 
 	.skill-canvas {
-		font-size: smaller;
+		font-size: .8em;
+		margin-bottom: 0.5em;
 		display: grid;
 		grid-template:
 			'icon name'
@@ -720,21 +732,21 @@ body:has(#el_larger_switcher[data-large="1"]) #el_list.is-grouped {
 		&[data-len="1"] {
 			grid-template:
 				'name name' auto
-				'icon values' 3em / 3em 1fr;
+				'icon values' 2.5em / 2.5em 1fr;
 
 			.skill-imgbox {
-				margin-top: -.25em;
-				margin-left: -.75em;
+				margin-top: .15em;
+				margin-left: -1.25em;
 				background-image: radial-gradient(#f9f6ce 60%, #0000 62%);
 
 				img {
-					width: 3em;
+					width: 2.5em;
 					display: block;
 					filter: drop-shadow(2px 2px #000);
 				}
 			}
 			.skill-name {
-				font-size: 1rem;
+				/* font-size: 1rem; */
 			}
 			.values {
 				margin-left: -0.85em;
@@ -742,17 +754,52 @@ body:has(#el_larger_switcher[data-large="1"]) #el_list.is-grouped {
 		}
 
 		.skill-imgbox {
+			position: relative;
 			grid-area: icon;
 			width: fit-content;
 			height: fit-content;
 			margin-top: -.5em;
 			border-radius: 10em;
 			background-image: linear-gradient(45deg, #000, #f00);
-			transform: skew(13deg);
+			/* transform: skew(13deg); */
+			--stroke-color: #000;
+			font-weight: 900;
+			text-align: center;
 
 			img {
 				width: 1.5em;
 				height: auto;
+				position: relative;
+				z-index: 2;
+			}
+
+			.cooldown {
+				position: absolute;
+				z-index: 5;
+				top: 75%;
+				left: 45%;
+				width: 1em;
+				height: 1em;
+				padding-left: 0.6em;
+				background: var(--bgi) no-repeat 50% / cover;
+				[data-stroke] {
+					zoom: .75;
+				}
+			}
+
+			.unlocking {
+				position: absolute;
+				z-index: 3;
+				left: 20%;
+				top: 75%;
+				width: 1em;
+				height: 1em;
+				padding-top: 0.3em;
+				background: var(--bgi) no-repeat 50% / cover;
+
+				[data-stroke] {
+					zoom: .5;
+				}
 			}
 		}
 
@@ -849,7 +896,6 @@ h1 {
 }
 
 #dialog {
-	text-transform: capitalize;
 	background-color: rgb(var(--bgc));
 	box-shadow: .25em .25em #666;
 	border-width: 0;
@@ -878,6 +924,7 @@ h1 {
 
 		&:first-child {
 			text-align: right;
+			text-transform: capitalize;
 		}
 
 		&[colspan="2"] {
