@@ -673,7 +673,7 @@ body:has(#el_larger_switcher[data-large="1"]) #el_list.is-grouped {
 	}
 
 	.key-value {
-		padding-left: 1.25em;
+		padding-left: 1.4em;
 		transform-origin: 0% 50%;
 		background-repeat: no-repeat;
 		background-position: 0 50%;
@@ -813,6 +813,9 @@ body:has(#el_larger_switcher[data-large="1"]) #el_list.is-grouped {
 		.values {
 			position: static;
 			grid-area: values;
+
+			[data-buff]::before { content: '+'; }
+			[data-debuff]::before { content: '-'; }
 		}
 	}
 
