@@ -590,24 +590,25 @@ function fn_gen_abilities(skills = []) {
 			`;
 		}
 		let additional = '';
-		let effect_type = skill_addition_props.find(p => p in skill);
+		let matched_effect_types = skill_addition_props.filter(p => p in skill);
+		if (matched_effect_types.length > 0) {
+			additional = matched_effect_types.map(effect_type => {
+				let duration = '';
+				if (skill['effect-duration'] || skill['duration']) {
+					let _d = skill['effect-duration'] || skill['duration'];
+					duration = `
+						<div class="key-value" data-duration="${_d}">
+							<div data-stroke="${_d}"></div>
+						</div>`;
+				}
 
-		if (effect_type) {
-			let duration = '';
-			if (skill['effect-duration'] || skill['duration']) {
-				let _d = skill['effect-duration'] || skill['duration'];
-				duration = `
-					<div class="key-value" data-duration="${_d}">
-						<div data-stroke="${_d}"></div>
-					</div>`;
-			}
-
-			additional = `
-				<div class="attack key-value" data-${effect_type}>
-					<span data-stroke="${skill[effect_type]}"></span>
-					${duration}
-				</div>
-			`;
+				return `
+					<div class="attack key-value" data-${effect_type}>
+						<span data-stroke="${skill[effect_type]}"></span>
+						${duration}
+					</div>
+				`;
+			}).join('');
 		}
 		return `<div class="skill-canvas" data-len="${specialability.length}">
 			${fn_gen_ability_icon(skill)}
@@ -663,9 +664,9 @@ if (is_dev && location.hash === '#dev') { // WIP: for dev
 			max-width: 55em;
 		"></center><hr>`);
 	// test.innerHTML = fn_gen_cardview(heros[9]);
-	test.innerHTML = fn_gen_cardview(heros[25]);
+	// test.innerHTML = fn_gen_cardview(heros[25]);
 	// test.innerHTML = fn_gen_cardview(heros[6]);
-	// test.innerHTML = fn_gen_cardview(heros[17]);
+	test.innerHTML = fn_gen_cardview(heros[17]);
 	const originalDiv = document.querySelector('#test');
 	const clonedDivH = originalDiv.cloneNode(true);
 	const clonedDivS = originalDiv.cloneNode(true);
