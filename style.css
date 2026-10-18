@@ -587,7 +587,7 @@ body:has(#el_larger_switcher[data-large="1"]) #el_list.is-grouped {
 		text-align: left;
 		line-height: 1;
 		font-weight: 900;
-		filter: drop-shadow(0.15em 0.15em .05em #000);
+		filter: drop-shadow(0.1em 0.1em #000);
 		-webkit-text-stroke: 0.5px;
 		color: #e9e1bb;
 
