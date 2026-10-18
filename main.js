@@ -591,17 +591,10 @@ function fn_gen_abilities(skills = []) {
 		}
 		let additional = '';
 		let matched_effect_types = skill_addition_props.filter(p => p in skill);
+		let duration = fn_get_skill_duration(skill);
+
 		if (matched_effect_types.length > 0) {
 			additional = matched_effect_types.map(effect_type => {
-				let duration = '';
-				if (skill['effect-duration'] || skill['duration']) {
-					let _d = skill['effect-duration'] || skill['duration'];
-					duration = `
-						<div class="key-value" data-duration="${_d}">
-							<div data-stroke="${_d}"></div>
-						</div>`;
-				}
-
 				return `
 					<div class="attack key-value" data-${effect_type}>
 						<span data-stroke="${skill[effect_type]}"></span>
@@ -609,7 +602,10 @@ function fn_gen_abilities(skills = []) {
 					</div>
 				`;
 			}).join('');
+		} else if (duration) {
+			additional = duration;
 		}
+
 		return `<div class="skill-canvas" data-len="${specialability.length}">
 			${fn_gen_ability_icon(skill)}
 			<div class="skill-name skew-rotate">
@@ -624,6 +620,18 @@ function fn_gen_abilities(skills = []) {
 			</div>
 		</div>`;
 	}).join('');
+}
+
+function fn_get_skill_duration(skill) {
+	let duration = '';
+	let _d = skill['effect-duration'] || skill['duration'];
+	if (_d) {
+		duration = `
+			<div class="key-value" data-duration="${_d}">
+				<div data-stroke="${_d}"></div>
+			</div>`;
+	}
+	return duration;
 }
 
 function fn_gen_ability_icon(skill) {
