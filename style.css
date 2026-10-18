@@ -437,7 +437,9 @@ body:has(#el_larger_switcher[data-large="1"]) #el_list.is-grouped {
 			height: 20px;
 			background-position: 50%;
 			background-repeat: no-repeat;
-			background-size: contain;
+			/* background-size: contain; */
+			/* background-size: 1.2em; */
+			background-size: min(100%, 1.25em);
 			background-image: var(--bgi);
 		}
 	}
@@ -678,6 +680,7 @@ body:has(#el_larger_switcher[data-large="1"]) #el_list.is-grouped {
 		background-repeat: no-repeat;
 		background-position: 0 50%;
 		background-size: contain;
+		background-size: min(100%, 1.25em);
 		background-image: var(--bgi);
 		text-align: left;
 		font-weight: 900;
