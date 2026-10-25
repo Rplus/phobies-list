@@ -655,7 +655,7 @@ function fn_gen_ability_icon(skill) {
 
 	return `
 		<div class="skill-imgbox">
-			<img src="${img_src}" width="32">
+			<img src="${img_src}" width="32" height="32">
 			${cooldown}
 			${unlocking}
 		</div>
