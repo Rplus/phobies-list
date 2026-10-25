@@ -717,9 +717,9 @@ body:has(#el_larger_switcher[data-large="1"]) #el_list.is-grouped {
 
 	.abilities-box {
 		position: absolute;
-		top: 57.5%;
+		top: 67.5%;
 		/* left: 2.5%; */
-		left: 10%;
+		left: 2.5%;
 		z-index: 5;
 		text-align: left;
 	}
@@ -736,6 +736,8 @@ body:has(#el_larger_switcher[data-large="1"]) #el_list.is-grouped {
 			grid-template:
 				'name name' auto
 				'icon values' 2.5em / 2.5em 1fr;
+			margin-top: -1.5em;
+			margin-left: 0.5em;
 
 			.skill-imgbox {
 				margin-top: .15em;
@@ -752,7 +754,7 @@ body:has(#el_larger_switcher[data-large="1"]) #el_list.is-grouped {
 				/* font-size: 1rem; */
 			}
 			.values {
-				margin-left: -0.85em;
+				margin-left: -1em;
 			}
 		}
 
